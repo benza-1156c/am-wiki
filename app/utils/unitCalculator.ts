@@ -3,8 +3,237 @@ import type {
   AwakeningBonus,
   NormalizedUnit,
   MergeMode,
-  MergeResult
+  MergeResult,
+  PotentialRank,
+  PotentialConfig,
+  StatPotentials,
+  CalculatedStats
 } from '~/types/unit'
+
+/**
+ * Potential / Stat Grade ranks (from status.md)
+ * D: +5%, C: +10%, B: +15%, A: +20%, S: +25%, SS: +30%, SSS: +35%, 神 (GOD): +50%
+ */
+export const POTENTIAL_CONFIGS: Record<PotentialRank, PotentialConfig> = {
+  NONE: { key: 'NONE', label: '-', percent: 0, color: 'neutral' },
+  D: { key: 'D', label: 'D', percent: 0.05, color: 'neutral' },
+  C: { key: 'C', label: 'C', percent: 0.10, color: 'neutral' },
+  B: { key: 'B', label: 'B', percent: 0.15, color: 'info' },
+  A: { key: 'A', label: 'A', percent: 0.20, color: 'info' },
+  S: { key: 'S', label: 'S', percent: 0.25, color: 'warning' },
+  SS: { key: 'SS', label: 'SS', percent: 0.30, color: 'warning' },
+  SSS: { key: 'SSS', label: 'SSS', percent: 0.35, color: 'error' },
+  GOD: { key: 'GOD', label: '神', percent: 0.50, color: 'fuchsia' }
+}
+
+export const POTENTIAL_RANK_ORDER: PotentialRank[] = [
+  'NONE', 'D', 'C', 'B', 'A', 'S', 'SS', 'SSS', 'GOD'
+]
+
+export function getNextPotentialRank(current?: PotentialRank): PotentialRank {
+  const cur = current || 'NONE'
+  const idx = POTENTIAL_RANK_ORDER.indexOf(cur)
+  if (idx === -1 || idx === POTENTIAL_RANK_ORDER.length - 1) {
+    return POTENTIAL_RANK_ORDER[0] ?? 'NONE'
+  }
+  return POTENTIAL_RANK_ORDER[idx + 1] ?? 'NONE'
+}
+
+export function getPotentialMultiplier(rank?: PotentialRank): number {
+  if (!rank || !POTENTIAL_CONFIGS[rank]) return 0
+  return POTENTIAL_CONFIGS[rank].percent
+}
+
+/**
+ * Color class mapping for Potential/Status ranks (matching status.md and in-game UI)
+ */
+export function getRankTextColor(rank?: PotentialRank): string {
+  switch (rank) {
+    case 'GOD':
+      return 'text-fuchsia-400'
+    case 'SSS':
+      return 'text-rose-400'
+    case 'SS':
+      return 'text-amber-400'
+    case 'S':
+      return 'text-yellow-400'
+    case 'A':
+      return 'text-sky-400'
+    case 'B':
+      return 'text-blue-400'
+    case 'C':
+      return 'text-emerald-400'
+    case 'D':
+      return 'text-neutral-300'
+    default:
+      return 'text-neutral-400'
+  }
+}
+
+export function getRankSelectStyle(rank?: PotentialRank): string {
+  switch (rank) {
+    case 'GOD':
+      return 'border-fuchsia-500 text-fuchsia-300 bg-fuchsia-950/40 shadow-sm shadow-fuchsia-500/20'
+    case 'SSS':
+      return 'border-rose-500 text-rose-300 bg-rose-950/40 shadow-sm shadow-rose-500/20'
+    case 'SS':
+      return 'border-amber-500 text-amber-300 bg-amber-950/40 shadow-sm shadow-amber-500/20'
+    case 'S':
+      return 'border-yellow-500 text-yellow-300 bg-yellow-950/40 shadow-sm shadow-yellow-500/20'
+    case 'A':
+      return 'border-sky-500 text-sky-300 bg-sky-950/40'
+    case 'B':
+      return 'border-blue-500 text-blue-300 bg-blue-950/40'
+    case 'C':
+      return 'border-emerald-500 text-emerald-300 bg-emerald-950/40'
+    case 'D':
+      return 'border-neutral-500 text-neutral-300 bg-neutral-900'
+    default:
+      return 'border-neutral-700 text-neutral-400 bg-neutral-900'
+  }
+}
+
+/**
+ * Resolves upgrade overrides for a specific upgrade level,
+ * supporting both exact keys ("1") and range keys ("5-10").
+ */
+export function getUpgradeOverridesForLevel(
+  overrides: Record<string, any> = {},
+  level: number
+): Record<string, any> {
+  let resolved: Record<string, any> = {}
+  for (const [key, val] of Object.entries(overrides)) {
+    if (key.includes('-')) {
+      const parts = key.split('-')
+      const start = parseInt(parts[0] || '0', 10)
+      const end = parseInt(parts[1] || '0', 10)
+      if (level >= start && level <= end) {
+        resolved = { ...resolved, ...val }
+      }
+    } else if (parseInt(key, 10) === level) {
+      resolved = { ...resolved, ...val }
+    }
+  }
+  return resolved
+}
+
+/**
+ * Global canonical combat calculation engine
+ */
+export function calculateCombatStats(
+  unit: any,
+  unitLevel: number = 1,
+  stars: number = 0,
+  upgradeLevel: number = 0,
+  potentials: StatPotentials = {}
+): CalculatedStats {
+  if (!unit) {
+    return {
+      attack: 0,
+      baseAttack: 0,
+      atkGainPercent: 0,
+      health: 0,
+      baseHealth: 0,
+      hpGainPercent: 0,
+      dps: 0,
+      attackSpeed: 1,
+      range: 0,
+      skillRange: 0,
+      speed: 0,
+      skillDamage: 0,
+      skillCooldown: 0,
+      cost: 0,
+      potentials,
+      potentialPercents: {}
+    }
+  }
+
+  const baseDmg = unit.baseDamage || unit.Damage || 50
+  const baseHp = unit.statsAtBase?.health || unit.HP || 100
+  const baseRange = unit.statsAtBase?.range || unit.Range || 15
+  const baseSpeed = unit.statsAtBase?.speed || unit.WalkSpeed || 8
+  const baseSpa = unit.statsAtBase?.attackSpeed || unit.AttackSpeed || 3
+  const baseCost = unit.statsAtBase?.cost || unit.Cost || 800
+  const statMult = unit.upgradeStatMultiplier || 1.2
+  const overrides = unit.upgradeOverrides || {}
+
+  const lvlOverrides = getUpgradeOverridesForLevel(overrides, upgradeLevel)
+  const upgMult = upgradeLevel <= 1 ? 1 : Math.pow(statMult, upgradeLevel - 1)
+
+  const rawAtk = lvlOverrides.Attack || lvlOverrides.Damage || Math.round(baseDmg * upgMult * 10) / 10
+  const rawHp = lvlOverrides.Health || lvlOverrides.HP || Math.round(baseHp * upgMult * 10) / 10
+  const rawRange = lvlOverrides.Range !== undefined ? lvlOverrides.Range : baseRange
+  const rawSpeed = lvlOverrides.WalkSpeed || baseSpeed
+  const rawSpa = lvlOverrides.AttackSpeed !== undefined ? lvlOverrides.AttackSpeed : baseSpa
+  const rawCd = lvlOverrides.SkillCooldown || unit.SkillCooldown || 5
+
+  const lvlMult = getLevelMultiplier(unitLevel)
+  const awk = getAwakeningBonuses(stars)
+
+  // Potential Rank Multipliers (status.md: D=5%, C=10%, B=15%, SS=30%, SSS=35%, 神=50%)
+  const potDmg = getPotentialMultiplier(potentials.damage)
+  const potHp = getPotentialMultiplier(potentials.health)
+  const potRange = getPotentialMultiplier(potentials.range)
+  const potSpeed = getPotentialMultiplier(potentials.speed)
+  const potSpa = getPotentialMultiplier(potentials.attackSpeed)
+  const potCd = getPotentialMultiplier(potentials.cooldown)
+
+  // 1. Damage (ATK)
+  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * (1 + potDmg) * 10) / 10
+
+  // 2. Health (HP)
+  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * (1 + potHp) * 10) / 10
+
+  // 3. Range
+  const range = Math.round(rawRange * (1 + awk.range) * (1 + potRange) * 10) / 10
+  const rawSkillRange = lvlOverrides.SkillRange || unit.SkillRange || range
+  const skillRange = Math.round(rawSkillRange * (1 + potRange) * 10) / 10
+
+  // 4. Speed
+  const speed = Math.round(rawSpeed * (1 + awk.speed) * (1 + potSpeed) * 10) / 10
+
+  // 5. Attack Speed (SPA) / Attack Cooldown: Cooldown status applies to Attack Cooldown (SPA)
+  const attackSpeed = potCd > 0
+    ? Math.round((rawSpa * (1 - potCd)) * 100) / 100
+    : (potSpa > 0 ? Math.round((rawSpa * (1 - potSpa)) * 100) / 100 : Math.round(rawSpa * 100) / 100)
+
+  // DPS (ATK / SPA)
+  const dps = Math.round((attack / (attackSpeed || 1)) * 10) / 10
+
+  // Skill Damage: Damage Potential also scales Skill Damage proportionally (as verified in-game)
+  const rawSkillDmg = lvlOverrides.SkillDamage || (unit.skillDamage ? unit.skillDamage : rawAtk * 1.5)
+  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * (1 + potDmg) * 10) / 10
+
+  // Skill Cooldown: Fixed from game data and unaffected by status rolls ("Skill Cooldown status จะไม่มีผลนะบอกก่อน")
+  const skillCooldown = rawCd
+
+  return {
+    attack,
+    baseAttack: rawAtk,
+    atkGainPercent: Math.round(((attack - rawAtk) / (rawAtk || 1)) * 100),
+    health,
+    baseHealth: rawHp,
+    hpGainPercent: Math.round(((health - rawHp) / (rawHp || 1)) * 100),
+    dps,
+    attackSpeed,
+    range,
+    skillRange,
+    speed,
+    skillDamage,
+    skillCooldown,
+    cost: baseCost,
+    potentials,
+    potentialPercents: {
+      damage: Math.round(potDmg * 100),
+      health: Math.round(potHp * 100),
+      range: Math.round(potRange * 100),
+      speed: Math.round(potSpeed * 100),
+      cooldown: Math.round(potCd * 100),
+      attackSpeed: Math.round(potSpa * 100),
+      skillDamage: Math.round(potDmg * 100)
+    }
+  }
+}
 
 /**
  * Returns Awakening bonuses based on star count (0 to 6 stars).
@@ -82,7 +311,7 @@ export function calculateUnitLevels(
   const levels: Record<string, any> = {}
 
   for (let lvl = 0; lvl <= maxLvl; lvl++) {
-    const lvlOverrides = overrides[String(lvl)] || {}
+    const lvlOverrides = getUpgradeOverridesForLevel(overrides, lvl)
     const multiplier = lvl <= 1 ? 1 : Math.pow(statMult, lvl - 1)
 
     const rawAtk = lvlOverrides.Attack || lvlOverrides.Damage || Math.round((baseDamage * multiplier) * 10) / 10

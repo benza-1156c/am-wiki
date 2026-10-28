@@ -87,6 +87,7 @@
           />
 
           <UnitStatsGrid
+            v-model:potentials="potentials"
             :stats="currentStats"
             :unit-level="unitLevel"
           />
@@ -112,11 +113,11 @@
 
 <script setup lang="ts">
 import {
-  getAwakeningBonuses,
   getMaxUnitLevel,
-  getLevelMultiplier
+  getLevelMultiplier,
+  calculateCombatStats
 } from '~/utils/unitCalculator'
-import type { CalculatedStats } from '~/types/unit'
+import type { StatPotentials } from '~/types/unit'
 import { useDatabase } from '~/composables/useDatabase'
 
 const {
@@ -132,6 +133,17 @@ const selectedStars = ref<number>(0)
 const unitLevel = ref<number>(1)
 const upgradeLevel = ref<number>(0)
 const isSelectorOpen = ref<boolean>(false)
+
+// Stat Potentials (status.md: D=5%, C=10%, B=15%, SS=30%, SSS=35%, 神=50%)
+const potentials = ref<StatPotentials>({
+  damage: 'GOD',
+  health: 'GOD',
+  range: 'GOD',
+  speed: 'GOD',
+  cooldown: 'GOD',
+  skillDamage: 'NONE',
+  attackSpeed: 'NONE'
+})
 
 // Preselect first unit on load
 watch(
@@ -172,76 +184,14 @@ const unitSkillInfo = computed(() => {
   return currentUnit.value.skill || skills.value[name] || skills.value[currentUnit.value.displayName] || null
 })
 
-function computeStatsFor(u: any, uLevel: number, stars: number, upgLvl: number): CalculatedStats {
-  if (!u) {
-    return {
-      attack: 0,
-      baseAttack: 0,
-      atkGainPercent: 0,
-      health: 0,
-      baseHealth: 0,
-      hpGainPercent: 0,
-      dps: 0,
-      attackSpeed: 1,
-      range: 0,
-      skillRange: 0,
-      speed: 0,
-      skillDamage: 0,
-      skillCooldown: 0,
-      cost: 0
-    }
-  }
-
-  const baseDmg = u.baseDamage || u.Damage || 50
-  const baseHp = u.statsAtBase?.health || u.HP || 100
-  const baseRange = u.statsAtBase?.range || u.Range || 15
-  const baseSpeed = u.statsAtBase?.speed || u.WalkSpeed || 8
-  const baseSpa = u.statsAtBase?.attackSpeed || u.AttackSpeed || 3
-  const baseCost = u.statsAtBase?.cost || u.Cost || 800
-  const statMult = u.upgradeStatMultiplier || 1.2
-  const overrides = u.upgradeOverrides || {}
-
-  const lvlOverrides = overrides[String(upgLvl)] || {}
-  const upgMult = upgLvl <= 1 ? 1 : Math.pow(statMult, upgLvl - 1)
-
-  const rawAtk = lvlOverrides.Attack || lvlOverrides.Damage || Math.round(baseDmg * upgMult * 10) / 10
-  const rawHp = lvlOverrides.Health || lvlOverrides.HP || Math.round(baseHp * upgMult * 10) / 10
-  const rawRange = lvlOverrides.Range !== undefined ? lvlOverrides.Range : baseRange
-  const rawSpeed = lvlOverrides.WalkSpeed || baseSpeed
-  const rawSpa = lvlOverrides.AttackSpeed !== undefined ? lvlOverrides.AttackSpeed : baseSpa
-
-  const lvlMult = getLevelMultiplier(uLevel)
-  const awk = getAwakeningBonuses(stars)
-
-  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * 10) / 10
-  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * 10) / 10
-  const range = Math.round(rawRange * (1 + awk.range) * 10) / 10
-  const speed = Math.round(rawSpeed * (1 + awk.speed) * 10) / 10
-  const attackSpeed = Math.round(rawSpa * 100) / 100
-  const dps = Math.round((attack / (attackSpeed || 1)) * 10) / 10
-
-  const rawSkillDmg = u.skillDamage || rawAtk * 1.5
-  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * 10) / 10
-
-  return {
-    attack,
-    baseAttack: rawAtk,
-    atkGainPercent: Math.round(((attack - rawAtk) / (rawAtk || 1)) * 100),
-    health,
-    baseHealth: rawHp,
-    hpGainPercent: Math.round(((health - rawHp) / (rawHp || 1)) * 100),
-    dps,
-    attackSpeed,
-    range,
-    skillRange: lvlOverrides.SkillRange || u.SkillRange || range,
-    speed,
-    skillDamage,
-    skillCooldown: lvlOverrides.SkillCooldown || u.SkillCooldown || 5,
-    cost: baseCost
-  }
-}
-
+// Global canonical calculation call
 const currentStats = computed(() => {
-  return computeStatsFor(currentUnit.value, unitLevel.value, selectedStars.value, upgradeLevel.value)
+  return calculateCombatStats(
+    currentUnit.value,
+    unitLevel.value,
+    selectedStars.value,
+    upgradeLevel.value,
+    potentials.value
+  )
 })
 </script>

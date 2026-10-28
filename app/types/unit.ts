@@ -105,6 +105,26 @@ export interface NormalizedUnit {
   model?: string | null
 }
 
+export type PotentialRank = 'NONE' | 'D' | 'C' | 'B' | 'A' | 'S' | 'SS' | 'SSS' | 'GOD'
+
+export interface PotentialConfig {
+  key: PotentialRank
+  label: string
+  percent: number
+  color: string
+}
+
+export interface StatPotentials {
+  damage?: PotentialRank
+  health?: PotentialRank
+  range?: PotentialRank
+  speed?: PotentialRank
+  cooldown?: PotentialRank
+  attackSpeed?: PotentialRank
+  skillDamage?: PotentialRank
+  dps?: PotentialRank
+}
+
 export interface CalculatedStats {
   attack: number
   baseAttack: number
@@ -120,6 +140,8 @@ export interface CalculatedStats {
   skillDamage: number
   skillCooldown: number
   cost: number
+  potentials?: StatPotentials
+  potentialPercents?: Record<string, number>
 }
 
 export type MergeMode = 'merge' | 'skip_duplicates' | 'overwrite_all'
