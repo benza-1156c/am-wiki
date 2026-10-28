@@ -1,0 +1,544 @@
+{
+	"Data": {
+		"DaggerFang": {
+			"Type": "Gear",
+			"Name": "Dagger Fang",
+			"Slot": "Arm",
+			"Description": "+17% ArmorPen\n+4% LifeSteal\n-3.5% SPA",
+			"Stats": { "LifeSteal": 0.04, "ArmorPen": 0.17, "AttackSpeedBoost": 0.035 },
+			"Icon": "rbxassetid://106082101923697",
+			"Rarity": "Mythic"
+		},
+		"HeadGear1": {
+			"Type": "Gear",
+			"Name": "TestHead",
+			"Slot": "Head",
+			"Description": " -- ",
+			"Stats": { "DamageBoost": 0.5 },
+			"Icon": "rbxassetid://0",
+			"Rarity": "Mythic"
+		},
+		"ArmGear1": {
+			"Type": "Gear",
+			"Name": "TestArm",
+			"Slot": "Arm",
+			"Description": " -- ",
+			"Stats": { "RangeBoost": 0.5 },
+			"Icon": "rbxassetid://0",
+			"Rarity": "Mythic"
+		},
+		"HalloweenArm": {
+			"Type": "Gear",
+			"Name": "Halloween Arm",
+			"Slot": "Arm",
+			"Description": "+7% ArmorPen, +5% Evade",
+			"Stats": { "EvadeBoost": 0.05, "ArmorPen": 0.07 },
+			"Icon": "rbxassetid://88210844879388",
+			"Rarity": "Secret"
+		},
+		"FlameHat": {
+			"Type": "Gear",
+			"Name": "Flame Hat",
+			"Slot": "Head",
+			"Description": "+2.3% Burn \n+3% Range",
+			"Stats": { "RangeBoost": 0.03, "BurnBoost": 0.023 },
+			"Icon": "rbxassetid://130854399956222",
+			"Rarity": "Epic"
+		},
+		"Waistguard": {
+			"Type": "Gear",
+			"Name": "Waistguard",
+			"Slot": "Body",
+			"Description": "+2% Speed\n -2% CritChance",
+			"Stats": { "CritChanceBoost": -0.02, "SpeedBoost": 0.02 },
+			"Icon": "rbxassetid://91884264786399",
+			"Rarity": "Epic"
+		},
+		"AbyssalBand": {
+			"Type": "Gear",
+			"Name": "Abyssal Band",
+			"Slot": "Arm",
+			"Description": "-4.2% SpawnCooldown\n+5% Accuracy\n+3% Walkspeed",
+			"Stats": { "SpawnCooldownReduction": 0.042, "SpeedBoost": 0.03, "Accuracy": 0.05 },
+			"Icon": "rbxassetid://128175231583382",
+			"Rarity": "Secret"
+		},
+		"HornedVisor": {
+			"Type": "Gear",
+			"Name": "Horned Visor",
+			"Slot": "Head",
+			"Description": "+10% Range\n -2.5% Cost",
+			"Stats": { "RangeBoost": 0.1, "CostReduction": 0.025 },
+			"Icon": "rbxassetid://92365922826157",
+			"Rarity": "Legendary"
+		},
+		"KillerPants": {
+			"Type": "Gear",
+			"Name": "Killer Pants",
+			"Slot": "Legs",
+			"Description": "+1.4% Evade",
+			"Stats": { "EvadeBoost": 0.014 },
+			"Icon": "rbxassetid://118887519882189",
+			"Rarity": "Mythic"
+		},
+		"SwanDanceCostume ": {
+			"Type": "Gear",
+			"Name": "Swan Dance Costume",
+			"Slot": "Body",
+			"Description": "+10% Burn",
+			"Stats": { "BurnBoost": 0.1 },
+			"Icon": "rbxassetid://135665913183165",
+			"Rarity": "Legendary"
+		},
+		"ShadowHood": {
+			"Type": "Gear",
+			"Name": "Shadow Hood",
+			"Slot": "Head",
+			"Description": "+3% Range",
+			"Stats": { "RangeBoost": 0.03 },
+			"Icon": "rbxassetid://80561659830178",
+			"Rarity": "Rare"
+		},
+		"Insurance": {
+			"Type": "Gear",
+			"Name": "Insurance Helmet",
+			"Slot": "Head",
+			"Description": "+2% HP \n+1.2% Speed",
+			"Stats": { "SpeedBoost": 0.012, "HealthBoost": 0.02 },
+			"Icon": "rbxassetid://78627855475134",
+			"Rarity": "Rare"
+		},
+		"Narubeat": {
+			"Type": "Gear",
+			"Name": "Narubeat",
+			"Slot": "Legs",
+			"Description": "+6% Speed",
+			"Stats": { "SpeedBoost": 0.06 },
+			"Icon": "rbxassetid://112250764049565",
+			"Rarity": "Rare"
+		},
+		"RevengeCloudCloak": {
+			"Type": "Gear",
+			"Name": "Revenge Cloud Cloak",
+			"Slot": "Body",
+			"Description": "+5% DMG \n+2% Speed",
+			"Stats": { "DamageBoost": 0.05, "SpeedBoost": 0.02 },
+			"Icon": "rbxassetid://79143926836112",
+			"Rarity": "Legendary"
+		},
+		"CursedCarrier": {
+			"Type": "Gear",
+			"Name": "CursedCarrier",
+			"Slot": "Body",
+			"Description": "Increases Armor Penetration by +1.2%.",
+			"Stats": { "DamageBoost": 0.05, "ArmorPen": 0.012, "SpeedBoost": 0.02 },
+			"Icon": "rbxassetid://131208841636355",
+			"Rarity": "Legendary"
+		},
+		"GlacialStaff": {
+			"Type": "Gear",
+			"Name": "Glacial Staff",
+			"Slot": "Arm",
+			"Description": "+3% Skill Dmg",
+			"Stats": { "SkillDamageBoost": 0.03 },
+			"Icon": "rbxassetid://114568696395723",
+			"Rarity": "Epic"
+		},
+		"Blindfold": {
+			"Type": "Gear",
+			"Name": "Blindfold",
+			"Slot": "Head",
+			"Description": "+5% Crit Damage\n -5% Spawn Cooldown%\n +50 Armor",
+			"Stats": { "Armor": 50, "CritDamageBoost": 0.05, "SpawnCooldownReduction": 0.05 },
+			"Icon": "rbxassetid://78694288136441",
+			"Rarity": "Mythic"
+		},
+		"ShadowCloak": {
+			"Type": "Gear",
+			"Name": "Shadow Cloak",
+			"Slot": "Body",
+			"Description": "+15% HP\n+1 Shield\n-4.5% AbilityCooldown",
+			"Stats": { "Shield": 1, "SkillCooldownReduction": 0.045, "HealthBoost": 0.15 },
+			"Icon": "rbxassetid://103116006598996",
+			"Rarity": "Secret"
+		},
+		"SaiyanWristbands": {
+			"Type": "Gear",
+			"Name": "Saiyan Wristbands",
+			"Slot": "Arm",
+			"Description": "+2% Skill Damage\n -2% SPA",
+			"Stats": { "AttackSpeedBoost": 0.02, "SkillDamageBoost": 0.02 },
+			"Icon": "rbxassetid://110415799892842",
+			"Rarity": "Epic"
+		},
+		"WarlordMantle": {
+			"Type": "Gear",
+			"Name": "Warlord Mantle",
+			"Slot": "Body",
+			"Description": "+9% ArmorPen\n+5% Health\n+8% Burn",
+			"Stats": { "ArmorPen": 0.09, "BurnBoost": 0.08, "HealthBoost": 0.05 },
+			"Icon": "rbxassetid://88505963328860",
+			"Rarity": "Mythic"
+		},
+		"ShadowBoots": {
+			"Type": "Gear",
+			"Name": "Shadow Boots",
+			"Slot": "Legs",
+			"Description": "+5% HP\n+8% CritDamage",
+			"Stats": { "CritDamageBoost": 0.08, "HealthBoost": 0.05 },
+			"Icon": "rbxassetid://137244256337510",
+			"Rarity": "Secret"
+		},
+		"Heracles4": {
+			"Type": "Gear",
+			"Name": "Heracles Boots",
+			"Slot": "Legs",
+			"Description": "+7% Speed Boost",
+			"Stats": { "SpeedBoost": 0.07 },
+			"Icon": "rbxassetid://134597664686754",
+			"Rarity": "Secret"
+		},
+		"HellsingHat": {
+			"Type": "Gear",
+			"Name": "Hellsing Lord's Hat",
+			"Slot": "Head",
+			"Description": "+50 Armor, +3% LifeSteal, -3% Skill Cooldown\n(When equipped on Dracula), +250% HP, +70% DMG, +80% Accuracy, +50% Speed, +20% Range, +20% Burn, -20% Cost, -15% Spawn Cooldown",
+			"Stats": {
+				"Armor": 50,
+				"Alucard_001,Alucard_001_evo": {
+					"SpawnCooldownReduction": 0.15,
+					"RangeBoost": 0.2,
+					"Accuracy": 0.8,
+					"DamageBoost": 0.7,
+					"BurnBoost": 0.2,
+					"CostReduction": 0.2,
+					"HealthBoost": 1.8374
+				},
+				"LifeSteal": 0.03,
+				"SkillCooldownReduction": 0.03
+			},
+			"Icon": "rbxassetid://82322902092207",
+			"Rarity": "Secret"
+		},
+		"SunBinding": {
+			"Type": "Gear",
+			"Name": "Sun Binding",
+			"Slot": "Arm",
+			"Description": "+3% Skill Dmg \n-7.2% Cost \n Burn +2% ",
+			"Stats": { "BurnBoost": 0.02, "CostReduction": 0.072, "SkillDamageBoost": 0.03 },
+			"Icon": "rbxassetid://137482859126873",
+			"Rarity": "Legendary"
+		},
+		"Heracles3": {
+			"Type": "Gear",
+			"Name": "Heracles Gauntlets",
+			"Slot": "Arm",
+			"Description": "-8% SkillCooldown",
+			"Stats": { "SkillCooldownReduction": 0.08 },
+			"Icon": "rbxassetid://96649735154406",
+			"Rarity": "Secret"
+		},
+		"ShadowCrown": {
+			"Type": "Gear",
+			"Name": "Shadow Crown",
+			"Slot": "Head",
+			"Description": "+5% Damage\n+10% Accuracy\n+7.3% Range",
+			"Stats": { "DamageBoost": 0.05, "RangeBoost": 0.073, "Accuracy": 0.1 },
+			"Icon": "rbxassetid://79692719088314",
+			"Rarity": "Secret"
+		},
+		"Heracles2": {
+			"Type": "Gear",
+			"Name": "Heracles Plate",
+			"Slot": "Body",
+			"Description": "-10% SkillCooldown",
+			"Stats": { "SkillCooldownReduction": 0.1 },
+			"Icon": "rbxassetid://101088683692143",
+			"Rarity": "Secret"
+		},
+		"CrimsonTread": {
+			"Type": "Gear",
+			"Name": "Crimson Tread",
+			"Slot": "Legs",
+			"Description": "+3% Speed, -2% SPA",
+			"Stats": { "AttackSpeedBoost": 0.02, "SpeedBoost": 0.03 },
+			"Icon": "rbxassetid://106428099237863",
+			"Rarity": "Rare"
+		},
+		"ClawBoots": {
+			"Type": "Gear",
+			"Name": "Claw Boots",
+			"Slot": "Legs",
+			"Description": "+8.2% WalkSpeedBoost\n+5.8% Evade",
+			"Stats": { "EvadeBoost": 0.058, "SpeedBoost": 0.082 },
+			"Icon": "rbxassetid://95629984030437",
+			"Rarity": "Mythic"
+		},
+		"AegisPendant": {
+			"Type": "Gear",
+			"Name": "Aegis Pendant",
+			"Slot": "Head",
+			"Description": "+150 Arrmor , -3.4% Cost",
+			"Stats": { "Armor": 150, "CostReduction": 0.034 },
+			"Icon": "rbxassetid://117853785169576",
+			"Rarity": "Mythic"
+		},
+		"HeroGloves": {
+			"Type": "Gear",
+			"Name": "Hero's Gloves",
+			"Slot": "Arm",
+			"Description": "+1.5% DMG",
+			"Stats": { "DamageBoost": 0.015 },
+			"Icon": "rbxassetid://92499973490348",
+			"Rarity": "Rare"
+		},
+		"HalloweenBoost": {
+			"Type": "Gear",
+			"Name": "Halloween Arm",
+			"Slot": "Legs",
+			"Description": "+7% ArmorPen , -6% Cost",
+			"Stats": { "CostReduction": 0.06, "ArmorPen": 0.07 },
+			"Icon": "rbxassetid://132463826632934",
+			"Rarity": "Secret"
+		},
+		"SilverCrestDiadem": {
+			"Type": "Gear",
+			"Name": "Silver Crest Diadem",
+			"Slot": "Head",
+			"Description": "+3.5% Evade \n +7% Ability Damage",
+			"Stats": { "EvadeBoost": 0.035, "SkillDamageBoost": 0.07 },
+			"Icon": "rbxassetid://103696550967093",
+			"Rarity": "Mythic"
+		},
+		"LegsGear1": {
+			"Type": "Gear",
+			"Name": "TestLegs",
+			"Slot": "Legs",
+			"Description": " -- ",
+			"Stats": { "SpeedBoost": 0.5 },
+			"Icon": "rbxassetid://0",
+			"Rarity": "Mythic"
+		},
+		"KnightPlate": {
+			"Type": "Gear",
+			"Name": "Knight's Plate",
+			"Slot": "Body",
+			"Description": "+2.5% HP",
+			"Stats": { "HealthBoost": 0.025 },
+			"Icon": "rbxassetid://93453877977414",
+			"Rarity": "Rare"
+		},
+		"GilgameshHead": {
+			"Type": "Gear",
+			"Name": "Royal Golden Head",
+			"Slot": "Head",
+			"Description": "+7% Health \n +7% Range",
+			"Stats": { "RangeBoost": 0.07, "HealthBoost": 0.07 },
+			"Icon": "rbxassetid://112946117319172",
+			"Rarity": "Secret"
+		},
+		"HalloweenHead": {
+			"Type": "Gear",
+			"Name": "Halloween Head",
+			"Slot": "Head",
+			"Description": "+10 % Damage , +5% Crit Chance , +5% Crit Damage ",
+			"Stats": { "DamageBoost": 0.1, "CritDamageBoost": 0.05, "CritChanceBoost": 0.05 },
+			"Icon": "rbxassetid://135069738108160",
+			"Rarity": "Secret"
+		},
+		"GilgameshLegs": {
+			"Type": "Gear",
+			"Name": "Royal Golden Boots",
+			"Slot": "Legs",
+			"Description": "+10% Burn\n -15% Skill Cooldown\n LifeSteal 10%",
+			"Stats": { "LifeSteal": 0.1, "BurnBoost": 0.1, "SkillCooldownReduction": 0.15 },
+			"Icon": "rbxassetid://137162253098012",
+			"Rarity": "Secret"
+		},
+		"BladeBracers": {
+			"Type": "Gear",
+			"Name": "Blade Bracers",
+			"Slot": "Arm",
+			"Description": "+7.5% Accuracy",
+			"Stats": { "ArmorPen": 0.07 },
+			"Icon": "rbxassetid://102160830706872",
+			"Rarity": "Mythic"
+		},
+		"CrimsonShadowTunic": {
+			"Type": "Gear",
+			"Name": "Crimson Shadow Tunic",
+			"Slot": "Body",
+			"Description": "+5% ArmorPen",
+			"Stats": { "ArmorPen": 0.07 },
+			"Icon": "rbxassetid://117776871404830",
+			"Rarity": "Mythic"
+		},
+		"HalloweenArmor": {
+			"Type": "Gear",
+			"Name": "Halloween Armor",
+			"Slot": "Body",
+			"Description": "+7% ArmorPen, + 200 Armor",
+			"Stats": { "Armor": 200, "ArmorPen": 0.07 },
+			"Icon": "rbxassetid://129979320366668",
+			"Rarity": "Secret"
+		},
+		"GilgameshBody": {
+			"Type": "Gear",
+			"Name": "Royal Golden Body",
+			"Slot": "Body",
+			"Description": "+5% Damage\n +5% Evade\n +5% Crit Chance\n +5% Crit Damage",
+			"Stats": { "DamageBoost": 0.05, "CritChanceBoost": 0.05, "CritDamageBoost": 0.05, "EvadeBoost": 0.05 },
+			"Icon": "rbxassetid://116760956576333",
+			"Rarity": "Secret"
+		},
+		"DivineCrown": {
+			"Type": "Gear",
+			"Name": "Divine Crown",
+			"Slot": "Head",
+			"Description": "+5% HP",
+			"Stats": { "HealthBoost": 0.05 },
+			"Icon": "rbxassetid://135560793131354",
+			"Rarity": "Epic"
+		},
+		"Greaves": {
+			"Type": "Gear",
+			"Name": "Greaves",
+			"Slot": "Legs",
+			"Description": "-3% SkillCooldown",
+			"Stats": { "SkillCooldownReduction": 0.03 },
+			"Icon": "rbxassetid://108029009728466",
+			"Rarity": "Legendary"
+		},
+		"BodyGear1": {
+			"Type": "Gear",
+			"Name": "TestBody",
+			"Slot": "Body",
+			"Description": " -- ",
+			"Stats": { "HealthBoost": 0.5 },
+			"Icon": "rbxassetid://0",
+			"Rarity": "Mythic"
+		},
+		"RiderMask": {
+			"Type": "Gear",
+			"Name": "Rider Mask",
+			"Slot": "Head",
+			"Description": "+5% Crit Damage\n(When equipped on Tontaro), +160% HP, +100% DMG, +30% Skill Dmg, +90% Range, +15% Speed, +25% Evade, +2500 Armor, +2 Shield, -80% Skill Cooldown, +2 Unit Cap",
+			"Stats": {
+				"CritDamageBoost": 0.05,
+				"unit_051": {
+					"EvadeBoost": 0.25,
+					"RangeBoost": 0.9,
+					"SkillDamageBoost": 0.3,
+					"Shield": 2,
+					"HealthBoost": 1.6,
+					"Armor": 2500,
+					"DamageBoost": 1,
+					"UnitCap": 3,
+					"SpeedBoost": 0.15,
+					"SkillCooldownReduction": 0.8
+				}
+			},
+			"Icon": "rbxassetid://95309267426116",
+			"Rarity": "Exclusive"
+		},
+		"DemonicProfit": {
+			"Type": "Gear",
+			"Name": "Demonic Profit",
+			"Slot": "Legs",
+			"Description": "+10% HP\n +1 Shield",
+			"Stats": { "Shield": 1, "HealthBoost": 0.1 },
+			"Icon": "rbxassetid://75641935910891",
+			"Rarity": "Mythic"
+		},
+		"CursedRing": {
+			"Type": "Gear",
+			"Name": "Cursed Ring",
+			"Slot": "Arm",
+			"Description": "-7% SPA +5% Skill Damage +4% Critical Chance (When equipped on Yuta, Skill SPA is reduced by 90% instead.)",
+			"Stats": {
+				"CritChanceBoost": 0.04,
+				"SkillDamageBoost": 0.05,
+				"AttackSpeedBoost": 0.07,
+				"Yuta": { "SkillCooldownReduction": 0.9 },
+				"unit_005_evo": { "SkillCooldownReduction": 0.9 }
+			},
+			"Icon": "rbxassetid://132456565456304",
+			"Rarity": "Mythic"
+		},
+		"Heracles1": {
+			"Type": "Gear",
+			"Name": "Heracles Helmet",
+			"Slot": "Head",
+			"Description": "10% Health Boost",
+			"Stats": { "HealthBoost": 0.1 },
+			"Icon": "rbxassetid://134620933869122",
+			"Rarity": "Secret"
+		},
+		"GilgameshArm": {
+			"Type": "Gear",
+			"Name": "Royal Golden Arm",
+			"Slot": "Arm",
+			"Description": "+8% Crit Damage\n -8% Spawn Cooldown%\n +100 Armor",
+			"Stats": { "Armor": 100, "CritDamageBoost": 0.08, "SpawnCooldownReduction": 0.08 },
+			"Icon": "rbxassetid://83592938161803",
+			"Rarity": "Secret"
+		}
+	},
+	"Statskey": {
+		"SendCooldownReduction": "SpawnCooldownReduction",
+		"SkillDamage": "SkillDamageBoost",
+		"SpawnCooldownReduction": "SpawnCooldownReduction",
+		"Range": "RangeBoost",
+		"CritChanceBoost": "CritChanceBoost",
+		"AttackCooldownReduction": "AttackSpeedBoost",
+		"ArmorPierce": "ArmorPierce",
+		"AttackSpeedBoost": "AttackSpeedBoost",
+		"Damage": "DamageBoost",
+		"ArmorPenetration": "ArmorPen",
+		"Accuracy": "Accuracy",
+		"AttackBoost": "DamageBoost",
+		"SpawnCap": "SpawnCap",
+		"ArmorPen": "ArmorPen",
+		"Health": "HealthBoost",
+		"LifeStealBoost": "LifeSteal",
+		"CriticalDamageBoost": "CritDamageBoost",
+		"BurnBoost": "BurnBoost",
+		"CritDamageBoost": "CritDamageBoost",
+		"HPBoost": "HealthBoost",
+		"CritChance": "CritChanceBoost",
+		"CostReduction": "CostReduction",
+		"ExpBoost": "ExpBoost",
+		"Shield": "Shield",
+		"ShieldBoost": "Shield",
+		"UnitCapBoost": "UnitCap",
+		"AbilityCooldownReduction": "SkillCooldownReduction",
+		"Speed": "SpeedBoost",
+		"WalkSpeedBoost": "SpeedBoost",
+		"AccuracyBoost": "Accuracy",
+		"Arrmor": "Armor",
+		"Armor": "Armor",
+		"SpeedBoost": "SpeedBoost",
+		"RangeBoost": "RangeBoost",
+		"Evade": "EvadeBoost",
+		"EvadeBoost": "EvadeBoost",
+		"LifeSteal": "LifeSteal",
+		"ArmorBoost": "Armor",
+		"SkillDamageBoost": "SkillDamageBoost",
+		"ArmorPenetrationBoost": "ArmorPen",
+		"SpawnCapBoost": "SpawnCap",
+		"HealthBoost": "HealthBoost",
+		"CritDamage": "CritDamageBoost",
+		"CooldownReduction": "AttackSpeedBoost",
+		"BurnDamageBoost": "BurnBoost",
+		"EvadeRate": "EvadeBoost",
+		"CriticalChanceBoost": "CritChanceBoost",
+		"DamageBoost": "DamageBoost",
+		"UnitCap": "UnitCap",
+		"SkillCooldownReduction": "SkillCooldownReduction",
+		"AbilityDamageBoost": "SkillDamageBoost"
+	},
+	"GetStatValue": null,
+	"IsStatKey": null,
+	"ResolveStats": null,
+	"DEFAULT_KEY": "Default"
+}
