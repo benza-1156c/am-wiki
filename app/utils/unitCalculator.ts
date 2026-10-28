@@ -195,9 +195,13 @@ export function calculateCombatStats(
   stars: number = 0,
   upgradeLevel: number = 0,
   potentials: StatPotentials = {},
-  trait?: UnitTrait | null,
+  traitsInput?: UnitTrait[] | UnitTrait | null,
   gearStats?: Partial<GearStatsAggregated> | null
 ): CalculatedStats {
+  const activeTraits: UnitTrait[] = Array.isArray(traitsInput)
+    ? traitsInput.filter((t): t is UnitTrait => !!t)
+    : (traitsInput ? [traitsInput] : [])
+
   if (!unit) {
     return {
       attack: 0,
@@ -218,7 +222,8 @@ export function calculateCombatStats(
       critDamage: 1.1,
       potentials,
       potentialPercents: {},
-      trait: null,
+      trait: activeTraits[0] || null,
+      traits: activeTraits,
       gearStats: undefined
     }
   }
@@ -252,18 +257,31 @@ export function calculateCombatStats(
   const potSpeed = getPotentialMultiplier(potentials.speed)
   const potCd = getPotentialMultiplier(potentials.cooldown)
 
-  // Trait Boosts (from database.json traits)
-  const tStats = trait?.Stats || {}
-  const traitDmg = tStats.DamageBoost || 0
-  const traitHp = tStats.HealthBoost || 0
-  const traitRange = tStats.RangeBoost || 0
-  const traitSpeed = tStats.SpeedBoost || 0
-  const traitAs = tStats.AttackSpeedBoost || 0
-  const traitSkillDmg = tStats.SkillDamageBoost || 0
-  const traitSkillCd = tStats.SkillCooldownReduction || 0
-  const traitCostRed = tStats.CostReduction || 0
-  const traitCritChance = tStats.CritChanceBoost || 0
-  const traitCritDmg = tStats.CritDamageBoost || 0
+  // Trait Boosts (aggregated across all equipped traits, up to 2 traits)
+  let traitDmg = 0
+  let traitHp = 0
+  let traitRange = 0
+  let traitSpeed = 0
+  let traitAs = 0
+  let traitSkillDmg = 0
+  let traitSkillCd = 0
+  let traitCostRed = 0
+  let traitCritChance = 0
+  let traitCritDmg = 0
+
+  for (const t of activeTraits) {
+    const tStats = t.Stats || {}
+    traitDmg += tStats.DamageBoost || 0
+    traitHp += tStats.HealthBoost || 0
+    traitRange += tStats.RangeBoost || 0
+    traitSpeed += tStats.SpeedBoost || 0
+    traitAs += tStats.AttackSpeedBoost || 0
+    traitSkillDmg += tStats.SkillDamageBoost || 0
+    traitSkillCd += tStats.SkillCooldownReduction || 0
+    traitCostRed += tStats.CostReduction || 0
+    traitCritChance += tStats.CritChanceBoost || 0
+    traitCritDmg += tStats.CritDamageBoost || 0
+  }
 
   // Gear Boosts (aggregated from 4 equipped gear slots + exclusive unit bonuses)
   const gDmg = gearStats?.DamageBoost || 0
@@ -347,7 +365,8 @@ export function calculateCombatStats(
       attackSpeed: Math.round(traitAs * 100),
       skillDamage: Math.round(potDmg * 100)
     },
-    trait: trait || null,
+    trait: activeTraits[0] || null,
+    traits: activeTraits,
     gearStats: gearStats || undefined
   }
 }

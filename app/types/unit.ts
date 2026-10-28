@@ -219,6 +219,7 @@ export interface CalculatedStats {
   potentials?: StatPotentials
   potentialPercents?: Record<string, number>
   trait?: UnitTrait | null
+  traits?: UnitTrait[]
   gearStats?: Partial<GearStatsAggregated>
 }
 

@@ -11,12 +11,13 @@
             Lv. {{ store.unitLevel }}
           </UBadge>
           <UBadge
-            v-if="store.currentTrait"
+            v-for="trait in store.currentTraits"
+            :key="trait.id"
             color="warning"
             variant="subtle"
             size="xs"
           >
-            Trait: {{ store.currentTrait.TraitDisplayName }}
+            Trait: {{ trait.TraitDisplayName }}
           </UBadge>
           <UBadge color="neutral" variant="outline" size="xs">
             Status: D

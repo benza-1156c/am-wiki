@@ -24,7 +24,7 @@ const unitLevel = ref<number>(1)
 const selectedStars = ref<number>(0)
 const upgradeLevel = ref<number>(0)
 const potentials = ref<StatPotentials>({ ...DEFAULT_POTENTIALS })
-const selectedTraitId = ref<string | null>(null)
+const selectedTraitIds = ref<[string | null, string | null]>([null, null])
 const isSelectorOpen = ref<boolean>(false)
 const equippedGears = ref<EquippedGears>({
   Head: null,
@@ -81,9 +81,18 @@ export function useCombatCalculatorStore() {
     })
   })
 
+  const currentTraits = computed<UnitTrait[]>(() => {
+    const list: UnitTrait[] = []
+    for (const id of selectedTraitIds.value) {
+      if (!id || id === 'none') continue
+      const found = traitsList.value.find(t => t.id === id)
+      if (found) list.push(found)
+    }
+    return list
+  })
+
   const currentTrait = computed<UnitTrait | null>(() => {
-    if (!selectedTraitId.value || selectedTraitId.value === 'none') return null
-    return traitsList.value.find(t => t.id === selectedTraitId.value) || null
+    return currentTraits.value[0] || null
   })
 
   const maxUpgradeLevel = computed<number>(() => {
@@ -218,7 +227,7 @@ export function useCombatCalculatorStore() {
     return totals
   })
 
-  // Canonical central stats computation with Trait & Gear support
+  // Canonical central stats computation with 2-Trait & Gear support
   const calculatedStats = computed<CalculatedStats>(() => {
     return calculateCombatStats(
       currentUnit.value,
@@ -226,7 +235,7 @@ export function useCombatCalculatorStore() {
       selectedStars.value,
       upgradeLevel.value,
       potentials.value,
-      currentTrait.value,
+      currentTraits.value,
       aggregatedGearStats.value
     )
   })
@@ -258,8 +267,14 @@ export function useCombatCalculatorStore() {
     }
   }
 
-  function setTrait(traitId: string | null) {
-    selectedTraitId.value = traitId
+  function setTrait(traitId: string | null, slotIndex: number = 0) {
+    const next: [string | null, string | null] = [...selectedTraitIds.value]
+    next[slotIndex] = traitId && traitId !== 'none' ? traitId : null
+    selectedTraitIds.value = next
+  }
+
+  function clearTraits() {
+    selectedTraitIds.value = [null, null]
   }
 
   function setGear(slot: GearSlot, gearId: string | null) {
@@ -302,13 +317,15 @@ export function useCombatCalculatorStore() {
     selectedStars,
     upgradeLevel,
     potentials,
-    selectedTraitId,
+    selectedTraitIds,
+    selectedTraitId: computed(() => selectedTraitIds.value[0]),
     equippedGears,
     isSelectorOpen,
 
     // Computeds
     currentUnit,
     currentTrait,
+    currentTraits,
     traitsList,
     gearsList,
     gearsBySlot,
@@ -327,6 +344,7 @@ export function useCombatCalculatorStore() {
     setUpgradeLevel,
     setPotential,
     setTrait,
+    clearTraits,
     setGear,
     clearGears,
     resetPotentials

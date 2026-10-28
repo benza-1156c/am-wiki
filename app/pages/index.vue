@@ -65,9 +65,8 @@
           <UnitTraitSelector />
         </div>
 
-        <!-- Right Column: Profile, Gears, Stats Display, and Skills -->
+        <!-- Right Column: Gears, Stats Display, and Skills -->
         <div class="lg:col-span-7 space-y-5">
-          <UnitProfileCard />
           <UnitGearSelector />
           <UnitStatsGrid />
           <UnitSkillCard />
