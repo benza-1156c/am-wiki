@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'AM Wiki & Database | eFootbase Style Unit Hub',
+      title: 'AM Wiki',
       meta: [
         { name: 'description', content: 'Comprehensive Anime Movement unit wiki, player card database, level upgrade stats calculator, compare tool, gears and traits.' }
       ],
