@@ -1,6 +1,9 @@
 export default defineNuxtConfig({
   modules: ['@nuxt/image', '@nuxt/ui'],
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    adminPassword: process.env.ADMIN_PASSWORD
+  },
   app: {
     head: {
       title: 'AM Wiki & Database | eFootbase Style Unit Hub',

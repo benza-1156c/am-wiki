@@ -18,7 +18,7 @@
           <UInput
             v-model="inputKey"
             type="password"
-            placeholder="Enter Admin Key (default: admin)"
+            placeholder="Enter Admin Password"
             icon="i-lucide-key"
             size="lg"
             autofocus
@@ -39,6 +39,7 @@
             color="primary"
             block
             size="lg"
+            :loading="isVerifying"
           />
         </form>
       </UCard>
@@ -69,7 +70,7 @@
               color="neutral"
               variant="outline"
               size="sm"
-              @click="isAuthenticated = false"
+              @click="lockSession"
             />
           </div>
         </div>
@@ -249,7 +250,9 @@ const { units: currentUnits, handleUnitsUpdated } = useDatabase()
 
 const isAuthenticated = ref(false)
 const inputKey = ref('')
+const verifiedKey = ref('')
 const loginError = ref('')
+const isVerifying = ref(false)
 
 const fileInputRef = ref<HTMLInputElement | null>(null)
 const rawJsonInput = ref('')
@@ -278,14 +281,36 @@ const detectedCounts = computed(() => {
   }
 })
 
-function verifyKey() {
+async function verifyKey() {
   loginError.value = ''
-  if (inputKey.value === 'admin' || inputKey.value === 'admin123') {
-    isAuthenticated.value = true
-    inputKey.value = ''
-  } else {
-    loginError.value = 'Invalid administrator passkey. Please try again.'
+  if (!inputKey.value) {
+    loginError.value = 'Please enter administrator password.'
+    return
   }
+
+  isVerifying.value = true
+  try {
+    const res = await $fetch<{ success: boolean }>('/api/admin/verify', {
+      method: 'POST',
+      body: { password: inputKey.value }
+    })
+
+    if (res.success) {
+      isAuthenticated.value = true
+      verifiedKey.value = inputKey.value
+      inputKey.value = ''
+    }
+  } catch (err: any) {
+    loginError.value = err.data?.statusMessage || err.statusMessage || 'Invalid administrator password. Please try again.'
+  } finally {
+    isVerifying.value = false
+  }
+}
+
+function lockSession() {
+  isAuthenticated.value = false
+  verifiedKey.value = ''
+  loginError.value = ''
 }
 
 function clearInput() {
@@ -372,6 +397,9 @@ async function saveToDatabase() {
 
     const res = await $fetch<{ success: boolean; totalUnits: number; message: string }>('/api/units', {
       method: 'POST',
+      headers: {
+        'x-admin-key': verifiedKey.value
+      },
       body
     })
 

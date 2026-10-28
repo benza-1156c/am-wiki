@@ -2,6 +2,17 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig(event)
+  const expectedKey = config.adminPassword || 'admin'
+  const providedKey = getHeader(event, 'x-admin-key')
+
+  if (!providedKey || providedKey !== expectedKey) {
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Unauthorized: Admin authentication required'
+    })
+  }
+
   try {
     const body = await readBody(event)
     if (!body || !Array.isArray(body.units)) {
