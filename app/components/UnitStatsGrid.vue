@@ -81,7 +81,7 @@
           <span>Skill & Combat Metrics</span>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-2 2xl:grid-cols-4 gap-2">
           <!-- DPS -->
           <div class="p-2 rounded border border-orange-500/60 bg-neutral-900/30 text-xs">
             <div class="flex items-center gap-1 text-orange-400 font-bold mb-1">

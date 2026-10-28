@@ -3,7 +3,7 @@
     <div class="min-h-screen flex flex-col bg-[#0b0f19] text-slate-100">
       <!-- Navbar -->
       <header class="border-b border-white/5 sticky top-0 z-40 bg-[#0b0f19]/80 backdrop-blur-md">
-        <UContainer class="h-14 flex items-center justify-between">
+        <UContainer class="max-w-[1680px] w-full h-14 flex items-center justify-between">
           <div class="flex items-center gap-6">
             <NuxtLink to="/" class="flex items-center gap-2.5 group">
               <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:border-primary/40 transition-colors">
@@ -42,7 +42,7 @@
 
       <!-- Main Content -->
       <main class="flex-1 py-6">
-        <UContainer>
+        <UContainer class="max-w-[1680px] w-full">
           <NuxtPage />
         </UContainer>
       </main>

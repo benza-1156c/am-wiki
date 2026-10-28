@@ -87,18 +87,22 @@
         </div>
       </div>
 
-      <!-- Main Layout: 2 Columns -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- Main Layout: 3 Columns on XL/wide screens, 2 Columns on LG, 1 Column on Mobile -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         <!-- Left Column: Controls (Stars, Level & Upgrade, Trait) -->
-        <div class="lg:col-span-5 space-y-5">
+        <div class="lg:col-span-5 xl:col-span-3 space-y-4">
           <UnitAwakeningStars />
           <UnitLevelSlider />
           <UnitTraitSelector />
         </div>
 
-        <!-- Right Column: Gears, Stats Display, and Skills -->
-        <div class="lg:col-span-7 space-y-5">
+        <!-- Center Column: Equipped Gears (Spacious 4 Slots) -->
+        <div class="lg:col-span-7 xl:col-span-5 space-y-4">
           <UnitGearSelector />
+        </div>
+
+        <!-- Right Column: Combat Statistics & Passive / Ultimate Abilities (Sticky on XL) -->
+        <div class="lg:col-span-12 xl:col-span-4 space-y-4 xl:sticky xl:top-20">
           <UnitStatsGrid />
           <UnitSkillCard />
         </div>

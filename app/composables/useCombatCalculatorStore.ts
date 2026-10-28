@@ -19,29 +19,44 @@ import {
 } from '~/utils/unitCalculator'
 
 // Global Singleton Reactive State (Shared across all calculator components without emits)
-const selectedUnitId = ref<string>('')
-const unitLevel = ref<number>(1)
-const selectedStars = ref<number>(0)
-const upgradeLevel = ref<number>(0)
-const potentials = ref<StatPotentials>({ ...DEFAULT_POTENTIALS })
-const selectedTraitIds = ref<[string | null, string | null]>([null, null])
+// Default preselected: Dracula (Vampire Progenitor) with full buffs as requested
+const selectedUnitId = ref<string>('Alucard_001_evo')
+const unitLevel = ref<number>(80)
+const selectedStars = ref<number>(6)
+const upgradeLevel = ref<number>(7)
+const potentials = ref<StatPotentials>({
+  damage: 'GOD',
+  health: 'GOD',
+  range: 'GOD',
+  speed: 'GOD',
+  cooldown: 'GOD'
+})
+const selectedTraitIds = ref<[string | null, string | null]>(['13', null])
 const isSelectorOpen = ref<boolean>(false)
 const equippedGears = ref<EquippedGears>({
-  Head: null,
-  Body: null,
-  Arm: null,
-  Legs: null
+  Head: '15',
+  Body: '26',
+  Arm: '22',
+  Legs: '47'
 })
 
 export function useCombatCalculatorStore() {
   const { units, skills, traits, gears, dbPending: pending, dbError: error, refresh } = useDatabase()
 
-  // Preselect first unit once units are loaded
+  // Ensure selectedUnitId resolves to Dracula (Vampire Progenitor) upon data load if not already matched
   watch(
     () => units.value,
     (newUnits) => {
-      if (newUnits && newUnits.length > 0 && !selectedUnitId.value) {
-        selectedUnitId.value = newUnits[0].id || newUnits[0].name
+      if (newUnits && newUnits.length > 0) {
+        const found = newUnits.find((u: any) => u.id === selectedUnitId.value || u.name === selectedUnitId.value)
+        if (!found) {
+          const dracula = newUnits.find((u: any) =>
+            u.id === 'Alucard_001_evo' ||
+            u.displayName?.includes('Dracula (Vampire Progenitor)') ||
+            u.displayName?.includes('Dracula')
+          )
+          selectedUnitId.value = dracula ? (dracula.id || dracula.name) : (newUnits[0].id || newUnits[0].name)
+        }
       }
     },
     { immediate: true }
@@ -49,6 +64,7 @@ export function useCombatCalculatorStore() {
 
   const currentUnit = computed<NormalizedUnit | null>(() => {
     return units.value.find((u: any) => u.id === selectedUnitId.value || u.name === selectedUnitId.value)
+      || units.value.find((u: any) => u.id === 'Alucard_001_evo' || u.displayName?.includes('Dracula'))
       || units.value[0]
       || null
   })
