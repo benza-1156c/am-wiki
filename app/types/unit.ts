@@ -105,6 +105,23 @@ export interface NormalizedUnit {
   model?: string | null
 }
 
+export interface CalculatedStats {
+  attack: number
+  baseAttack: number
+  atkGainPercent: number
+  health: number
+  baseHealth: number
+  hpGainPercent: number
+  dps: number
+  attackSpeed: number
+  range: number
+  skillRange: number
+  speed: number
+  skillDamage: number
+  skillCooldown: number
+  cost: number
+}
+
 export type MergeMode = 'merge' | 'skip_duplicates' | 'overwrite_all'
 
 export interface MergeResult {

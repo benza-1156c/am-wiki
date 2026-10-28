@@ -51,91 +51,6 @@ export function getSeriesName(code: string | undefined): string {
   return map[code] || code
 }
 
-export function getRarityConfig(rarity: string | undefined) {
-  const r = (rarity || '').toLowerCase()
-  switch (r) {
-    case 'secret':
-      return {
-        label: 'SECRET',
-        border: 'border-fuchsia-500/70',
-        bg: 'from-fuchsia-950/60 via-purple-950/40 to-slate-900/80',
-        badge: 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(217,70,239,0.35)]',
-        accent: '#d946ef',
-        text: 'text-fuchsia-400'
-      }
-    case 'mysterious':
-      return {
-        label: 'MYSTERIOUS',
-        border: 'border-pink-500/70',
-        bg: 'from-pink-950/60 via-rose-950/40 to-slate-900/80',
-        badge: 'bg-pink-500/20 text-pink-300 border-pink-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(244,63,94,0.35)]',
-        accent: '#f43f5e',
-        text: 'text-pink-400'
-      }
-    case 'mythic':
-      return {
-        label: 'MYTHIC',
-        border: 'border-red-500/70',
-        bg: 'from-red-950/60 via-rose-950/40 to-slate-900/80',
-        badge: 'bg-red-500/20 text-red-300 border-red-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(239,68,68,0.35)]',
-        accent: '#ef4444',
-        text: 'text-red-400'
-      }
-    case 'exclusive':
-      return {
-        label: 'EXCLUSIVE',
-        border: 'border-orange-500/70',
-        bg: 'from-orange-950/60 via-amber-950/40 to-slate-900/80',
-        badge: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(249,115,22,0.35)]',
-        accent: '#f97316',
-        text: 'text-orange-400'
-      }
-    case 'legendary':
-      return {
-        label: 'LEGENDARY',
-        border: 'border-amber-500/70',
-        bg: 'from-amber-950/60 via-yellow-950/40 to-slate-900/80',
-        badge: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(245,158,11,0.35)]',
-        accent: '#f59e0b',
-        text: 'text-amber-400'
-      }
-    case 'epic':
-      return {
-        label: 'EPIC',
-        border: 'border-purple-500/70',
-        bg: 'from-purple-950/60 via-violet-950/40 to-slate-900/80',
-        badge: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(168,85,247,0.35)]',
-        accent: '#a855f7',
-        text: 'text-purple-400'
-      }
-    case 'rare':
-      return {
-        label: 'RARE',
-        border: 'border-blue-500/70',
-        bg: 'from-blue-950/60 via-indigo-950/40 to-slate-900/80',
-        badge: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
-        glow: 'shadow-[0_0_20px_-3px_rgba(59,130,246,0.35)]',
-        accent: '#3b82f6',
-        text: 'text-blue-400'
-      }
-    default:
-      return {
-        label: rarity?.toUpperCase() || 'COMMON',
-        border: 'border-slate-600/70',
-        bg: 'from-slate-900/70 via-slate-800/40 to-slate-900/80',
-        badge: 'bg-slate-700/30 text-slate-300 border-slate-600/40',
-        glow: 'shadow-[0_0_15px_-3px_rgba(100,116,139,0.2)]',
-        accent: '#94a3b8',
-        text: 'text-slate-400'
-      }
-  }
-}
 
 export function getRobloxImageUrl(icon: string | undefined): string | null {
   if (!icon) return null
@@ -144,35 +59,6 @@ export function getRobloxImageUrl(icon: string | undefined): string | null {
     return `https://assetdelivery.roblox.com/v1/asset/?id=${match[1]}`
   }
   return null
-}
-
-export function getUnitIcon(name: string | undefined): string {
-  const n = (name || '').toLowerCase()
-  if (n.includes('saber') || n.includes('lancer') || n.includes('archer') || n.includes('zoro') || n.includes('kojiro')) {
-    return 'i-lucide-swords'
-  }
-  if (n.includes('gojo') || n.includes('sukuna') || n.includes('yuta') || n.includes('choso')) {
-    return 'i-lucide-sparkles'
-  }
-  if (n.includes('goku') || n.includes('vegeta') || n.includes('broly') || n.includes('yamcha')) {
-    return 'i-lucide-zap'
-  }
-  if (n.includes('luffy') || n.includes('doflamingo') || n.includes('kizaru')) {
-    return 'i-lucide-compass'
-  }
-  if (n.includes('tanjiro') || n.includes('nezuko') || n.includes('akaza') || n.includes('gyutaro')) {
-    return 'i-lucide-flame'
-  }
-  if (n.includes('ryuk')) {
-    return 'i-lucide-skull'
-  }
-  if (n.includes('buddha') || n.includes('qinshi')) {
-    return 'i-lucide-crown'
-  }
-  if (n.includes('elfaria') || n.includes('will') || n.includes('colette')) {
-    return 'i-lucide-wand'
-  }
-  return 'i-lucide-shield'
 }
 
 export function getElementConfig(element: string | undefined) {
