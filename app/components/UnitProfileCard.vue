@@ -2,12 +2,22 @@
   <UCard v-if="unit">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <h2 class="text-xl font-bold">
             {{ unit.displayName || unit.name }}
           </h2>
           <UBadge color="primary" variant="subtle" size="xs">{{ unit.rarity }}</UBadge>
           <UBadge color="neutral" variant="subtle" size="xs">{{ unit.element }}</UBadge>
+
+          <UButton
+            icon="i-lucide-arrow-left-right"
+            label="Switch Unit"
+            variant="outline"
+            color="primary"
+            size="xs"
+            class="ml-1"
+            @click="$emit('openSelector')"
+          />
         </div>
         <p class="text-xs text-muted mt-1">
           Series: <span class="font-semibold">{{ unit.series }}</span> •
@@ -32,5 +42,8 @@ defineProps<{
   cost: number
   maxUpgrade: number
 }>()
-</script>
 
+defineEmits<{
+  (e: 'openSelector'): void
+}>()
+</script>

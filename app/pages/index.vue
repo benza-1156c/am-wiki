@@ -28,16 +28,37 @@
 
     <!-- Main Calculator View -->
     <div v-else class="space-y-6">
+      <!-- Top Formula & Unit Switcher Card -->
+      <UCard>
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <UButton icon="i-lucide-calculator" variant="subtle" color="primary" square size="lg" />
+            <div>
+              <div class="flex items-center gap-2">
+                <h1 class="text-lg font-bold">Unit Stat & Awakening Calculator</h1>
+              </div>
+              <p class="text-xs text-muted">Canonical formulas from CalculateUnitsStats & UnitLevelData</p>
+            </div>
+          </div>
+
+          <!-- Unit Selector Trigger Button (Replaces bulky list) -->
+          <div class="flex flex-wrap items-center gap-2">
+            <UButton
+              icon="i-lucide-user"
+              :label="(currentUnit?.displayName || currentUnit?.name || 'Select Unit') + ' ▾'"
+              variant="outline"
+              color="primary"
+              size="md"
+              @click="isSelectorOpen = true"
+            />
+          </div>
+        </div>
+      </UCard>
 
       <!-- Main Layout: 2 Columns -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Left Column: Controls (Unit, Stars, Level, Upgrade) -->
+        <!-- Left Column: Controls (Stars, Level, Upgrade) -->
         <div class="lg:col-span-5 space-y-5">
-          <UnitSelector
-            v-model="selectedUnitId"
-            :units="units"
-          />
-
           <UnitAwakeningStars
             v-model="selectedStars"
           />
@@ -54,13 +75,14 @@
           />
         </div>
 
-        <!-- Right Column: Stats Display, Skills, and Milestones -->
+        <!-- Right Column: Stats Display, Profile, and Skills -->
         <div class="lg:col-span-7 space-y-5">
           <UnitProfileCard
             v-if="currentUnit"
             :unit="currentUnit"
             :cost="currentStats.cost"
             :max-upgrade="maxUpgradeLevel"
+            @open-selector="isSelectorOpen = true"
           />
 
           <UnitStatsGrid
@@ -76,6 +98,13 @@
           />
         </div>
       </div>
+
+      <!-- Unit Selector Modal (Clean & Non-intrusive) -->
+      <UnitSelector
+        v-model:open="isSelectorOpen"
+        v-model="selectedUnitId"
+        :units="units"
+      />
     </div>
   </div>
 </template>
@@ -101,6 +130,7 @@ const selectedUnitId = ref<string>('')
 const selectedStars = ref<number>(0)
 const unitLevel = ref<number>(1)
 const upgradeLevel = ref<number>(0)
+const isSelectorOpen = ref<boolean>(false)
 
 // Preselect first unit on load
 watch(
@@ -212,17 +242,5 @@ function computeStatsFor(u: any, uLevel: number, stars: number, upgLvl: number):
 
 const currentStats = computed(() => {
   return computeStatsFor(currentUnit.value, unitLevel.value, selectedStars.value, upgradeLevel.value)
-})
-
-const milestoneBase = computed(() => {
-  return computeStatsFor(currentUnit.value, 1, 0, upgradeLevel.value)
-})
-
-const milestoneLvl50 = computed(() => {
-  return computeStatsFor(currentUnit.value, 50, 0, upgradeLevel.value)
-})
-
-const milestoneMax80 = computed(() => {
-  return computeStatsFor(currentUnit.value, 80, 6, upgradeLevel.value)
 })
 </script>

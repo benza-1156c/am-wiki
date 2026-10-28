@@ -56,10 +56,11 @@
       <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
         <div class="flex items-center gap-2">
           <UIcon name="i-lucide-target" class="text-primary w-4 h-4" />
-          <span class="font-medium">Range</span>
-          <span class="text-[10px] text-muted hidden sm:inline">(Skill Range: {{ stats.skillRange }})</span>
+          <span class="font-medium">Attack Range</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(ระยะตีปกติ)</span>
         </div>
         <div class="flex items-center gap-2 font-mono">
+          <UBadge color="neutral" variant="subtle" size="xs">Skill Range: {{ stats.skillRange }}</UBadge>
           <span class="font-bold text-sm">{{ stats.range }}</span>
         </div>
       </div>
