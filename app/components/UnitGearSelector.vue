@@ -26,44 +26,46 @@
       </div>
     </template>
 
-    <div class="space-y-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2.5">
       <!-- 4 Gear Slots: Head, Body, Arm, Legs -->
       <div
         v-for="slotDef in slots"
         :key="slotDef.slot"
-        class="p-3 rounded-lg border border-default bg-neutral-900/40 space-y-2.5"
+        class="p-2.5 rounded-lg border border-default bg-neutral-900/40 space-y-2 flex flex-col justify-between"
       >
-        <!-- Slot Label & Status -->
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold flex items-center gap-1.5 text-neutral-200">
-            <UIcon :name="slotDef.icon" class="w-4 h-4 text-muted" />
-            <span>{{ slotDef.label }}</span>
-          </span>
-          <UBadge
-            v-if="store.activeEquippedGears[slotDef.slot]"
-            :color="getRarityBadgeColor(store.activeEquippedGears[slotDef.slot]?.Rarity)"
-            variant="subtle"
-            size="xs"
-          >
-            {{ store.activeEquippedGears[slotDef.slot]?.Rarity }}
-          </UBadge>
-          <span v-else class="text-[10px] text-muted">Empty</span>
-        </div>
+        <div class="space-y-1.5">
+          <!-- Slot Label & Status -->
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold flex items-center gap-1.5 text-neutral-200 truncate">
+              <UIcon :name="slotDef.icon" class="w-3.5 h-3.5 text-muted shrink-0" />
+              <span>{{ slotDef.label }}</span>
+            </span>
+            <UBadge
+              v-if="store.activeEquippedGears[slotDef.slot]"
+              :color="getRarityBadgeColor(store.activeEquippedGears[slotDef.slot]?.Rarity)"
+              variant="subtle"
+              size="xs"
+            >
+              {{ store.activeEquippedGears[slotDef.slot]?.Rarity }}
+            </UBadge>
+            <span v-else class="text-[10px] text-muted">Empty</span>
+          </div>
 
-        <!-- USelect dropdown for gear in this slot -->
-        <USelect
-          :model-value="store.equippedGears[slotDef.slot] || 'none'"
-          :items="getSlotOptions(slotDef.slot)"
-          size="xs"
-          class="w-full font-mono font-medium"
-          placeholder="Select Gear"
-          @update:model-value="(val) => store.setGear(slotDef.slot, val as string)"
-        />
+          <!-- USelect dropdown for gear in this slot -->
+          <USelect
+            :model-value="store.equippedGears[slotDef.slot] || 'none'"
+            :items="getSlotOptions(slotDef.slot)"
+            size="xs"
+            class="w-full font-mono font-medium"
+            placeholder="Select Gear"
+            @update:model-value="(val) => store.setGear(slotDef.slot, val as string)"
+          />
+        </div>
 
         <!-- Active Gear Stats Preview -->
         <div
           v-if="store.activeEquippedGears[slotDef.slot]"
-          class="space-y-1.5 pt-1"
+          class="space-y-1 pt-1"
         >
           <!-- Regular Stats Badges -->
           <div class="flex flex-wrap gap-1">
@@ -82,21 +84,20 @@
           <div
             v-for="ex in getExclusiveInfo(store.activeEquippedGears[slotDef.slot])"
             :key="ex.unitKey"
-            class="text-[11px] p-2 rounded border"
+            class="text-[10px] p-1.5 rounded border"
             :class="ex.isMatched
               ? 'border-amber-500/60 bg-amber-950/30 text-amber-300'
               : 'border-neutral-800 bg-neutral-900/60 text-muted'"
           >
-            <div class="flex items-center gap-1 font-bold mb-1">
-              <UIcon :name="ex.isMatched ? 'i-lucide-sparkles' : 'i-lucide-lock'" class="w-3.5 h-3.5" />
-              <span>{{ ex.isMatched ? 'Exclusive Bonus Active' : 'Exclusive Unit Bonus Locked' }}</span>
-              <span class="text-[10px] font-normal text-muted">({{ ex.unitKey }})</span>
+            <div class="flex items-center gap-1 font-bold">
+              <UIcon :name="ex.isMatched ? 'i-lucide-sparkles' : 'i-lucide-lock'" class="w-3 h-3 shrink-0" />
+              <span class="truncate">{{ ex.isMatched ? 'Exclusive Active' : 'Exclusive Locked' }}</span>
             </div>
-            <div class="flex flex-wrap gap-1 font-mono text-[10px]">
+            <div class="flex flex-wrap gap-1 font-mono text-[9px] mt-1">
               <span
                 v-for="(subVal, subKey) in ex.stats"
                 :key="subKey"
-                class="px-1.5 py-0.5 rounded bg-black/50"
+                class="px-1 py-0.5 rounded bg-black/50"
               >
                 {{ formatStatBadge(String(subKey), Number(subVal)) }}
               </span>
