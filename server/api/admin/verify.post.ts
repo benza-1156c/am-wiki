@@ -1,17 +1,26 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  const password = body?.password
+  const password = body?.password ? String(body.password).trim() : ''
 
-  const config = useRuntimeConfig(event)
-  const serverPassword = config.adminPassword || process.env.ADMIN_PASSWORD || 'admin'
+  if (!password) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Password is required'
+    })
+  }
 
-  if (!password || password !== serverPassword) {
+  const validPasswords = getValidAdminPasswords(event)
+  const matched = isPasswordMatch(password, validPasswords)
+
+  if (!matched) {
     throw createError({
       statusCode: 401,
+      statusMessage: 'Invalid administrator password'
     })
   }
 
   return {
     success: true,
+    message: 'Authenticated successfully'
   }
 })

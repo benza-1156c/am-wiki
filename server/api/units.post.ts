@@ -2,11 +2,10 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 
 export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig(event)
-  const expectedKey = config.adminPassword || 'admin'
-  const providedKey = getHeader(event, 'x-admin-key')
+  const providedKey = getHeader(event, 'x-admin-key') ? String(getHeader(event, 'x-admin-key')).trim() : ''
+  const validKeys = getValidAdminPasswords(event)
 
-  if (!providedKey || providedKey !== expectedKey) {
+  if (!providedKey || !isPasswordMatch(providedKey, validKeys)) {
     throw createError({
       statusCode: 401,
       statusMessage: 'Unauthorized: Admin authentication required'

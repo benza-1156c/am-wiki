@@ -40,32 +40,6 @@
   background: #475569;
 }
 
-/* Glassmorphism & Glow styles */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-card {
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.glow-secret {
-  box-shadow: 0 0 25px -5px rgba(236, 72, 153, 0.35);
-}
-.glow-mythic {
-  box-shadow: 0 0 25px -5px rgba(239, 68, 68, 0.35);
-}
-.glow-legendary {
-  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
-}
-.glow-epic {
-  box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.35);
-}
-.glow-rare {
-  box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.35);
+button {
+  cursor: pointer;
 }

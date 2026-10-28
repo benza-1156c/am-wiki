@@ -28,33 +28,64 @@
 
     <!-- Main Calculator View -->
     <div v-else class="space-y-6">
-      <!-- Top Formula & Unit Switcher Card -->
-      <UCard>
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <UButton icon="i-lucide-calculator" variant="subtle" color="primary" square size="lg" />
-            <div>
-              <div class="flex items-center gap-2">
-                <h1 class="text-lg font-bold">Unit Stat & Awakening Calculator</h1>
-                <UBadge variant="subtle" color="primary" size="xs">Level 1–80</UBadge>
-              </div>
-              <p class="text-xs text-muted">Canonical formulas with Awakening, 5 Status Potentials & Traits</p>
-            </div>
+      <!-- Top Active Unit Bar & Switcher -->
+      <div class="p-4 rounded-xl border border-white/5 bg-[#0f172a]/60 backdrop-blur-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <!-- Unit Avatar -->
+          <div class="w-11 h-11 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-primary shrink-0">
+            <UIcon name="i-lucide-user" class="w-5 h-5 text-neutral-300" />
           </div>
 
-          <!-- Unit Selector Trigger Button -->
-          <div class="flex flex-wrap items-center gap-2">
-            <UButton
-              icon="i-lucide-user"
-              :label="(store.currentUnit?.displayName || store.currentUnit?.name || 'Select Unit') + ' ▾'"
-              variant="outline"
-              color="primary"
-              size="md"
-              @click="store.isSelectorOpen = true"
-            />
+          <!-- Unit Identity & Meta -->
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">
+                {{ store.currentUnit?.displayName || store.currentUnit?.name || 'Select Unit' }}
+              </h1>
+              <UBadge
+                v-if="store.currentUnit?.rarity"
+                :color="getRarityColor(store.currentUnit.rarity)"
+                variant="subtle"
+                size="xs"
+              >
+                {{ store.currentUnit.rarity }}
+              </UBadge>
+              <UBadge
+                v-if="store.currentUnit?.element"
+                color="neutral"
+                variant="outline"
+                size="xs"
+              >
+                {{ store.currentUnit.element }}
+              </UBadge>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs text-muted mt-0.5">
+              <span v-if="store.currentUnit?.series" class="font-medium text-neutral-300">
+                {{ store.currentUnit.series }}
+              </span>
+              <span v-if="store.currentUnit?.series && store.currentUnit?.skillMode">•</span>
+              <span v-if="store.currentUnit?.skillMode">
+                {{ store.currentUnit.skillMode }}
+              </span>
+              <span>•</span>
+              <span class="font-mono text-neutral-300">Cost: ¥{{ store.calculatedStats.cost }}</span>
+            </div>
           </div>
         </div>
-      </UCard>
+
+        <!-- Switch Unit Action -->
+        <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+          <UButton
+            icon="i-lucide-arrow-left-right"
+            label="Switch Unit"
+            variant="outline"
+            color="primary"
+            size="sm"
+            @click="store.isSelectorOpen = true"
+          />
+        </div>
+      </div>
 
       <!-- Main Layout: 2 Columns -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -82,4 +113,15 @@
 <script setup lang="ts">
 // Central store manages all state and calculations across components (No manual emits needed)
 const store = useCombatCalculatorStore()
+
+function getRarityColor(rarity?: string): any {
+  switch (rarity) {
+    case 'Secret': return 'error'
+    case 'Mythic': return 'error'
+    case 'Legendary': return 'warning'
+    case 'Epic': return 'secondary'
+    case 'Rare': return 'info'
+    default: return 'neutral'
+  }
+}
 </script>

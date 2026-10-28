@@ -1,35 +1,63 @@
 <template>
   <UApp>
-    <div class="min-h-screen flex flex-col">
-      <header class="border-b border-default sticky top-0 z-40 bg-background/80 backdrop-blur">
-        <UContainer class="h-16 flex items-center justify-between">
-          <NuxtLink to="/" class="flex items-center gap-2.5">
-            <UButton icon="i-lucide-calculator" variant="subtle" color="primary" square size="md" />
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="font-bold text-base">AM Calculator</span>
-                <UBadge variant="subtle" color="primary" size="xs">Game Math</UBadge>
+    <div class="min-h-screen flex flex-col bg-[#0b0f19] text-slate-100">
+      <!-- Navbar -->
+      <header class="border-b border-white/5 sticky top-0 z-40 bg-[#0b0f19]/80 backdrop-blur-md">
+        <UContainer class="h-14 flex items-center justify-between">
+          <div class="flex items-center gap-6">
+            <NuxtLink to="/" class="flex items-center gap-2.5 group">
+              <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:border-primary/40 transition-colors">
+                <UIcon name="i-lucide-swords" class="w-4 h-4" />
               </div>
-              <p class="text-xs text-muted">Level 1–80 & Awakening (★) Engine</p>
-            </div>
-          </NuxtLink>
+              <div class="flex items-baseline gap-1.5 font-['Outfit']">
+                <span class="font-black text-base tracking-tight text-white">AM</span>
+                <span class="text-xs font-bold uppercase tracking-wider text-primary">Wiki</span>
+              </div>
+            </NuxtLink>
 
-          <NuxtLink to="/admin" title="Admin Control">
-            <UButton icon="i-lucide-shield" variant="ghost" color="neutral" size="sm" />
-          </NuxtLink>
+            <nav class="hidden sm:flex items-center gap-1 text-xs font-medium text-slate-400">
+              <NuxtLink
+                to="/"
+                class="px-2.5 py-1.5 rounded-md hover:text-white hover:bg-white/5 transition-colors"
+                active-class="text-white bg-white/5 font-semibold"
+              >
+                Calculator
+              </NuxtLink>
+            </nav>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <NuxtLink to="/admin">
+              <UButton
+                icon="i-lucide-shield"
+                label="Admin"
+                variant="ghost"
+                color="neutral"
+                size="xs"
+              />
+            </NuxtLink>
+          </div>
         </UContainer>
       </header>
 
+      <!-- Main Content -->
       <main class="flex-1 py-6">
         <UContainer>
           <NuxtPage />
         </UContainer>
       </main>
 
-      <footer class="border-t border-default py-4 text-xs text-muted">
-        <UContainer class="flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>Anime Movement Stat Calculator</span>
-          <span>Exact Game Formulas from CalculateUnitsStats</span>
+      <!-- Footer -->
+      <footer class="border-t border-white/5 py-6 text-xs text-slate-500">
+        <UContainer class="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-300 font-['Outfit']">AM Wiki</span>
+            <span>•</span>
+            <span>Anime Movement Database & Calculator</span>
+          </div>
+          <p class="text-[11px] text-slate-600">
+            Fan-made community project. Not affiliated with Roblox or official developers.
+          </p>
         </UContainer>
       </footer>
     </div>

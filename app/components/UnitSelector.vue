@@ -27,8 +27,22 @@
               <span class="text-[11px] text-muted">{{ u.series }}</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <UBadge color="neutral" variant="subtle" size="xs">{{ u.rarity }}</UBadge>
-              <UBadge color="primary" variant="subtle" size="xs">{{ u.element }}</UBadge>
+              <UBadge
+                v-if="u.rarity"
+                :color="getRarityColor(u.rarity)"
+                variant="subtle"
+                size="xs"
+              >
+                {{ u.rarity }}
+              </UBadge>
+              <UBadge
+                v-if="u.element"
+                :color="getElementColor(u.element)"
+                variant="subtle"
+                size="xs"
+              >
+                {{ u.element }}
+              </UBadge>
             </div>
           </div>
         </div>
@@ -58,5 +72,28 @@ const filteredUnits = computed(() => {
 function selectUnit(id: string) {
   store.setUnit(id)
   store.isSelectorOpen = false
+}
+
+function getRarityColor(rarity?: string): any {
+  if (!rarity) return 'neutral'
+  const r = rarity.toLowerCase()
+  if (r.includes('secret') || r.includes('mythic')) return 'error'
+  if (r.includes('celestial') || r.includes('mysterious') || r.includes('exclusive')) return 'primary'
+  if (r.includes('legendary')) return 'warning'
+  if (r.includes('epic')) return 'secondary'
+  if (r.includes('rare')) return 'info'
+  return 'neutral'
+}
+
+function getElementColor(element?: string): any {
+  if (!element) return 'neutral'
+  const e = element.toLowerCase()
+  if (e.includes('fire')) return 'error'
+  if (e.includes('water')) return 'info'
+  if (e.includes('flora') || e.includes('nature') || e.includes('wind')) return 'success'
+  if (e.includes('lumin') || e.includes('thunder')) return 'warning'
+  if (e.includes('abyss') || e.includes('noctis') || e.includes('moon') || e.includes('dimen') || e.includes('riddle')) return 'secondary'
+  if (e.includes('flux') || e.includes('vox') || e.includes('cosmic') || e.includes('reality')) return 'primary'
+  return 'neutral'
 }
 </script>
