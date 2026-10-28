@@ -58,12 +58,13 @@
 
       <!-- Main Layout: 2 Columns -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <!-- Left Column: Controls (Stars, Level, Upgrade, Trait) -->
+        <!-- Left Column: Controls (Stars, Level, Upgrade, Trait, Gears) -->
         <div class="lg:col-span-5 space-y-5">
           <UnitAwakeningStars />
           <UnitLevelSlider />
           <UnitUpgradeSelector />
           <UnitTraitSelector />
+          <UnitGearSelector />
         </div>
 
         <!-- Right Column: Stats Display, Profile, and Skills -->

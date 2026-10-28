@@ -153,6 +153,52 @@ export interface UnitTrait {
   Weight?: number
 }
 
+export type GearSlot = 'Head' | 'Body' | 'Arm' | 'Legs'
+
+export interface GearItem {
+  id: string
+  Name: string
+  Slot: GearSlot
+  Rarity: string
+  Stats: Record<string, any>
+  Icon?: string
+  Description?: string
+}
+
+export interface EquippedGears {
+  Head: string | null
+  Body: string | null
+  Arm: string | null
+  Legs: string | null
+}
+
+export interface GearStatsAggregated {
+  DamageBoost: number
+  HealthBoost: number
+  AttackSpeedBoost: number
+  RangeBoost: number
+  SpeedBoost: number
+  SkillDamageBoost: number
+  SkillCooldownReduction: number
+  CostReduction: number
+  CritDamageBoost: number
+  CritChanceBoost: number
+  SpawnCooldownReduction: number
+  LifeSteal?: number
+  ArmorPen?: number
+  EvadeBoost?: number
+  BurnBoost?: number
+  Accuracy?: number
+  Armor?: number
+  Shield?: number
+  UnitCap?: number
+  activeExclusiveBonuses: Array<{
+    gearName: string
+    unitKey: string
+    stats: Record<string, number>
+  }>
+}
+
 export interface CalculatedStats {
   attack: number
   baseAttack: number
@@ -173,6 +219,7 @@ export interface CalculatedStats {
   potentials?: StatPotentials
   potentialPercents?: Record<string, number>
   trait?: UnitTrait | null
+  gearStats?: Partial<GearStatsAggregated>
 }
 
 export type MergeMode = 'merge' | 'skip_duplicates' | 'overwrite_all'

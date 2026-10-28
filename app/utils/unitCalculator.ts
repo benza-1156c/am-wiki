@@ -8,8 +8,52 @@ import type {
   PotentialConfig,
   StatPotentials,
   CalculatedStats,
-  UnitTrait
+  UnitTrait,
+  GearStatsAggregated
 } from '~/types/unit'
+
+/**
+ * Checks if a gear's exclusive unit target matches the current unit
+ */
+export function matchesUnit(key: string, unit: any): boolean {
+  if (!unit || !key) return false
+  const targets = key.split(',').map(s => s.trim().toLowerCase())
+  const unitId = (unit.id || '').toLowerCase()
+  const unitName = (unit.name || '').toLowerCase()
+  const unitDisplayName = (unit.displayName || '').toLowerCase()
+  return targets.some(t =>
+    t === unitId ||
+    t === unitName ||
+    t === unitDisplayName
+  )
+}
+
+/**
+ * Resolves a gear's active stats given the current unit (including exclusive bonuses if matched)
+ */
+export function resolveGearStatsForUnit(gear: any, unit: any) {
+  const baseStats: Record<string, number> = {}
+  let exclusiveBonus: { unitKey: string; stats: Record<string, number> } | null = null
+
+  if (!gear || !gear.Stats) return { baseStats, exclusiveBonus }
+
+  for (const [k, v] of Object.entries(gear.Stats)) {
+    if (typeof v === 'number') {
+      baseStats[k] = (baseStats[k] || 0) + v
+    } else if (typeof v === 'object' && v !== null) {
+      if (matchesUnit(k, unit)) {
+        exclusiveBonus = { unitKey: k, stats: v as Record<string, number> }
+        for (const [subK, subV] of Object.entries(v)) {
+          if (typeof subV === 'number') {
+            baseStats[subK] = (baseStats[subK] || 0) + subV
+          }
+        }
+      }
+    }
+  }
+
+  return { baseStats, exclusiveBonus }
+}
 
 /**
  * Potential / Stat Grade ranks (from status.md and in-game UI)
@@ -151,7 +195,8 @@ export function calculateCombatStats(
   stars: number = 0,
   upgradeLevel: number = 0,
   potentials: StatPotentials = {},
-  trait?: UnitTrait | null
+  trait?: UnitTrait | null,
+  gearStats?: Partial<GearStatsAggregated> | null
 ): CalculatedStats {
   if (!unit) {
     return {
@@ -173,7 +218,8 @@ export function calculateCombatStats(
       critDamage: 1.1,
       potentials,
       potentialPercents: {},
-      trait: null
+      trait: null,
+      gearStats: undefined
     }
   }
 
@@ -219,40 +265,60 @@ export function calculateCombatStats(
   const traitCritChance = tStats.CritChanceBoost || 0
   const traitCritDmg = tStats.CritDamageBoost || 0
 
-  // 1. Damage (ATK) - boosted by level, awakening, potential, and trait
-  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * (1 + potDmg) * (1 + traitDmg) * 10) / 10
+  // Gear Boosts (aggregated from 4 equipped gear slots + exclusive unit bonuses)
+  const gDmg = gearStats?.DamageBoost || 0
+  const gHp = gearStats?.HealthBoost || 0
+  const gRange = gearStats?.RangeBoost || 0
+  const gSpeed = gearStats?.SpeedBoost || 0
+  const gAs = gearStats?.AttackSpeedBoost || 0
+  const gSkillDmg = gearStats?.SkillDamageBoost || 0
+  const gSkillCd = gearStats?.SkillCooldownReduction || 0
+  const gCostRed = gearStats?.CostReduction || 0
+  const gCritChance = gearStats?.CritChanceBoost || 0
+  const gCritDmg = gearStats?.CritDamageBoost || 0
 
-  // 2. Health (HP) - boosted by level, awakening, potential, and trait
-  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * (1 + potHp) * (1 + traitHp) * 10) / 10
+  // 1. Damage (ATK) - boosted by level, awakening, potential, trait, and gear
+  const totalDmgFactor = (1 + traitDmg + gDmg)
+  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * (1 + potDmg) * totalDmgFactor * 10) / 10
 
-  // 3. Range - boosted by awakening, potential, and trait
-  const range = Math.round(rawRange * (1 + awk.range) * (1 + potRange) * (1 + traitRange) * 10) / 10
+  // 2. Health (HP) - boosted by level, awakening, potential, trait, and gear
+  const totalHpFactor = (1 + traitHp + gHp)
+  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * (1 + potHp) * totalHpFactor * 10) / 10
+
+  // 3. Range - boosted by awakening, potential, trait, and gear
+  const totalRangeFactor = (1 + traitRange + gRange)
+  const range = Math.round(rawRange * (1 + awk.range) * (1 + potRange) * totalRangeFactor * 10) / 10
   const rawSkillRange = lvlOverrides.SkillRange || unit.SkillRange || range
-  const skillRange = Math.round(rawSkillRange * (1 + potRange) * (1 + traitRange) * 10) / 10
+  const skillRange = Math.round(rawSkillRange * (1 + potRange) * totalRangeFactor * 10) / 10
 
-  // 4. Speed - boosted by awakening, potential, and trait
-  const speed = Math.round(rawSpeed * (1 + awk.speed) * (1 + potSpeed) * (1 + traitSpeed) * 10) / 10
+  // 4. Speed - boosted by awakening, potential, trait, and gear
+  const totalSpeedFactor = (1 + traitSpeed + gSpeed)
+  const speed = Math.round(rawSpeed * (1 + awk.speed) * (1 + potSpeed) * totalSpeedFactor * 10) / 10
 
   // 5. Attack Speed (SPA) / Attack Cooldown:
-  // Potential cooldown and trait AttackSpeedBoost both reduce SPA (faster hits)
-  const attackSpeed = Math.round(rawSpa * (1 - potCd) * (1 - traitAs) * 100) / 100
+  // Potential cooldown, trait AttackSpeedBoost, and gear AttackSpeedBoost reduce SPA
+  const totalSpaReduction = potCd + traitAs + gAs
+  const attackSpeed = Math.round(rawSpa * Math.max(0.05, 1 - totalSpaReduction) * 100) / 100
 
   // DPS (ATK / SPA)
   const dps = Math.round((attack / (attackSpeed || 1)) * 10) / 10
 
-  // Skill Damage: Damage Potential & Trait SkillDamageBoost both increase Skill Damage
+  // Skill Damage: Boosted by Damage, Trait Skill DMG, and Gear Skill DMG
   const rawSkillDmg = lvlOverrides.SkillDamage || (unit.skillDamage ? unit.skillDamage : rawAtk * 1.5)
-  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * (1 + potDmg) * (1 + traitSkillDmg) * 10) / 10
+  const totalSkillDmgFactor = (1 + traitSkillDmg + gSkillDmg)
+  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * (1 + potDmg) * totalDmgFactor * totalSkillDmgFactor * 10) / 10
 
-  // Skill Cooldown: Trait SkillCooldownReduction reduces skill cooldown (Potential does not affect skill cooldown)
-  const skillCooldown = Math.round(rawCd * (1 - traitSkillCd) * 100) / 100
+  // Skill Cooldown: Trait and Gear SkillCooldownReduction reduce skill cooldown
+  const totalSkillCdReduction = Math.min(0.9, traitSkillCd + gSkillCd)
+  const skillCooldown = Math.round(rawCd * Math.max(0.1, 1 - totalSkillCdReduction) * 100) / 100
 
-  // Cost: Trait CostReduction lowers cost
-  const cost = Math.max(0, Math.round(baseCost * (1 - traitCostRed)))
+  // Cost: Trait and Gear CostReduction lower cost
+  const totalCostReduction = Math.min(0.8, traitCostRed + gCostRed)
+  const cost = Math.max(0, Math.round(baseCost * (1 - totalCostReduction)))
 
   // Crit Chance & Damage
-  const critChance = Math.round(((unit.CritChance || 0.05) + traitCritChance) * 100) / 100
-  const critDamage = Math.round(((unit.CritDamage || 1.1) + traitCritDmg) * 100) / 100
+  const critChance = Math.round(((unit.CritChance || 0.05) + traitCritChance + gCritChance) * 100) / 100
+  const critDamage = Math.round(((unit.CritDamage || 1.1) + traitCritDmg + gCritDmg) * 100) / 100
 
   return {
     attack,
@@ -281,7 +347,8 @@ export function calculateCombatStats(
       attackSpeed: Math.round(traitAs * 100),
       skillDamage: Math.round(potDmg * 100)
     },
-    trait: trait || null
+    trait: trait || null,
+    gearStats: gearStats || undefined
   }
 }
 

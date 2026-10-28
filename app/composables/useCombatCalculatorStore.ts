@@ -1,10 +1,21 @@
 import { ref, computed, watch, reactive } from 'vue'
-import type { PotentialRank, StatPotentials, UnitTrait, CalculatedStats, NormalizedUnit } from '~/types/unit'
+import type {
+  PotentialRank,
+  StatPotentials,
+  UnitTrait,
+  CalculatedStats,
+  NormalizedUnit,
+  GearSlot,
+  GearItem,
+  EquippedGears,
+  GearStatsAggregated
+} from '~/types/unit'
 import {
   DEFAULT_POTENTIALS,
   calculateCombatStats,
   getLevelMultiplier,
-  getMaxUnitLevel
+  getMaxUnitLevel,
+  resolveGearStatsForUnit
 } from '~/utils/unitCalculator'
 
 // Global Singleton Reactive State (Shared across all calculator components without emits)
@@ -15,9 +26,15 @@ const upgradeLevel = ref<number>(0)
 const potentials = ref<StatPotentials>({ ...DEFAULT_POTENTIALS })
 const selectedTraitId = ref<string | null>(null)
 const isSelectorOpen = ref<boolean>(false)
+const equippedGears = ref<EquippedGears>({
+  Head: null,
+  Body: null,
+  Arm: null,
+  Legs: null
+})
 
 export function useCombatCalculatorStore() {
-  const { units, skills, traits, dbPending: pending, dbError: error, refresh } = useDatabase()
+  const { units, skills, traits, gears, dbPending: pending, dbError: error, refresh } = useDatabase()
 
   // Preselect first unit once units are loaded
   watch(
@@ -93,7 +110,115 @@ export function useCombatCalculatorStore() {
     return currentUnit.value.skill || skills.value[name] || skills.value[currentUnit.value.displayName] || null
   })
 
-  // Canonical central stats computation with Trait support
+  // Normalized list of gears from database.json, sorted by Rarity Tier
+  const gearsList = computed<GearItem[]>(() => {
+    const raw = gears.value || {}
+    const list = Object.entries(raw).map(([key, g]: [string, any]) => ({
+      id: key,
+      Name: g.Name || `Gear ${key}`,
+      Slot: (g.Slot || 'Head') as GearSlot,
+      Rarity: g.Rarity || 'Rare',
+      Stats: g.Stats || {},
+      Icon: g.Icon || '',
+      Description: g.Description || ''
+    }))
+
+    const rarityOrder: Record<string, number> = {
+      Exclusive: 1,
+      Secret: 2,
+      Mythic: 3,
+      Legendary: 4,
+      Epic: 5,
+      Rare: 6
+    }
+
+    return list.sort((a, b) => {
+      const orderA = rarityOrder[a.Rarity] ?? 99
+      const orderB = rarityOrder[b.Rarity] ?? 99
+      if (orderA !== orderB) return orderA - orderB
+      return a.Name.localeCompare(b.Name)
+    })
+  })
+
+  const gearsBySlot = computed<Record<GearSlot, GearItem[]>>(() => {
+    const map: Record<GearSlot, GearItem[]> = {
+      Head: [],
+      Body: [],
+      Arm: [],
+      Legs: []
+    }
+    for (const g of gearsList.value) {
+      if (map[g.Slot]) {
+        map[g.Slot].push(g)
+      }
+    }
+    return map
+  })
+
+  const activeEquippedGears = computed<Record<GearSlot, GearItem | null>>(() => {
+    return {
+      Head: gearsList.value.find(g => g.id === equippedGears.value.Head) || null,
+      Body: gearsList.value.find(g => g.id === equippedGears.value.Body) || null,
+      Arm: gearsList.value.find(g => g.id === equippedGears.value.Arm) || null,
+      Legs: gearsList.value.find(g => g.id === equippedGears.value.Legs) || null
+    }
+  })
+
+  // Aggregated Gear Stats across all 4 slots + unit exclusive bonuses
+  const aggregatedGearStats = computed<GearStatsAggregated>(() => {
+    const totals: GearStatsAggregated = {
+      DamageBoost: 0,
+      HealthBoost: 0,
+      AttackSpeedBoost: 0,
+      RangeBoost: 0,
+      SpeedBoost: 0,
+      SkillDamageBoost: 0,
+      SkillCooldownReduction: 0,
+      CostReduction: 0,
+      CritDamageBoost: 0,
+      CritChanceBoost: 0,
+      SpawnCooldownReduction: 0,
+      LifeSteal: 0,
+      ArmorPen: 0,
+      EvadeBoost: 0,
+      BurnBoost: 0,
+      Accuracy: 0,
+      Armor: 0,
+      Shield: 0,
+      UnitCap: 0,
+      activeExclusiveBonuses: []
+    }
+
+    const equipped = activeEquippedGears.value
+    const slots: GearSlot[] = ['Head', 'Body', 'Arm', 'Legs']
+
+    for (const s of slots) {
+      const g = equipped[s]
+      if (!g) continue
+
+      const { baseStats, exclusiveBonus } = resolveGearStatsForUnit(g, currentUnit.value)
+
+      for (const [k, v] of Object.entries(baseStats)) {
+        if (typeof (totals as any)[k] === 'number') {
+          ;(totals as any)[k] += v
+        } else {
+          ;(totals as any)[k] = v
+        }
+      }
+
+      if (exclusiveBonus) {
+        totals.activeExclusiveBonuses.push({
+          gearName: g.Name,
+          unitKey: exclusiveBonus.unitKey,
+          stats: exclusiveBonus.stats
+        })
+      }
+    }
+
+    return totals
+  })
+
+  // Canonical central stats computation with Trait & Gear support
   const calculatedStats = computed<CalculatedStats>(() => {
     return calculateCombatStats(
       currentUnit.value,
@@ -101,7 +226,8 @@ export function useCombatCalculatorStore() {
       selectedStars.value,
       upgradeLevel.value,
       potentials.value,
-      currentTrait.value
+      currentTrait.value,
+      aggregatedGearStats.value
     )
   })
 
@@ -136,6 +262,22 @@ export function useCombatCalculatorStore() {
     selectedTraitId.value = traitId
   }
 
+  function setGear(slot: GearSlot, gearId: string | null) {
+    equippedGears.value = {
+      ...equippedGears.value,
+      [slot]: gearId && gearId !== 'none' ? gearId : null
+    }
+  }
+
+  function clearGears() {
+    equippedGears.value = {
+      Head: null,
+      Body: null,
+      Arm: null,
+      Legs: null
+    }
+  }
+
   function resetPotentials(defaultRank: PotentialRank = 'D') {
     potentials.value = {
       damage: defaultRank,
@@ -161,12 +303,17 @@ export function useCombatCalculatorStore() {
     upgradeLevel,
     potentials,
     selectedTraitId,
+    equippedGears,
     isSelectorOpen,
 
     // Computeds
     currentUnit,
     currentTrait,
     traitsList,
+    gearsList,
+    gearsBySlot,
+    activeEquippedGears,
+    aggregatedGearStats,
     maxUpgradeLevel,
     currentMaxLevel,
     levelMultiplier,
@@ -180,6 +327,8 @@ export function useCombatCalculatorStore() {
     setUpgradeLevel,
     setPotential,
     setTrait,
+    setGear,
+    clearGears,
     resetPotentials
   })
 }
