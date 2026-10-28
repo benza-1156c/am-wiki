@@ -37,5 +37,4 @@
 </template>
 
 <script setup lang="ts">
-// Pure Nuxt UI application shell
 </script>

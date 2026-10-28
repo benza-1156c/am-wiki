@@ -1,106 +1,94 @@
 <template>
-  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-    <!-- 1. Attack (Damage) -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-sword" />
-          <span>Damage (ATK)</span>
+  <UCard>
+    <template #header>
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-bold flex items-center gap-1.5">
+          <UIcon name="i-lucide-activity" />
+          <span>Combat Statistics</span>
         </span>
-        <span>Lv. {{ unitLevel }}</span>
+        <UBadge color="primary" variant="subtle" size="xs">
+          Lv. {{ unitLevel }}
+        </UBadge>
       </div>
-      <div class="text-2xl font-bold font-mono">
-        {{ stats.attack.toLocaleString() }}
-      </div>
-      <div class="text-xs text-muted mt-1 flex items-center justify-between">
-        <span>Base: {{ stats.baseAttack }}</span>
-        <UBadge color="success" variant="subtle" size="xs">+{{ stats.atkGainPercent }}%</UBadge>
-      </div>
-    </UCard>
+    </template>
 
-    <!-- 2. DPS -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-flame" />
-          <span>DPS</span>
-        </span>
-        <span>ATK / SPA</span>
+    <div class="space-y-1.5">
+      <!-- 1. Attack (Damage) -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-sword" class="text-primary w-4 h-4" />
+          <span class="font-medium">Damage (ATK)</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(Base: {{ stats.baseAttack }})</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <UBadge color="success" variant="subtle" size="xs">+{{ stats.atkGainPercent }}%</UBadge>
+          <span class="font-bold text-sm">{{ stats.attack.toLocaleString() }}</span>
+        </div>
       </div>
-      <div class="text-2xl font-bold font-mono text-warning">
-        {{ stats.dps.toLocaleString() }}
-      </div>
-      <div class="text-xs text-muted mt-1">
-        SPA: <span class="font-bold">{{ stats.attackSpeed }}s</span>
-      </div>
-    </UCard>
 
-    <!-- 3. Health -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-heart" />
-          <span>Health (HP)</span>
-        </span>
-        <span>Lv. {{ unitLevel }}</span>
+      <!-- 2. DPS -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-flame" class="text-warning w-4 h-4" />
+          <span class="font-medium">DPS</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(ATK / SPA)</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <span class="text-[10px] text-muted">{{ stats.attackSpeed }}s SPA</span>
+          <span class="font-bold text-sm text-warning">{{ stats.dps.toLocaleString() }}</span>
+        </div>
       </div>
-      <div class="text-2xl font-bold font-mono text-success">
-        {{ stats.health.toLocaleString() }}
-      </div>
-      <div class="text-xs text-muted mt-1 flex items-center justify-between">
-        <span>Base: {{ stats.baseHealth }}</span>
-        <UBadge color="success" variant="subtle" size="xs">+{{ stats.hpGainPercent }}%</UBadge>
-      </div>
-    </UCard>
 
-    <!-- 4. Range -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-target" />
-          <span>Range</span>
-        </span>
+      <!-- 3. Health (HP) -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-heart" class="text-success w-4 h-4" />
+          <span class="font-medium">Health (HP)</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(Base: {{ stats.baseHealth }})</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <UBadge color="success" variant="subtle" size="xs">+{{ stats.hpGainPercent }}%</UBadge>
+          <span class="font-bold text-sm text-success">{{ stats.health.toLocaleString() }}</span>
+        </div>
       </div>
-      <div class="text-xl font-bold font-mono">
-        {{ stats.range }}
-      </div>
-      <div class="text-xs text-muted mt-1">
-        Skill Range: <span class="font-bold">{{ stats.skillRange }}</span>
-      </div>
-    </UCard>
 
-    <!-- 5. Speed -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-zap" />
-          <span>Walk Speed</span>
-        </span>
+      <!-- 4. Range -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-target" class="text-primary w-4 h-4" />
+          <span class="font-medium">Range</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(Skill Range: {{ stats.skillRange }})</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <span class="font-bold text-sm">{{ stats.range }}</span>
+        </div>
       </div>
-      <div class="text-xl font-bold font-mono">
-        {{ stats.speed }}
-      </div>
-      <div class="text-xs text-muted mt-1">
-        Attack Speed: <span class="font-bold">{{ stats.attackSpeed }}s</span>
-      </div>
-    </UCard>
 
-    <!-- 6. Skill Damage -->
-    <UCard>
-      <div class="text-xs text-muted flex items-center justify-between mb-1">
-        <span class="font-bold flex items-center gap-1">
-          <UIcon name="i-lucide-sparkles" />
-          <span>Skill Damage</span>
-        </span>
+      <!-- 5. Speed -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-zap" class="text-warning w-4 h-4" />
+          <span class="font-medium">Walk Speed</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(Attack Speed: {{ stats.attackSpeed }}s)</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <span class="font-bold text-sm">{{ stats.speed }}</span>
+        </div>
       </div>
-      <div class="text-xl font-bold font-mono text-primary">
-        {{ stats.skillDamage.toLocaleString() }}
+
+      <!-- 6. Skill Damage -->
+      <div class="flex items-center justify-between p-2 rounded border border-default text-xs">
+        <div class="flex items-center gap-2">
+          <UIcon name="i-lucide-sparkles" class="text-primary w-4 h-4" />
+          <span class="font-medium">Skill Damage</span>
+          <span class="text-[10px] text-muted hidden sm:inline">(Cooldown: {{ stats.skillCooldown }}s)</span>
+        </div>
+        <div class="flex items-center gap-2 font-mono">
+          <span class="font-bold text-sm text-primary">{{ stats.skillDamage.toLocaleString() }}</span>
+        </div>
       </div>
-      <div class="text-xs text-muted mt-1">
-        Cooldown: <span class="font-bold">{{ stats.skillCooldown }}s</span>
-      </div>
-    </UCard>
-  </div>
+    </div>
+  </UCard>
 </template>
 
 <script setup lang="ts">
@@ -111,4 +99,3 @@ defineProps<{
   unitLevel: number
 }>()
 </script>
-

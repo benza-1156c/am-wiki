@@ -28,8 +28,6 @@
 
     <!-- Main Calculator View -->
     <div v-else class="space-y-6">
-      <!-- Header Formula Banner Card -->
-      <UnitCalculatorBanner />
 
       <!-- Main Layout: 2 Columns -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -75,13 +73,6 @@
             :skill="unitSkillInfo"
             :ultimate-name="currentUnit?.ultimateName"
             :ultimate-cooldown="currentUnit?.ultimateCooldown"
-          />
-
-          <UnitMilestonesTable
-            :upgrade-level="upgradeLevel"
-            :base="milestoneBase"
-            :lvl50="milestoneLvl50"
-            :max80="milestoneMax80"
           />
         </div>
       </div>
