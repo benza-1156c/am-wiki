@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     head: {
       title: 'AM Wiki',
       meta: [
-        { name: 'description', content: 'Comprehensive Anime Movement unit wiki, player card database, level upgrade stats calculator, compare tool, gears and traits.' }
+        { name: 'description', content: 'Comprehensive Anime Mysterious unit wiki, player card database, level upgrade stats calculator, compare tool, gears and traits.' }
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
