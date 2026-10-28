@@ -24,30 +24,6 @@
           @click="$emit('update:modelValue', s)"
         />
       </div>
-
-      <!-- Awakening Perks Breakdown -->
-      <div class="space-y-1.5 text-xs">
-        <div
-          v-for="perk in awakeningPerksList"
-          :key="perk.star"
-          class="p-2 rounded border border-default flex items-center justify-between text-xs"
-        >
-          <div class="flex items-center gap-2">
-            <UIcon
-              :name="modelValue >= perk.star ? 'i-lucide-check-circle-2' : 'i-lucide-circle'"
-              :class="modelValue >= perk.star ? 'text-warning' : 'text-muted'"
-            />
-            <span :class="modelValue >= perk.star ? 'font-bold' : 'text-muted'">{{ perk.label }}</span>
-          </div>
-          <UBadge
-            :color="modelValue >= perk.star ? 'warning' : 'neutral'"
-            variant="subtle"
-            size="xs"
-          >
-            {{ perk.bonus }}
-          </UBadge>
-        </div>
-      </div>
     </div>
   </UCard>
 </template>

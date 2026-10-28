@@ -36,6 +36,7 @@
             <div>
               <div class="flex items-center gap-2">
                 <h1 class="text-lg font-bold">Unit Stat & Awakening Calculator</h1>
+                <UBadge variant="subtle" color="primary" size="xs">Level 1–80</UBadge>
               </div>
               <p class="text-xs text-muted">Canonical formulas from CalculateUnitsStats & UnitLevelData</p>
             </div>
