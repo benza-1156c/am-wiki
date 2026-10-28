@@ -49,16 +49,7 @@
 
       <!-- Footer -->
       <footer class="border-t border-white/5 py-6 text-xs text-slate-500">
-        <UContainer class="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-slate-300 font-['Outfit']">AM Wiki</span>
-            <span>•</span>
-            <span>Anime Movement Database & Calculator</span>
-          </div>
-          <p class="text-[11px] text-slate-600">
-            Fan-made community project. Not affiliated with Roblox or official developers.
-          </p>
-        </UContainer>
+     
       </footer>
     </div>
   </UApp>

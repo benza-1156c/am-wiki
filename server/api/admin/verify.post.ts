@@ -1,3 +1,5 @@
+import { getValidAdminPasswords, isPasswordMatch } from '../../utils/adminAuth'
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const password = body?.password ? String(body.password).trim() : ''
