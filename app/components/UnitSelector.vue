@@ -2,7 +2,7 @@
   <UModal
     v-model:open="isOpen"
     title="Select Unit"
-    :description="`Choose from ${units.length} units in the database`"
+    :description="`Choose from ${unitList.length} units in the database`"
   >
     <template #body>
       <div class="space-y-4">
@@ -19,7 +19,7 @@
             v-for="u in filteredUnits"
             :key="u.id"
             class="cursor-pointer p-2.5 rounded text-xs flex items-center justify-between transition-colors"
-            :class="modelValue === u.id ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-muted/50'"
+            :class="currentSelectedId === u.id ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-muted/50'"
             @click="selectUnit(u.id)"
           >
             <div class="flex items-center gap-2.5 truncate">
@@ -40,10 +40,12 @@
 <script setup lang="ts">
 import type { NormalizedUnit } from '~/types/unit'
 
+const store = useCombatCalculatorStore()
+
 const props = defineProps<{
-  units: NormalizedUnit[]
-  modelValue: string
-  open: boolean
+  units?: NormalizedUnit[]
+  modelValue?: string
+  open?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -52,25 +54,32 @@ const emit = defineEmits<{
 }>()
 
 const isOpen = computed({
-  get: () => props.open,
-  set: (val) => emit('update:open', val)
+  get: () => props.open !== undefined ? props.open : store.isSelectorOpen,
+  set: (val) => {
+    store.isSelectorOpen = val
+    emit('update:open', val)
+  }
 })
+
+const currentSelectedId = computed(() => props.modelValue !== undefined ? props.modelValue : store.selectedUnitId)
+const unitList = computed(() => props.units || store.units)
 
 const searchQuery = ref('')
 
 const filteredUnits = computed(() => {
-  if (!searchQuery.value.trim()) return props.units
-  const q = searchQuery.value.toLowerCase()
-  return props.units.filter(u =>
-    (u.name && u.name.toLowerCase().includes(q)) ||
-    (u.displayName && u.displayName.toLowerCase().includes(q)) ||
-    (u.series && u.series.toLowerCase().includes(q)) ||
-    (u.rarity && u.rarity.toLowerCase().includes(q)) ||
-    (u.element && u.element.toLowerCase().includes(q))
+  const q = searchQuery.value.toLowerCase().trim()
+  if (!q) return unitList.value
+  return unitList.value.filter((u: any) =>
+    (u.name || '').toLowerCase().includes(q) ||
+    (u.displayName || '').toLowerCase().includes(q) ||
+    (u.series || '').toLowerCase().includes(q) ||
+    (u.rarity || '').toLowerCase().includes(q) ||
+    (u.element || '').toLowerCase().includes(q)
   )
 })
 
 function selectUnit(id: string) {
+  store.setUnit(id)
   emit('update:modelValue', id)
   isOpen.value = false
 }

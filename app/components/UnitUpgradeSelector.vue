@@ -7,7 +7,7 @@
           <span>In-Game Upgrade Level</span>
         </span>
         <UBadge color="primary" variant="subtle" size="xs">
-          Upgrade {{ modelValue }} / {{ maxUpgrade }}
+          Upgrade {{ currentUpgrade }} / {{ maxUpgrade }}
         </UBadge>
       </div>
     </template>
@@ -17,23 +17,37 @@
         v-for="u in maxUpgrade + 1"
         :key="u - 1"
         :label="String(u - 1)"
-        :variant="modelValue === (u - 1) ? 'solid' : 'outline'"
-        :color="modelValue === (u - 1) ? 'primary' : 'neutral'"
+        :variant="currentUpgrade === (u - 1) ? 'solid' : 'outline'"
+        :color="currentUpgrade === (u - 1) ? 'primary' : 'neutral'"
         size="sm"
-        @click="$emit('update:modelValue', u - 1)"
+        @click="selectUpgrade(u - 1)"
       />
     </div>
   </UCard>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  modelValue: number
-  maxUpgrade: number
+const store = useCombatCalculatorStore()
+
+const props = defineProps<{
+  modelValue?: number
+  maxUpgrade?: number
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', val: number): void
 }>()
-</script>
 
+const currentUpgrade = computed(() => {
+  return props.modelValue !== undefined ? props.modelValue : store.upgradeLevel
+})
+
+const maxUpgrade = computed(() => {
+  return props.maxUpgrade !== undefined ? props.maxUpgrade : store.maxUpgradeLevel
+})
+
+function selectUpgrade(val: number) {
+  store.setUpgradeLevel(val)
+  emit('update:modelValue', val)
+}
+</script>

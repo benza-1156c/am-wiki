@@ -7,28 +7,94 @@ import type {
   PotentialRank,
   PotentialConfig,
   StatPotentials,
-  CalculatedStats
+  CalculatedStats,
+  UnitTrait
 } from '~/types/unit'
 
 /**
- * Potential / Stat Grade ranks (from status.md)
- * D: +5%, C: +10%, B: +15%, A: +20%, S: +25%, SS: +30%, SSS: +35%, 神 (GOD): +50%
+ * Potential / Stat Grade ranks (from status.md and in-game UI)
+ * Each rank directly defines its label, multiplier, text color, and select box style.
  */
 export const POTENTIAL_CONFIGS: Record<PotentialRank, PotentialConfig> = {
-  NONE: { key: 'NONE', label: '-', percent: 0, color: 'neutral' },
-  D: { key: 'D', label: 'D', percent: 0.05, color: 'neutral' },
-  C: { key: 'C', label: 'C', percent: 0.10, color: 'neutral' },
-  B: { key: 'B', label: 'B', percent: 0.15, color: 'info' },
-  A: { key: 'A', label: 'A', percent: 0.20, color: 'info' },
-  S: { key: 'S', label: 'S', percent: 0.25, color: 'warning' },
-  SS: { key: 'SS', label: 'SS', percent: 0.30, color: 'warning' },
-  SSS: { key: 'SSS', label: 'SSS', percent: 0.35, color: 'error' },
-  GOD: { key: 'GOD', label: '神', percent: 0.50, color: 'fuchsia' }
+  NONE: {
+    key: 'NONE',
+    label: '-',
+    percent: 0,
+    color: 'text-neutral-400',
+    selectClass: 'border-neutral-700 text-neutral-400 bg-neutral-900'
+  },
+  D: {
+    key: 'D',
+    label: 'D',
+    percent: 0.05,
+    color: 'text-neutral-300',
+    selectClass: 'border-neutral-500 text-neutral-300 bg-neutral-900'
+  },
+  C: {
+    key: 'C',
+    label: 'C',
+    percent: 0.10,
+    color: 'text-emerald-400',
+    selectClass: 'border-emerald-500 text-emerald-300 bg-emerald-950/40'
+  },
+  B: {
+    key: 'B',
+    label: 'B',
+    percent: 0.15,
+    color: 'text-blue-400',
+    selectClass: 'border-blue-500 text-blue-300 bg-blue-950/40'
+  },
+  A: {
+    key: 'A',
+    label: 'A',
+    percent: 0.20,
+    color: 'text-sky-400',
+    selectClass: 'border-sky-500 text-sky-300 bg-sky-950/40'
+  },
+  S: {
+    key: 'S',
+    label: 'S',
+    percent: 0.25,
+    color: 'text-yellow-400',
+    selectClass: 'border-yellow-500 text-yellow-300 bg-yellow-950/40 shadow-sm shadow-yellow-500/20'
+  },
+  SS: {
+    key: 'SS',
+    label: 'SS',
+    percent: 0.30,
+    color: 'text-amber-400',
+    selectClass: 'border-amber-500 text-amber-300 bg-amber-950/40 shadow-sm shadow-amber-500/20'
+  },
+  SSS: {
+    key: 'SSS',
+    label: 'SSS',
+    percent: 0.35,
+    color: 'text-rose-400',
+    selectClass: 'border-rose-500 text-rose-300 bg-rose-950/40 shadow-sm shadow-rose-500/20'
+  },
+  GOD: {
+    key: 'GOD',
+    label: '神',
+    percent: 0.50,
+    color: 'text-fuchsia-400',
+    selectClass: 'border-fuchsia-500 text-fuchsia-300 bg-fuchsia-950/40 shadow-sm shadow-fuchsia-500/20'
+  }
 }
 
 export const POTENTIAL_RANK_ORDER: PotentialRank[] = [
   'NONE', 'D', 'C', 'B', 'A', 'S', 'SS', 'SSS', 'GOD'
 ]
+
+/**
+ * Default StatPotentials starts at 'D' (+5%) as requested
+ */
+export const DEFAULT_POTENTIALS: StatPotentials = {
+  damage: 'D',
+  health: 'D',
+  range: 'D',
+  speed: 'D',
+  cooldown: 'D'
+}
 
 export function getNextPotentialRank(current?: PotentialRank): PotentialRank {
   const cur = current || 'NONE'
@@ -44,53 +110,12 @@ export function getPotentialMultiplier(rank?: PotentialRank): number {
   return POTENTIAL_CONFIGS[rank].percent
 }
 
-/**
- * Color class mapping for Potential/Status ranks (matching status.md and in-game UI)
- */
 export function getRankTextColor(rank?: PotentialRank): string {
-  switch (rank) {
-    case 'GOD':
-      return 'text-fuchsia-400'
-    case 'SSS':
-      return 'text-rose-400'
-    case 'SS':
-      return 'text-amber-400'
-    case 'S':
-      return 'text-yellow-400'
-    case 'A':
-      return 'text-sky-400'
-    case 'B':
-      return 'text-blue-400'
-    case 'C':
-      return 'text-emerald-400'
-    case 'D':
-      return 'text-neutral-300'
-    default:
-      return 'text-neutral-400'
-  }
+  return POTENTIAL_CONFIGS[rank || 'NONE']?.color || 'text-neutral-400'
 }
 
 export function getRankSelectStyle(rank?: PotentialRank): string {
-  switch (rank) {
-    case 'GOD':
-      return 'border-fuchsia-500 text-fuchsia-300 bg-fuchsia-950/40 shadow-sm shadow-fuchsia-500/20'
-    case 'SSS':
-      return 'border-rose-500 text-rose-300 bg-rose-950/40 shadow-sm shadow-rose-500/20'
-    case 'SS':
-      return 'border-amber-500 text-amber-300 bg-amber-950/40 shadow-sm shadow-amber-500/20'
-    case 'S':
-      return 'border-yellow-500 text-yellow-300 bg-yellow-950/40 shadow-sm shadow-yellow-500/20'
-    case 'A':
-      return 'border-sky-500 text-sky-300 bg-sky-950/40'
-    case 'B':
-      return 'border-blue-500 text-blue-300 bg-blue-950/40'
-    case 'C':
-      return 'border-emerald-500 text-emerald-300 bg-emerald-950/40'
-    case 'D':
-      return 'border-neutral-500 text-neutral-300 bg-neutral-900'
-    default:
-      return 'border-neutral-700 text-neutral-400 bg-neutral-900'
-  }
+  return POTENTIAL_CONFIGS[rank || 'NONE']?.selectClass || 'border-neutral-700 text-neutral-400 bg-neutral-900'
 }
 
 /**
@@ -125,7 +150,8 @@ export function calculateCombatStats(
   unitLevel: number = 1,
   stars: number = 0,
   upgradeLevel: number = 0,
-  potentials: StatPotentials = {}
+  potentials: StatPotentials = {},
+  trait?: UnitTrait | null
 ): CalculatedStats {
   if (!unit) {
     return {
@@ -143,8 +169,11 @@ export function calculateCombatStats(
       skillDamage: 0,
       skillCooldown: 0,
       cost: 0,
+      critChance: 0.05,
+      critDamage: 1.1,
       potentials,
-      potentialPercents: {}
+      potentialPercents: {},
+      trait: null
     }
   }
 
@@ -175,37 +204,55 @@ export function calculateCombatStats(
   const potHp = getPotentialMultiplier(potentials.health)
   const potRange = getPotentialMultiplier(potentials.range)
   const potSpeed = getPotentialMultiplier(potentials.speed)
-  const potSpa = getPotentialMultiplier(potentials.attackSpeed)
   const potCd = getPotentialMultiplier(potentials.cooldown)
 
-  // 1. Damage (ATK)
-  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * (1 + potDmg) * 10) / 10
+  // Trait Boosts (from database.json traits)
+  const tStats = trait?.Stats || {}
+  const traitDmg = tStats.DamageBoost || 0
+  const traitHp = tStats.HealthBoost || 0
+  const traitRange = tStats.RangeBoost || 0
+  const traitSpeed = tStats.SpeedBoost || 0
+  const traitAs = tStats.AttackSpeedBoost || 0
+  const traitSkillDmg = tStats.SkillDamageBoost || 0
+  const traitSkillCd = tStats.SkillCooldownReduction || 0
+  const traitCostRed = tStats.CostReduction || 0
+  const traitCritChance = tStats.CritChanceBoost || 0
+  const traitCritDmg = tStats.CritDamageBoost || 0
 
-  // 2. Health (HP)
-  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * (1 + potHp) * 10) / 10
+  // 1. Damage (ATK) - boosted by level, awakening, potential, and trait
+  const attack = Math.round(rawAtk * lvlMult * (1 + awk.damage) * (1 + potDmg) * (1 + traitDmg) * 10) / 10
 
-  // 3. Range
-  const range = Math.round(rawRange * (1 + awk.range) * (1 + potRange) * 10) / 10
+  // 2. Health (HP) - boosted by level, awakening, potential, and trait
+  const health = Math.round(rawHp * lvlMult * (1 + awk.health) * (1 + potHp) * (1 + traitHp) * 10) / 10
+
+  // 3. Range - boosted by awakening, potential, and trait
+  const range = Math.round(rawRange * (1 + awk.range) * (1 + potRange) * (1 + traitRange) * 10) / 10
   const rawSkillRange = lvlOverrides.SkillRange || unit.SkillRange || range
-  const skillRange = Math.round(rawSkillRange * (1 + potRange) * 10) / 10
+  const skillRange = Math.round(rawSkillRange * (1 + potRange) * (1 + traitRange) * 10) / 10
 
-  // 4. Speed
-  const speed = Math.round(rawSpeed * (1 + awk.speed) * (1 + potSpeed) * 10) / 10
+  // 4. Speed - boosted by awakening, potential, and trait
+  const speed = Math.round(rawSpeed * (1 + awk.speed) * (1 + potSpeed) * (1 + traitSpeed) * 10) / 10
 
-  // 5. Attack Speed (SPA) / Attack Cooldown: Cooldown status applies to Attack Cooldown (SPA)
-  const attackSpeed = potCd > 0
-    ? Math.round((rawSpa * (1 - potCd)) * 100) / 100
-    : (potSpa > 0 ? Math.round((rawSpa * (1 - potSpa)) * 100) / 100 : Math.round(rawSpa * 100) / 100)
+  // 5. Attack Speed (SPA) / Attack Cooldown:
+  // Potential cooldown and trait AttackSpeedBoost both reduce SPA (faster hits)
+  const attackSpeed = Math.round(rawSpa * (1 - potCd) * (1 - traitAs) * 100) / 100
 
   // DPS (ATK / SPA)
   const dps = Math.round((attack / (attackSpeed || 1)) * 10) / 10
 
-  // Skill Damage: Damage Potential also scales Skill Damage proportionally (as verified in-game)
+  // Skill Damage: Damage Potential & Trait SkillDamageBoost both increase Skill Damage
   const rawSkillDmg = lvlOverrides.SkillDamage || (unit.skillDamage ? unit.skillDamage : rawAtk * 1.5)
-  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * (1 + potDmg) * 10) / 10
+  const skillDamage = Math.round(rawSkillDmg * lvlMult * (1 + awk.skillDamage) * (1 + potDmg) * (1 + traitSkillDmg) * 10) / 10
 
-  // Skill Cooldown: Fixed from game data and unaffected by status rolls ("Skill Cooldown status จะไม่มีผลนะบอกก่อน")
-  const skillCooldown = rawCd
+  // Skill Cooldown: Trait SkillCooldownReduction reduces skill cooldown (Potential does not affect skill cooldown)
+  const skillCooldown = Math.round(rawCd * (1 - traitSkillCd) * 100) / 100
+
+  // Cost: Trait CostReduction lowers cost
+  const cost = Math.max(0, Math.round(baseCost * (1 - traitCostRed)))
+
+  // Crit Chance & Damage
+  const critChance = Math.round(((unit.CritChance || 0.05) + traitCritChance) * 100) / 100
+  const critDamage = Math.round(((unit.CritDamage || 1.1) + traitCritDmg) * 100) / 100
 
   return {
     attack,
@@ -221,7 +268,9 @@ export function calculateCombatStats(
     speed,
     skillDamage,
     skillCooldown,
-    cost: baseCost,
+    cost,
+    critChance,
+    critDamage,
     potentials,
     potentialPercents: {
       damage: Math.round(potDmg * 100),
@@ -229,9 +278,10 @@ export function calculateCombatStats(
       range: Math.round(potRange * 100),
       speed: Math.round(potSpeed * 100),
       cooldown: Math.round(potCd * 100),
-      attackSpeed: Math.round(potSpa * 100),
+      attackSpeed: Math.round(traitAs * 100),
       skillDamage: Math.round(potDmg * 100)
-    }
+    },
+    trait: trait || null
   }
 }
 

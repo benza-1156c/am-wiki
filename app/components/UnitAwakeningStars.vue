@@ -6,7 +6,7 @@
           <UIcon name="i-lucide-star" />
           <span>Awakening Stars</span>
         </span>
-        <UBadge color="warning" variant="subtle" size="xs">{{ modelValue }} / 6 Stars</UBadge>
+        <UBadge color="warning" variant="subtle" size="xs">{{ currentStars }} / 6 Stars</UBadge>
       </div>
     </template>
 
@@ -17,11 +17,11 @@
           v-for="s in [0, 1, 2, 3, 4, 5, 6]"
           :key="s"
           :label="s + '★'"
-          :variant="modelValue === s ? 'solid' : 'outline'"
-          :color="modelValue === s ? 'warning' : 'neutral'"
+          :variant="currentStars === s ? 'solid' : 'outline'"
+          :color="currentStars === s ? 'warning' : 'neutral'"
           size="sm"
           block
-          @click="$emit('update:modelValue', s)"
+          @click="selectStar(s)"
         />
       </div>
     </div>
@@ -29,21 +29,22 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  modelValue: number
+const store = useCombatCalculatorStore()
+
+const props = defineProps<{
+  modelValue?: number
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', val: number): void
 }>()
 
-const awakeningPerksList = [
-  { star: 1, label: '1 Star (★)', bonus: '+1% Damage' },
-  { star: 2, label: '2 Stars (★★)', bonus: '+2% Health' },
-  { star: 3, label: '3 Stars (★★★)', bonus: '+2% Speed' },
-  { star: 4, label: '4 Stars (★★★★)', bonus: '+2% Skill Damage' },
-  { star: 5, label: '5 Stars (★★★★★)', bonus: '+2% Range' },
-  { star: 6, label: '6 Stars (★★★★★★)', bonus: '+5% Damage (+6% Total)' }
-]
-</script>
+const currentStars = computed(() => {
+  return props.modelValue !== undefined ? props.modelValue : store.selectedStars
+})
 
+function selectStar(s: number) {
+  store.setStars(s)
+  emit('update:modelValue', s)
+}
+</script>

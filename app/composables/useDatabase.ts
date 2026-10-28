@@ -6,6 +6,7 @@ export function useDatabase() {
 
   const units = computed<any[]>(() => dbData.value?.units || [])
   const skills = computed<Record<string, any>>(() => dbData.value?.skills || {})
+  const traits = computed<Record<string, any>>(() => dbData.value?.traits || {})
 
   function handleUnitsUpdated(newUnits: any[]) {
     if (dbData.value) {
@@ -23,6 +24,7 @@ export function useDatabase() {
     refresh,
     units,
     skills,
+    traits,
     handleUnitsUpdated
   }
 }

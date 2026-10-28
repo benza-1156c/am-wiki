@@ -7,33 +7,33 @@
           <span>Unit Level</span>
         </span>
         <UBadge color="primary" variant="subtle" size="xs">
-          Lv. {{ modelValue }} / {{ maxLevel }}
+          Lv. {{ currentLevel }} / {{ currentMaxLevel }}
         </UBadge>
       </div>
     </template>
 
     <div class="space-y-3">
       <USlider
-        :model-value="modelValue"
+        :model-value="currentLevel"
         :min="1"
-        :max="maxLevel"
+        :max="currentMaxLevel"
         size="lg"
-        @update:model-value="$emit('update:modelValue', Number($event))"
+        @update:model-value="updateLevel(Number($event))"
       />
 
       <div class="flex items-center justify-between text-xs text-muted">
         <span>Lv. 1 (Base)</span>
         <div class="flex items-center gap-1">
-          <UButton label="Min" size="xs" variant="ghost" color="neutral" @click="$emit('update:modelValue', 1)" />
-          <UButton label="Lv.50" size="xs" variant="ghost" color="neutral" @click="$emit('update:modelValue', 50)" />
-          <UButton :label="'Max (' + maxLevel + ')'" size="xs" variant="ghost" color="primary" @click="$emit('update:modelValue', maxLevel)" />
+          <UButton label="Min" size="xs" variant="ghost" color="neutral" @click="updateLevel(1)" />
+          <UButton label="Lv.50" size="xs" variant="ghost" color="neutral" @click="updateLevel(50)" />
+          <UButton :label="'Max (' + currentMaxLevel + ')'" size="xs" variant="ghost" color="primary" @click="updateLevel(currentMaxLevel)" />
         </div>
       </div>
 
       <div class="p-2.5 rounded border border-default flex items-center justify-between text-xs">
         <span class="text-muted">Level Stat Multiplier:</span>
         <span class="font-bold text-primary font-mono">
-          {{ levelMultiplier.toFixed(2) }}x (+{{ Math.round((levelMultiplier - 1) * 100) }}%)
+          {{ currentMultiplier.toFixed(2) }}x (+{{ Math.round((currentMultiplier - 1) * 100) }}%)
         </span>
       </div>
     </div>
@@ -41,14 +41,32 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  modelValue: number
-  maxLevel: number
-  levelMultiplier: number
+const store = useCombatCalculatorStore()
+
+const props = defineProps<{
+  modelValue?: number
+  maxLevel?: number
+  levelMultiplier?: number
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', val: number): void
 }>()
-</script>
 
+const currentLevel = computed(() => {
+  return props.modelValue !== undefined ? props.modelValue : store.unitLevel
+})
+
+const currentMaxLevel = computed(() => {
+  return props.maxLevel !== undefined ? props.maxLevel : store.currentMaxLevel
+})
+
+const currentMultiplier = computed(() => {
+  return props.levelMultiplier !== undefined ? props.levelMultiplier : store.levelMultiplier
+})
+
+function updateLevel(val: number) {
+  store.setLevel(val)
+  emit('update:modelValue', val)
+}
+</script>

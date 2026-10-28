@@ -112,6 +112,7 @@ export interface PotentialConfig {
   label: string
   percent: number
   color: string
+  selectClass: string
 }
 
 export interface StatPotentials {
@@ -123,6 +124,33 @@ export interface StatPotentials {
   attackSpeed?: PotentialRank
   skillDamage?: PotentialRank
   dps?: PotentialRank
+}
+
+export interface TraitStats {
+  DamageBoost?: number
+  HealthBoost?: number
+  AttackSpeedBoost?: number
+  RangeBoost?: number
+  SpeedBoost?: number
+  SkillDamageBoost?: number
+  SkillCooldownReduction?: number
+  CostReduction?: number
+  CritDamageBoost?: number
+  CritChanceBoost?: number
+  SpawnCooldownReduction?: number
+  SpawnCap?: number
+  UnitCap?: number
+  EvadeBoost?: number
+}
+
+export interface UnitTrait {
+  id: string
+  TraitDisplayName: string
+  RarityName: string
+  TraitStatus?: string
+  TraitIcon?: string
+  Stats: TraitStats
+  Weight?: number
 }
 
 export interface CalculatedStats {
@@ -140,8 +168,11 @@ export interface CalculatedStats {
   skillDamage: number
   skillCooldown: number
   cost: number
+  critChance?: number
+  critDamage?: number
   potentials?: StatPotentials
   potentialPercents?: Record<string, number>
+  trait?: UnitTrait | null
 }
 
 export type MergeMode = 'merge' | 'skip_duplicates' | 'overwrite_all'
