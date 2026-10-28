@@ -1,6 +1,6 @@
 <template>
   <UModal
-    v-model:open="isOpen"
+    v-model:open="store.isSelectorOpen"
     title="Select Unit"
     :description="`Choose from ${unitList.length} units in the database`"
   >
@@ -19,12 +19,12 @@
             v-for="u in filteredUnits"
             :key="u.id"
             class="cursor-pointer p-2.5 rounded text-xs flex items-center justify-between transition-colors"
-            :class="currentSelectedId === u.id ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-muted/50'"
+            :class="store.selectedUnitId === u.id ? 'bg-primary/10 font-bold text-primary' : 'hover:bg-muted/50'"
             @click="selectUnit(u.id)"
           >
             <div class="flex items-center gap-2.5 truncate">
               <span class="text-sm font-semibold">{{ u.displayName || u.name }}</span>
-              <span class="text-[11px] text-muted">({{ u.series }})</span>
+              <span class="text-[11px] text-muted">{{ u.series }}</span>
             </div>
             <div class="flex items-center gap-1.5">
               <UBadge color="neutral" variant="subtle" size="xs">{{ u.rarity }}</UBadge>
@@ -38,33 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import type { NormalizedUnit } from '~/types/unit'
-
 const store = useCombatCalculatorStore()
 
-const props = defineProps<{
-  units?: NormalizedUnit[]
-  modelValue?: string
-  open?: boolean
-}>()
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', val: string): void
-  (e: 'update:open', val: boolean): void
-}>()
-
-const isOpen = computed({
-  get: () => props.open !== undefined ? props.open : store.isSelectorOpen,
-  set: (val) => {
-    store.isSelectorOpen = val
-    emit('update:open', val)
-  }
-})
-
-const currentSelectedId = computed(() => props.modelValue !== undefined ? props.modelValue : store.selectedUnitId)
-const unitList = computed(() => props.units || store.units)
-
 const searchQuery = ref('')
+const unitList = computed(() => store.units || [])
 
 const filteredUnits = computed(() => {
   const q = searchQuery.value.toLowerCase().trim()
@@ -80,7 +57,6 @@ const filteredUnits = computed(() => {
 
 function selectUnit(id: string) {
   store.setUnit(id)
-  emit('update:modelValue', id)
-  isOpen.value = false
+  store.isSelectorOpen = false
 }
 </script>

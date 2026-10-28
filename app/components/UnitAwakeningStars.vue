@@ -6,7 +6,7 @@
           <UIcon name="i-lucide-star" />
           <span>Awakening Stars</span>
         </span>
-        <UBadge color="warning" variant="subtle" size="xs">{{ currentStars }} / 6 Stars</UBadge>
+        <UBadge color="warning" variant="subtle" size="xs">{{ store.selectedStars }} / 6 Stars</UBadge>
       </div>
     </template>
 
@@ -17,11 +17,11 @@
           v-for="s in [0, 1, 2, 3, 4, 5, 6]"
           :key="s"
           :label="s + '★'"
-          :variant="currentStars === s ? 'solid' : 'outline'"
-          :color="currentStars === s ? 'warning' : 'neutral'"
+          :variant="store.selectedStars === s ? 'solid' : 'outline'"
+          :color="store.selectedStars === s ? 'warning' : 'neutral'"
           size="sm"
           block
-          @click="selectStar(s)"
+          @click="store.setStars(s)"
         />
       </div>
     </div>
@@ -30,21 +30,4 @@
 
 <script setup lang="ts">
 const store = useCombatCalculatorStore()
-
-const props = defineProps<{
-  modelValue?: number
-}>()
-
-const emit = defineEmits<{
-  (e: 'update:modelValue', val: number): void
-}>()
-
-const currentStars = computed(() => {
-  return props.modelValue !== undefined ? props.modelValue : store.selectedStars
-})
-
-function selectStar(s: number) {
-  store.setStars(s)
-  emit('update:modelValue', s)
-}
 </script>
