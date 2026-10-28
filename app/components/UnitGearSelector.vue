@@ -7,13 +7,38 @@
           <span>Equipped Gears</span>
         </span>
         <div class="flex items-center gap-2">
+          <!-- View Mode Toggle: List / Grid -->
+          <div class="flex items-center bg-white/5 rounded-lg p-0.5 border border-white/10">
+            <button
+              type="button"
+              class="px-2 py-0.5 rounded text-xs flex items-center gap-1 transition-all"
+              :class="viewMode === 'list' ? 'bg-primary/20 text-primary font-semibold shadow-sm' : 'text-neutral-400 hover:text-white'"
+              @click="viewMode = 'list'"
+              title="Anatomical List View (Compact & Balanced)"
+            >
+              <UIcon name="i-lucide-list" class="w-3.5 h-3.5" />
+              <span class="hidden sm:inline">List</span>
+            </button>
+            <button
+              type="button"
+              class="px-2 py-0.5 rounded text-xs flex items-center gap-1 transition-all"
+              :class="viewMode === 'grid' ? 'bg-primary/20 text-primary font-semibold shadow-sm' : 'text-neutral-400 hover:text-white'"
+              @click="viewMode = 'grid'"
+              title="2x2 Grid View"
+            >
+              <UIcon name="i-lucide-layout-grid" class="w-3.5 h-3.5" />
+              <span class="hidden sm:inline">Grid</span>
+            </button>
+          </div>
+
           <UBadge
             :color="equippedCount > 0 ? 'primary' : 'neutral'"
             :variant="equippedCount > 0 ? 'subtle' : 'outline'"
             size="xs"
           >
-            {{ equippedCount }} / 4 Gears
+            {{ equippedCount }} / 4
           </UBadge>
+
           <UButton
             v-if="equippedCount > 0"
             label="Clear"
@@ -65,15 +90,124 @@
         </div>
       </div>
 
-      <!-- 4 Gear Slots: Head, Body, Arm, Legs (Spacious & Clear) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <!-- Mode 1: Anatomical List View (Head -> Body -> Arm -> Legs, Zero empty voids!) -->
+      <div v-if="viewMode === 'list'" class="space-y-2.5">
         <div
           v-for="slotDef in slots"
           :key="slotDef.slot"
-          class="p-3 rounded-xl border bg-neutral-900/60 space-y-2.5 flex flex-col justify-between transition-all hover:border-neutral-700/80"
+          class="p-2.5 rounded-xl border bg-neutral-900/60 transition-all hover:border-neutral-700/80"
           :class="[
-            getRecommendedForSlot(slotDef.slot) && !store.activeEquippedGears[slotDef.slot] ? 'border-amber-500/40 ring-1 ring-amber-500/20' : 'border-white/5',
-            store.activeEquippedGears[slotDef.slot] ? 'bg-neutral-900/80' : 'bg-neutral-950/40'
+            getRecommendedForSlot(slotDef.slot) && !store.activeEquippedGears[slotDef.slot]
+              ? 'border-amber-500/40 ring-1 ring-amber-500/20'
+              : 'border-white/5',
+            store.activeEquippedGears[slotDef.slot] ? 'bg-neutral-900/80' : 'bg-neutral-950/30'
+          ]"
+        >
+          <!-- Top Row: Slot Icon/Label, SelectMenu, Badges -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <!-- Slot Identity -->
+            <div class="flex items-center gap-2 min-w-0 sm:w-28 shrink-0">
+              <UIcon :name="slotDef.icon" class="w-4 h-4 text-primary shrink-0" />
+              <span class="text-xs font-bold text-neutral-200">{{ slotDef.label }}</span>
+            </div>
+
+            <!-- Selector Menu -->
+            <div class="flex-1 min-w-0">
+              <USelectMenu
+                :model-value="store.equippedGears[slotDef.slot] || 'none'"
+                :items="getSlotOptions(slotDef.slot)"
+                value-key="value"
+                label-key="label"
+                size="sm"
+                class="w-full font-mono text-xs font-medium"
+                placeholder="Select gear..."
+                :search-input="{ placeholder: 'Search ' + slotDef.label + '...' }"
+                @update:model-value="(val) => handleGearSelect(slotDef.slot, val)"
+              />
+            </div>
+
+            <!-- Rarity/Signature Badge & Unequip -->
+            <div class="flex items-center gap-1.5 shrink-0 self-end sm:self-auto">
+              <UBadge
+                v-if="getRecommendedForSlot(slotDef.slot) && store.equippedGears[slotDef.slot] === getRecommendedForSlot(slotDef.slot)?.id"
+                color="warning"
+                variant="subtle"
+                size="xs"
+                class="font-medium"
+              >
+                Signature
+              </UBadge>
+              <UBadge
+                v-else-if="store.activeEquippedGears[slotDef.slot]"
+                :color="getRarityBadgeColor(store.activeEquippedGears[slotDef.slot]?.Rarity)"
+                variant="subtle"
+                size="xs"
+                class="font-medium"
+              >
+                {{ store.activeEquippedGears[slotDef.slot]?.Rarity }}
+              </UBadge>
+              <span v-else class="text-xs text-neutral-500 font-mono">Empty</span>
+
+              <UButton
+                v-if="store.equippedGears[slotDef.slot]"
+                icon="i-lucide-x"
+                variant="ghost"
+                color="neutral"
+                size="xs"
+                class="h-5 w-5 p-0 text-neutral-400 hover:text-white"
+                @click="store.setGear(slotDef.slot, null)"
+              />
+            </div>
+          </div>
+
+          <!-- Bottom Row: Unified Stats Chips & Signature Bonus (No duplicate descriptions!) -->
+          <div
+            v-if="store.activeEquippedGears[slotDef.slot]"
+            class="mt-2 pt-2 border-t border-white/5 flex flex-wrap items-center gap-1.5"
+          >
+            <!-- Base Stats Chips -->
+            <span
+              v-for="(val, key) in getBaseStats(store.activeEquippedGears[slotDef.slot])"
+              :key="key"
+              class="text-xs font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10 text-neutral-200 font-medium"
+            >
+              {{ formatStatBadge(String(key), Number(val)) }}
+            </span>
+
+            <!-- Signature / Exclusive Bonus Active -->
+            <template v-for="ex in getExclusiveInfo(store.activeEquippedGears[slotDef.slot])" :key="ex.unitKey">
+              <div
+                v-if="ex.isMatched"
+                class="flex flex-wrap items-center gap-1.5 px-2 py-0.5 rounded-md bg-amber-500/15 border border-amber-500/35 text-amber-300 text-xs font-mono"
+              >
+                <span class="flex items-center gap-1 font-bold text-amber-400">
+                  <UIcon name="i-lucide-sparkles" class="w-3.5 h-3.5" />
+                  <span>Signature:</span>
+                </span>
+                <span
+                  v-for="(subVal, subKey) in ex.stats"
+                  :key="subKey"
+                  class="px-1.5 py-0.2 rounded bg-black/40 text-amber-200 font-semibold"
+                >
+                  {{ formatStatBadge(String(subKey), Number(subVal)) }}
+                </span>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode 2: 2x2 Grid View (items-start, compact & clean, no empty voids) -->
+      <div v-else class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
+        <div
+          v-for="slotDef in slots"
+          :key="slotDef.slot"
+          class="p-3 rounded-xl border bg-neutral-900/60 space-y-2 flex flex-col justify-between transition-all hover:border-neutral-700/80"
+          :class="[
+            getRecommendedForSlot(slotDef.slot) && !store.activeEquippedGears[slotDef.slot]
+              ? 'border-amber-500/40 ring-1 ring-amber-500/20'
+              : 'border-white/5',
+            store.activeEquippedGears[slotDef.slot] ? 'bg-neutral-900/80' : 'bg-neutral-950/30'
           ]"
         >
           <div class="space-y-2">
@@ -89,7 +223,6 @@
                   color="warning"
                   variant="subtle"
                   size="xs"
-                  class="font-medium"
                 >
                   Signature
                 </UBadge>
@@ -98,13 +231,11 @@
                   :color="getRarityBadgeColor(store.activeEquippedGears[slotDef.slot]?.Rarity)"
                   variant="subtle"
                   size="xs"
-                  class="font-medium"
                 >
                   {{ store.activeEquippedGears[slotDef.slot]?.Rarity }}
                 </UBadge>
                 <span v-else class="text-xs text-neutral-500 font-mono">Empty</span>
 
-                <!-- Quick Unequip Button -->
                 <UButton
                   v-if="store.equippedGears[slotDef.slot]"
                   icon="i-lucide-x"
@@ -117,56 +248,29 @@
               </div>
             </div>
 
-            <!-- Searchable Select Menu for gear in this slot -->
+            <!-- Searchable Select Menu -->
             <USelectMenu
               :model-value="store.equippedGears[slotDef.slot] || 'none'"
               :items="getSlotOptions(slotDef.slot)"
               value-key="value"
               label-key="label"
               size="sm"
-              class="w-full font-mono font-medium"
+              class="w-full font-mono text-xs font-medium"
               placeholder="Select gear..."
               :search-input="{ placeholder: 'Search ' + slotDef.label + '...' }"
               @update:model-value="(val) => handleGearSelect(slotDef.slot, val)"
             />
-
-            <!-- Quick Equip Recommended Pill if not equipped -->
-            <div
-              v-if="getRecommendedForSlot(slotDef.slot) && store.equippedGears[slotDef.slot] !== getRecommendedForSlot(slotDef.slot)?.id"
-              class="flex items-center justify-between p-2 rounded-lg bg-amber-950/30 border border-amber-500/30 text-xs"
-            >
-              <div class="flex items-center gap-1.5 text-amber-300 font-medium truncate">
-                <UIcon name="i-lucide-sparkles" class="w-3.5 h-3.5 shrink-0" />
-                <span class="truncate">Rec: {{ getRecommendedForSlot(slotDef.slot)?.Name }}</span>
-              </div>
-              <UButton
-                label="Equip"
-                size="xs"
-                variant="solid"
-                color="warning"
-                class="shrink-0 text-xs h-6 px-2"
-                @click="store.setGear(slotDef.slot, getRecommendedForSlot(slotDef.slot)!.id)"
-              />
-            </div>
           </div>
 
-          <!-- Active Gear Stats Preview (Clear & Readable) -->
+          <!-- Active Gear Stats Preview -->
           <div
             v-if="store.activeEquippedGears[slotDef.slot]"
-            class="space-y-2 pt-2 border-t border-white/5"
+            class="space-y-1.5 pt-2 border-t border-white/5"
           >
-            <!-- Gear Description / Lore -->
-            <p
-              v-if="store.activeEquippedGears[slotDef.slot]?.Description"
-              class="text-xs text-neutral-300 font-mono leading-relaxed bg-black/40 p-2.5 rounded-lg border border-neutral-800/80"
-            >
-              {{ store.activeEquippedGears[slotDef.slot]?.Description }}
-            </p>
-
             <!-- Base Stats Chips -->
             <div
               v-if="Object.keys(getBaseStats(store.activeEquippedGears[slotDef.slot])).length > 0"
-              class="flex flex-wrap gap-1.5"
+              class="flex flex-wrap gap-1"
             >
               <span
                 v-for="(val, key) in getBaseStats(store.activeEquippedGears[slotDef.slot])"
@@ -177,43 +281,27 @@
               </span>
             </div>
 
-            <!-- Exclusive Unit Bonuses -->
-            <div
-              v-for="ex in getExclusiveInfo(store.activeEquippedGears[slotDef.slot])"
-              :key="ex.unitKey"
-              class="text-xs rounded-lg border transition-all"
-              :class="ex.isMatched
-                ? 'p-2.5 border-amber-500/40 bg-amber-950/30 text-amber-300 space-y-1.5'
-                : 'p-1.5 border-neutral-800 bg-neutral-900/40 text-neutral-500'"
-            >
-              <!-- Matched Exclusive Active -->
-              <template v-if="ex.isMatched">
-                <div class="flex items-center gap-1.5 font-bold">
-                  <UIcon name="i-lucide-sparkles" class="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Exclusive Bonus Active</span>
+            <!-- Exclusive Active Bonus -->
+            <template v-for="ex in getExclusiveInfo(store.activeEquippedGears[slotDef.slot])" :key="ex.unitKey">
+              <div
+                v-if="ex.isMatched"
+                class="p-2 rounded-lg border border-amber-500/40 bg-amber-950/30 text-amber-300 space-y-1 text-xs font-mono"
+              >
+                <div class="flex items-center gap-1 font-bold text-amber-400">
+                  <UIcon name="i-lucide-sparkles" class="w-3.5 h-3.5" />
+                  <span>Signature Bonus:</span>
                 </div>
-                <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+                <div class="flex flex-wrap gap-1">
                   <span
                     v-for="(subVal, subKey) in ex.stats"
                     :key="subKey"
-                    class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-200 font-semibold"
+                    class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-200 font-semibold"
                   >
                     {{ formatStatBadge(String(subKey), Number(subVal)) }}
                   </span>
                 </div>
-              </template>
-
-              <!-- Locked Exclusive for another unit (Muted & compact) -->
-              <template v-else>
-                <div class="flex items-center gap-1.5 text-neutral-500 text-[11px]">
-                  <UIcon name="i-lucide-lock" class="w-3.5 h-3.5 shrink-0" />
-                  <span class="truncate">Locked for {{ ex.unitKey }}:</span>
-                  <span class="truncate font-mono">
-                    {{ Object.entries(ex.stats).map(([k, v]) => formatStatBadge(k, Number(v))).join(', ') }}
-                  </span>
-                </div>
-              </template>
-            </div>
+              </div>
+            </template>
           </div>
         </div>
       </div>
@@ -222,10 +310,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
 import type { GearSlot, GearItem } from '~/types/unit'
 import { matchesUnit } from '~/utils/unitCalculator'
 
 const store = useCombatCalculatorStore()
+
+// Default to list view which eliminates empty void spaces and provides a balanced anatomical layout
+const viewMode = ref<'list' | 'grid'>('list')
 
 interface SlotDefinition {
   slot: GearSlot
