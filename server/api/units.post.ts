@@ -11,28 +11,34 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const unitsPath = path.resolve(process.cwd(), 'public/units.json')
     const dbPath = path.resolve(process.cwd(), 'public/database.json')
+    let currentDb: any = {}
 
-    await fs.writeFile(unitsPath, JSON.stringify(body.units, null, 2), 'utf8')
-
-    // Also update public/database.json if it exists
     try {
       const rawDb = await fs.readFile(dbPath, 'utf8')
-      const db = JSON.parse(rawDb)
-      db.units = body.units
-      if (db.meta) {
-        db.meta.totalUnits = body.units.length
-      }
-      await fs.writeFile(dbPath, JSON.stringify(db, null, 2), 'utf8')
+      currentDb = JSON.parse(rawDb)
     } catch {
-      // Ignore database.json sync errors if not present
+      currentDb = { meta: {}, units: [], skills: {}, gears: [], traits: [] }
     }
+
+    currentDb.units = body.units
+    if (body.skills) currentDb.skills = body.skills
+    if (body.gears) currentDb.gears = body.gears
+    if (body.traits) currentDb.traits = body.traits
+
+    currentDb.meta = {
+      ...(currentDb.meta || {}),
+      totalUnits: body.units.length,
+      updatedAt: new Date().toISOString(),
+      version: '2.0.0'
+    }
+
+    await fs.writeFile(dbPath, JSON.stringify(currentDb, null, 2), 'utf8')
 
     return {
       success: true,
       totalUnits: body.units.length,
-      message: `Successfully saved ${body.units.length} units to database`
+      message: `Successfully saved ${body.units.length} units to database.json`
     }
   } catch (err: any) {
     throw createError({

@@ -1,19 +1,15 @@
-import units from '../../public/units.json'
-import skills from '../../public/skills.json'
-import gears from '../../public/gears.json'
-import traits from '../../public/traits.json'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
-export default defineEventHandler(() => {
-  return {
-    meta: {
-      totalUnits: units.length,
-      totalGears: gears.length,
-      totalTraits: traits.length,
-      version: '1.0.0'
-    },
-    units,
-    skills,
-    gears,
-    traits
+export default defineEventHandler(async () => {
+  const dbPath = path.resolve(process.cwd(), 'public/database.json')
+  try {
+    const raw = await fs.readFile(dbPath, 'utf8')
+    return JSON.parse(raw)
+  } catch (err: any) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Failed to read database.json: ${err.message}`
+    })
   }
 })
