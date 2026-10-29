@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "start": "bun .output/server/index.mjs"
+    "start": "bun .output/server/index.mjs",
+    "render:units": "node scripts/render_units.js"
   },
   "dependencies": {
     "@nuxt/image": "2.2.0",

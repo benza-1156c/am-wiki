@@ -8,7 +8,7 @@
     {
       "id": "Saber_001",
       "name": "Saber",
-      "icon": null,
+      "icon": "/images/units/Saber_001.png",
       "model": "Saber",
       "displayName": "Siri",
       "series": "Fate",
@@ -218,7 +218,7 @@
     {
       "id": "Buddha_001",
       "name": "Buddha",
-      "icon": null,
+      "icon": "/images/units/Buddha_001.png",
       "model": "Buddha",
       "displayName": "Bodhod",
       "series": "Ragnarok",
@@ -418,7 +418,7 @@
     {
       "id": "Sungjinwoo_001",
       "name": "SungJinwoo",
-      "icon": null,
+      "icon": "/images/units/Sungjinwoo_001.png",
       "model": "SungJinwoo",
       "displayName": "Jinwoo",
       "series": "SOLOLEVELING",
@@ -612,7 +612,7 @@
     {
       "id": "Alucard_001",
       "name": "Alucard",
-      "icon": null,
+      "icon": "/images/units/Alucard_001.png",
       "model": "Alucard",
       "displayName": "Dracula",
       "series": "Other",
@@ -794,7 +794,7 @@
     {
       "id": "Igris_001",
       "name": "Igris",
-      "icon": null,
+      "icon": "/images/units/Igris_001.png",
       "model": "Igris",
       "displayName": "Knight",
       "series": "SOLOLEVELING",
@@ -1075,7 +1075,7 @@
     {
       "id": "unit_024",
       "name": "Ryuk",
-      "icon": null,
+      "icon": "/images/units/unit_024.png",
       "model": "Ryuk",
       "displayName": "Ryu",
       "series": "DN",
@@ -1284,7 +1284,7 @@
     {
       "id": "unit_046",
       "name": "Wignall",
-      "icon": null,
+      "icon": "/images/units/unit_046.png",
       "model": "Wignall",
       "displayName": "Wignoll",
       "series": "Wistoria",
@@ -1572,7 +1572,7 @@
     {
       "id": "unit_007",
       "name": "Sukuna",
-      "icon": null,
+      "icon": "/images/units/unit_007.png",
       "model": "Sukuna",
       "displayName": "Sukuno",
       "series": "JJK",
@@ -1676,7 +1676,7 @@
     {
       "id": "worldisalwaysleep_001",
       "name": "worldisalwaysleep",
-      "icon": null,
+      "icon": "/images/units/worldisalwaysleep_001.png",
       "model": "worldisalwaysleep",
       "displayName": "worldisalwaysleep",
       "series": "Other",
@@ -1850,7 +1850,7 @@
     {
       "id": "unit_044",
       "name": "Sion",
-      "icon": null,
+      "icon": "/images/units/unit_044.png",
       "model": "Sion",
       "displayName": "Sin",
       "series": "Wistoria",
@@ -2072,7 +2072,7 @@
     {
       "id": "unit_049",
       "name": "Hainiya",
-      "icon": null,
+      "icon": "/images/units/unit_049.png",
       "model": "Hainiya",
       "displayName": "School Girl",
       "series": "Other",
@@ -2219,7 +2219,7 @@
     {
       "id": "Yoriichi_001",
       "name": "Yoriichi",
-      "icon": null,
+      "icon": "/images/units/Yoriichi_001.png",
       "model": "Yoriichi",
       "displayName": "Yuruisha",
       "series": "Other",
@@ -2448,7 +2448,7 @@
     {
       "id": "unit_040",
       "name": "Goku",
-      "icon": null,
+      "icon": "/images/units/unit_040.png",
       "model": "Goku",
       "displayName": "Goju",
       "series": "DGB",
@@ -2604,7 +2604,7 @@
     {
       "id": "NEW_002",
       "name": "Luffy",
-      "icon": null,
+      "icon": "/images/units/NEW_002.png",
       "model": "Luffy",
       "displayName": "Laffer",
       "series": "OnePiece",
@@ -2736,7 +2736,7 @@
     {
       "id": "Frieza_001",
       "name": "Frieza_Player",
-      "icon": null,
+      "icon": "/images/units/Frieza_001.png",
       "model": "Frieza_Player",
       "displayName": "Frie",
       "series": "DBZ",
@@ -3011,7 +3011,7 @@
     {
       "id": "Lancer_001",
       "name": "Lancer",
-      "icon": null,
+      "icon": "/images/units/Lancer_001.png",
       "model": "Lancer",
       "displayName": "Laser",
       "series": "Fate",
@@ -3201,7 +3201,7 @@
     {
       "id": "unit_042_evo",
       "name": "Will_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_042_evo.png",
       "model": "Will_Awakened",
       "displayName": "Woll (Limit OFF)",
       "series": "Wistoria",
@@ -3511,7 +3511,7 @@
     {
       "id": "Sakai_001",
       "name": "Sakai",
-      "icon": null,
+      "icon": "/images/units/Sakai_001.png",
       "model": "Sakai",
       "displayName": "Sakei",
       "series": "Other",
@@ -3710,7 +3710,7 @@
     {
       "id": "Gilgamesh_001",
       "name": "Gilgamesh",
-      "icon": null,
+      "icon": "/images/units/Gilgamesh_001.png",
       "model": "Gilgamesh",
       "displayName": "Gilga",
       "series": "Fate",
@@ -3989,7 +3989,7 @@
     {
       "id": "Astolfo_001",
       "name": "Astolfo",
-      "icon": null,
+      "icon": "/images/units/Astolfo_001.png",
       "model": "Astolfo",
       "displayName": "Astol",
       "series": "Other",
@@ -4135,7 +4135,7 @@
     {
       "id": "unit_52",
       "name": "SpeedWagon",
-      "icon": null,
+      "icon": "/images/units/unit_52.png",
       "model": "SpeedWagon",
       "displayName": "Spood (Yen)",
       "series": "Other",
@@ -4276,7 +4276,7 @@
     {
       "id": "unit_006",
       "name": "Nobara",
-      "icon": null,
+      "icon": "/images/units/unit_006.png",
       "model": "Nobara",
       "displayName": "Nobaro",
       "series": "JJK",
@@ -4422,7 +4422,7 @@
     {
       "id": "unit_008_evo",
       "name": "Toji_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_008_evo.png",
       "model": "Toji_Awakened",
       "displayName": "Tojo (Caterpillar insecticide)",
       "series": "JJK",
@@ -4685,7 +4685,7 @@
     {
       "id": "Akaza_001",
       "name": "Akaza",
-      "icon": null,
+      "icon": "/images/units/Akaza_001.png",
       "model": "Akaza",
       "displayName": "Akazu",
       "series": "DMSlayer",
@@ -4875,7 +4875,7 @@
     {
       "id": "unit_002_evo",
       "name": "Gojo_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_002_evo.png",
       "model": "Gojo_Awakened",
       "displayName": "JoGo (Six-eye)",
       "series": "JJK",
@@ -5116,7 +5116,7 @@
     {
       "id": "unit_038",
       "name": "Broly",
-      "icon": null,
+      "icon": "/images/units/unit_038.png",
       "model": "Broly",
       "displayName": "Bory",
       "series": "DGB",
@@ -5313,7 +5313,7 @@
     {
       "id": "unit_007_evo",
       "name": "Sukuna_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_007_evo.png",
       "model": "Sukuna_Awakened",
       "displayName": "Sukuno (Mohoraga)",
       "series": "JJK",
@@ -5604,7 +5604,7 @@
     {
       "id": "NEW_003",
       "name": "Zoro",
-      "icon": null,
+      "icon": "/images/units/NEW_003.png",
       "model": "Zoro",
       "displayName": "Soro",
       "series": "OnePiece",
@@ -5759,7 +5759,7 @@
     {
       "id": "Beru_001",
       "name": "Beru",
-      "icon": null,
+      "icon": "/images/units/Beru_001.png",
       "model": "Beru",
       "displayName": "Bey",
       "series": "SOLOLEVELING",
@@ -6012,7 +6012,7 @@
     {
       "id": "NEW_007",
       "name": "Basil",
-      "icon": null,
+      "icon": "/images/units/NEW_007.png",
       "model": "Basil",
       "displayName": "Barate",
       "series": "Other",
@@ -6156,7 +6156,7 @@
     {
       "id": "unit_043",
       "name": "Elfaria",
-      "icon": null,
+      "icon": "/images/units/unit_043.png",
       "model": "Elfaria",
       "displayName": "Elforia",
       "series": "Wistoria",
@@ -6396,7 +6396,7 @@
     {
       "id": "unit_039",
       "name": "Vegeta",
-      "icon": null,
+      "icon": "/images/units/unit_039.png",
       "model": "Vegeta",
       "displayName": "Vegato",
       "series": "DGB",
@@ -6565,7 +6565,7 @@
     {
       "id": "unit_002",
       "name": "Gojo",
-      "icon": null,
+      "icon": "/images/units/unit_002.png",
       "model": "Gojo",
       "displayName": "JoGo",
       "series": "JJK",
@@ -6753,7 +6753,7 @@
     {
       "id": "unit_005",
       "name": "Yuta",
-      "icon": null,
+      "icon": "/images/units/unit_005.png",
       "model": "Yuta",
       "displayName": "Yuto",
       "series": "JJK",
@@ -6928,7 +6928,7 @@
     {
       "id": "unit_008",
       "name": "Toji",
-      "icon": null,
+      "icon": "/images/units/unit_008.png",
       "model": "Toji",
       "displayName": "Tojo",
       "series": "JJK",
@@ -7131,7 +7131,7 @@
     {
       "id": "unit_043_evo",
       "name": "Elfaria_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_043_evo.png",
       "model": "Elfaria_Awakened",
       "displayName": "Elforia (Frozen Empress)",
       "series": "Wistoria",
@@ -7319,7 +7319,7 @@
     {
       "id": "Naoya_001",
       "name": "NaoyaPlayer",
-      "icon": null,
+      "icon": "/images/units/Naoya_001.png",
       "model": "NaoyaPlayer",
       "displayName": "Nao",
       "series": "JJK",
@@ -7515,7 +7515,7 @@
     {
       "id": "unit_051",
       "name": "Tanzaburo",
-      "icon": null,
+      "icon": "/images/units/unit_051.png",
       "model": "Tanzaburo",
       "displayName": "Tanzaburo",
       "series": "Other",
@@ -7724,7 +7724,7 @@
     {
       "id": "Asura_001",
       "name": "Asura",
-      "icon": null,
+      "icon": "/images/units/Asura_001.png",
       "model": "Asura",
       "displayName": "Ashura",
       "series": "Other",
@@ -7952,7 +7952,7 @@
     {
       "id": "Saber_001_Evo",
       "name": "Saber_Awakened",
-      "icon": null,
+      "icon": "/images/units/Saber_001_Evo.png",
       "model": "Saber_Awakened",
       "displayName": "Siri (Alter Blackened Crown)",
       "series": "Fate",
@@ -8205,7 +8205,7 @@
     {
       "id": "unit_022",
       "name": "Sasuke",
-      "icon": null,
+      "icon": "/images/units/unit_022.png",
       "model": "Sasuke",
       "displayName": "Sasuko",
       "series": "NRT",
@@ -8378,7 +8378,7 @@
     {
       "id": "Gyutaro_001",
       "name": "Gyutaro",
-      "icon": null,
+      "icon": "/images/units/Gyutaro_001.png",
       "model": "Gyutaro",
       "displayName": "Gyuro",
       "series": "DMSlayer",
@@ -8541,7 +8541,7 @@
     {
       "id": "unit_021",
       "name": "Naruto",
-      "icon": null,
+      "icon": "/images/units/unit_021.png",
       "model": "Naruto",
       "displayName": "Naruta",
       "series": "NRT",
@@ -8704,7 +8704,7 @@
     {
       "id": "Sungjinwoo_001_Evo",
       "name": "SungJinWoo_Awakened",
-      "icon": null,
+      "icon": "/images/units/Sungjinwoo_001_Evo.png",
       "model": "SungJinWoo_Awakened",
       "displayName": "Jinwoo (Shadow Monarch)",
       "series": "SOLOLEVELING",
@@ -9028,7 +9028,7 @@
     {
       "id": "Kizaru_001",
       "name": "Kizaru_Player",
-      "icon": null,
+      "icon": "/images/units/Kizaru_001.png",
       "model": "Kizaru_Player",
       "displayName": "Kizao",
       "series": "OnePiece",
@@ -9210,7 +9210,7 @@
     {
       "id": "Perona_001",
       "name": "Perona",
-      "icon": null,
+      "icon": "/images/units/Perona_001.png",
       "model": "Perona",
       "displayName": "Peora",
       "series": "Other",
@@ -9387,7 +9387,7 @@
     {
       "id": "Cid_001_evo",
       "name": "Cid_Awakened",
-      "icon": null,
+      "icon": "/images/units/Cid_001_evo.png",
       "model": "Cid_Awakened",
       "displayName": "Zid (Atomic Overlord)",
       "series": "Other",
@@ -9658,7 +9658,7 @@
     {
       "id": "NEW_002_EVO",
       "name": "Luffy_Awakened",
-      "icon": null,
+      "icon": "/images/units/NEW_002_EVO.png",
       "model": "Luffy_Awakened",
       "displayName": "Laffer (TS)",
       "series": "OnePiece",
@@ -9825,7 +9825,7 @@
     {
       "id": "NEW_005",
       "name": "Nezuko",
-      "icon": null,
+      "icon": "/images/units/NEW_005.png",
       "model": "Nezuko",
       "displayName": "Bamboo Demon",
       "series": "DMSlayer",
@@ -9947,7 +9947,7 @@
     {
       "id": "unit_021_evo",
       "name": "Naruto_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_021_evo.png",
       "model": "Naruto_Awakened",
       "displayName": "Naruta (Sage Mode)",
       "series": "NRT",
@@ -10137,7 +10137,7 @@
     {
       "id": "Yisang_001",
       "name": "YiSang",
-      "icon": null,
+      "icon": "/images/units/Yisang_001.png",
       "model": "YiSang",
       "displayName": "Yisan",
       "series": "Other",
@@ -10404,7 +10404,7 @@
     {
       "id": "unit_017",
       "name": "Itachi",
-      "icon": null,
+      "icon": "/images/units/unit_017.png",
       "model": "Itachi",
       "displayName": "Itacho",
       "series": "NRT",
@@ -10623,7 +10623,7 @@
     {
       "id": "unit_047",
       "name": "Colette",
-      "icon": null,
+      "icon": "/images/units/unit_047.png",
       "model": "Colette",
       "displayName": "Colotto",
       "series": "Wistoria",
@@ -10763,7 +10763,7 @@
     {
       "id": "Alucard_001_evo",
       "name": "Alucard_Awakened",
-      "icon": null,
+      "icon": "/images/units/Alucard_001_evo.png",
       "model": "Alucard_Awakened",
       "displayName": "Dracula (Vampire Progenitor)",
       "series": "Other",
@@ -11009,7 +11009,7 @@
     {
       "id": "Yamcha_001",
       "name": "Yamcha",
-      "icon": null,
+      "icon": "/images/units/Yamcha_001.png",
       "model": "Yamcha",
       "displayName": "Yamacho",
       "series": "Other",
@@ -11222,7 +11222,7 @@
     {
       "id": "Doflami_001",
       "name": "Doflamingo_Player",
-      "icon": null,
+      "icon": "/images/units/Doflami_001.png",
       "model": "Doflamingo_Player",
       "displayName": "Doflam",
       "series": "OP",
@@ -11397,7 +11397,7 @@
     {
       "id": "Cid_001",
       "name": "Cid",
-      "icon": null,
+      "icon": "/images/units/Cid_001.png",
       "model": "Cid",
       "displayName": "Zid",
       "series": "Other",
@@ -11654,7 +11654,7 @@
     {
       "id": "Aemeath_001",
       "name": "Aemeath",
-      "icon": null,
+      "icon": "/images/units/Aemeath_001.png",
       "model": null,
       "displayName": "Alminth",
       "series": "Other",
@@ -11848,7 +11848,7 @@
     {
       "id": "unit_005_evo",
       "name": "Yuta_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_005_evo.png",
       "model": "Yuta_Awakened",
       "displayName": "Yuto (Pure Love)",
       "series": "JJK",
@@ -12113,7 +12113,7 @@
     {
       "id": "unit_036",
       "name": "Bulma",
-      "icon": null,
+      "icon": "/images/units/unit_036.png",
       "model": "Bulma",
       "displayName": "Bulme",
       "series": "DGB",
@@ -12271,7 +12271,7 @@
     {
       "id": "Atalanta_001",
       "name": "Atalanta",
-      "icon": null,
+      "icon": "/images/units/Atalanta_001.png",
       "model": "Atalanta",
       "displayName": "Atala",
       "series": "Fate",
@@ -12491,7 +12491,7 @@
     {
       "id": "Kaitokid_001",
       "name": "Kaitokid",
-      "icon": null,
+      "icon": "/images/units/Kaitokid_001.png",
       "model": "Kaitokid",
       "displayName": "KitCat",
       "series": "Other",
@@ -12674,7 +12674,7 @@
     {
       "id": "unit_042",
       "name": "Will",
-      "icon": null,
+      "icon": "/images/units/unit_042.png",
       "model": "Will",
       "displayName": "Woll",
       "series": "Wistoria",
@@ -12845,7 +12845,7 @@
     {
       "id": "Qinshi_001",
       "name": "Qinshi",
-      "icon": null,
+      "icon": "/images/units/Qinshi_001.png",
       "model": "Qinshi",
       "displayName": "Qin",
       "series": "Ragnarok",
@@ -13135,7 +13135,7 @@
     {
       "id": "Kojiro_001",
       "name": "Kojiro",
-      "icon": null,
+      "icon": "/images/units/Kojiro_001.png",
       "model": "Kojiro",
       "displayName": "Kojira",
       "series": "Other",
@@ -13282,7 +13282,7 @@
     {
       "id": "NEW_001",
       "name": "Shinobu",
-      "icon": null,
+      "icon": "/images/units/NEW_001.png",
       "model": "Shinobu",
       "displayName": "Shinoba",
       "series": "DMSlayer",
@@ -13472,7 +13472,7 @@
     {
       "id": "NEW_004",
       "name": "Tanjiro",
-      "icon": null,
+      "icon": "/images/units/NEW_004.png",
       "model": "Tanjiro",
       "displayName": "Crimson Slayer",
       "series": "DMSlayer",
@@ -13616,7 +13616,7 @@
     {
       "id": "Archer_001",
       "name": "Archer_P",
-      "icon": null,
+      "icon": "/images/units/Archer_001.png",
       "model": "Archer_P",
       "displayName": "Archor",
       "series": "Fate",
@@ -13832,7 +13832,7 @@
     {
       "id": "Okarun_001",
       "name": "Okarun",
-      "icon": null,
+      "icon": "/images/units/Okarun_001.png",
       "model": "Okarun",
       "displayName": "Okalan",
       "series": "Other",
@@ -13963,7 +13963,7 @@
     {
       "id": "Bellion_001",
       "name": "Bellion",
-      "icon": null,
+      "icon": "/images/units/Bellion_001.png",
       "model": "Bellion",
       "displayName": "Burlion",
       "series": "SOLOLEVELING",
@@ -14249,7 +14249,7 @@
     {
       "id": "Choso_001",
       "name": "Choso",
-      "icon": null,
+      "icon": "/images/units/Choso_001.png",
       "model": "Choso",
       "displayName": "Chosa",
       "series": "JJK",
@@ -14487,7 +14487,7 @@
     {
       "id": "Gabimaru_001",
       "name": "Gabimaru",
-      "icon": null,
+      "icon": "/images/units/Gabimaru_001.png",
       "model": "Gabimaru",
       "displayName": "Gabumara",
       "series": "Other",
@@ -14688,7 +14688,7 @@
     {
       "id": "unit_038_evo",
       "name": "Broly_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_038_evo.png",
       "model": "Broly_Awakened",
       "displayName": "Bory (Awakened)",
       "series": "DGB",
@@ -14942,7 +14942,7 @@
     {
       "id": "NEW_003_EVO",
       "name": "Zoro_Awakened",
-      "icon": null,
+      "icon": "/images/units/NEW_003_EVO.png",
       "model": "Zoro_Awakened",
       "displayName": "SoRo (TS)",
       "series": "OnePiece",
@@ -15132,7 +15132,7 @@
     {
       "id": "Gilgamesh_001_Evo",
       "name": "Gilgamesh_Awakened",
-      "icon": null,
+      "icon": "/images/units/Gilgamesh_001_Evo.png",
       "model": "Gilgamesh_Awakened",
       "displayName": "Gilga (Golden Sovereign)",
       "series": "Fate",
@@ -15425,7 +15425,7 @@
     {
       "id": "unit_017_evo",
       "name": "Itachi_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_017_evo.png",
       "model": "Itachi_Awakened",
       "displayName": "Itacho (Susano'o)",
       "series": "NRT",
@@ -15680,7 +15680,7 @@
     {
       "id": "unit_041",
       "name": "Goku_Awakened",
-      "icon": null,
+      "icon": "/images/units/unit_041.png",
       "model": "Goku_Awakened",
       "displayName": "Goju (Saiyan)",
       "series": "DGB",
@@ -15880,7 +15880,7 @@
     {
       "id": "unit_045",
       "name": "Lihanna",
-      "icon": null,
+      "icon": "/images/units/unit_045.png",
       "model": "Lihanna",
       "displayName": "Lihona",
       "series": "Wistoria",
@@ -16049,7 +16049,7 @@
     {
       "id": "admin_001",
       "name": "Yuta_Awakened",
-      "icon": null,
+      "icon": "/images/units/admin_001.png",
       "model": "Yuta_Awakened",
       "displayName": "Yuto (Admin Units)",
       "series": "JJK",
@@ -16304,7 +16304,7 @@
     {
       "id": "Ishtar_001",
       "name": "Ishtar",
-      "icon": null,
+      "icon": "/images/units/Ishtar_001.png",
       "model": "Ishtar",
       "displayName": "Ishtor",
       "series": "Fate",
@@ -16526,7 +16526,7 @@
     {
       "id": "unit_050",
       "name": "Finn",
-      "icon": null,
+      "icon": "/images/units/unit_050.png",
       "model": "Finn",
       "displayName": "Fammy",
       "series": "Wistoria",
@@ -16696,7 +16696,7 @@
     {
       "id": "Asura_001_evo",
       "name": "Asura_Awakened",
-      "icon": null,
+      "icon": "/images/units/Asura_001_evo.png",
       "model": "Asura_Awakened",
       "displayName": "Ashura (鬼神)",
       "series": "Other",
@@ -16973,7 +16973,7 @@
     {
       "id": "NEW_006",
       "name": "Tsunayoshi",
-      "icon": null,
+      "icon": "/images/units/NEW_006.png",
       "model": "Tsunayoshi",
       "displayName": "Last Heir",
       "series": "Other",
@@ -17131,7 +17131,7 @@
     {
       "id": "NEW_006_EVO",
       "name": "Tsunayoshi_Awakened",
-      "icon": null,
+      "icon": "/images/units/NEW_006_EVO.png",
       "model": "Tsunayoshi_Awakened",
       "displayName": "Last Heir (Awakened)",
       "series": "Other",

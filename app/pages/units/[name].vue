@@ -1,5 +1,16 @@
 <template>
   <div class="space-y-6">
+    <!-- Dedicated SSR SEO & OpenGraph Image Component -->
+    <UnitSeo
+      :unit="store.currentUnit"
+      :stats="store.calculatedStats"
+      :stars="store.selectedStars"
+      :level="store.unitLevel"
+      :upgrade="store.upgradeLevel"
+      :traits="store.currentTraits"
+      :gears-summary="gearsSummary"
+    />
+
     <!-- Loading State -->
     <div v-if="store.pending" class="flex flex-col items-center justify-center min-h-[40vh] space-y-3">
       <UIcon name="i-lucide-loader-2" class="w-8 h-8 animate-spin text-primary" />
@@ -175,13 +186,38 @@
 import { computed, watch } from 'vue'
 import { findUnitByParam } from '~/utils/unitSlug'
 
-const store = useCombatCalculatorStore()
 const route = useRoute()
 const router = useRouter()
 const toast = useToast()
 
+// SSR Data Preload: Ensure database is resolved during SSR before template renders
+const { data: dbData } = await useFetch<any>('/api/database', {
+  key: 'am-db-data',
+  default: () => null
+})
+
+const store = useCombatCalculatorStore()
+
+// Synchronous SSR Initialization of requested unit
+if (dbData.value?.units) {
+  const initialFound = findUnitByParam(dbData.value.units, route.params.name as string)
+  if (initialFound) {
+    if (store.selectedUnitId !== initialFound.id) {
+      store.setUnit(initialFound.id)
+    }
+    if (route.query && Object.keys(route.query).length > 0) {
+      store.initFromQuery(route.query)
+    }
+  }
+}
+
 const targetUnit = computed(() => {
   return findUnitByParam(store.units, route.params.name)
+})
+
+const gearsSummary = computed(() => {
+  const active = Object.values(store.activeEquippedGears || {}).filter(Boolean) as any[]
+  return active.map(g => g.Name).join(', ')
 })
 
 watch(
@@ -250,49 +286,6 @@ async function handleShare() {
     })
   }
 }
-
-// Dynamic SEO Metadata
-useSeoMeta({
-  title: () => `${store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'} (${store.selectedStars}★ Lv.${store.unitLevel}) - Anime Mysterious Calculator`,
-  description: () => {
-    const u = store.currentUnit
-    const s = store.calculatedStats
-    const atk = (s?.attack ?? 0).toLocaleString()
-    const hp = (s?.health ?? 0).toLocaleString()
-    const dps = (s?.dps ?? 0).toLocaleString()
-    return `Calculate Anime Mysterious combat stats for ${u?.displayName || u?.name}: ${atk} DMG, ${hp} HP, ${dps} DPS, ${s?.range ?? 0} Range, ${s?.attackSpeed ?? 0}s SPA.`
-  },
-  ogTitle: () => `${store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'} (${store.selectedStars}★ Lv.${store.unitLevel}) - Anime Mysterious`,
-  ogDescription: () => {
-    const s = store.calculatedStats
-    const atk = (s?.attack ?? 0).toLocaleString()
-    const hp = (s?.health ?? 0).toLocaleString()
-    const dps = (s?.dps ?? 0).toLocaleString()
-    return `DMG: ${atk} | HP: ${hp} | DPS: ${dps} | Cost: ¥${s?.cost ?? 0}`
-  },
-  ogType: 'website',
-  twitterCard: 'summary_large_image'
-})
-
-defineOgImage('UnitOgImage', {
-  unitName: computed(() => store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'),
-  unitSeries: computed(() => store.currentUnit?.series || 'Other'),
-  unitRarity: computed(() => store.currentUnit?.rarity || 'Secret'),
-  stars: computed(() => store.selectedStars),
-  level: computed(() => store.unitLevel),
-  upgrade: computed(() => store.upgradeLevel),
-  traitName: computed(() => store.currentTraits?.map(t => t.TraitDisplayName).join(', ') || 'None'),
-  cost: computed(() => store.calculatedStats?.cost ?? 0),
-  damage: computed(() => (store.calculatedStats?.attack ?? 0).toLocaleString()),
-  health: computed(() => (store.calculatedStats?.health ?? 0).toLocaleString()),
-  dps: computed(() => (store.calculatedStats?.dps ?? 0).toLocaleString()),
-  range: computed(() => String(store.calculatedStats?.range ?? 0)),
-  spa: computed(() => String(store.calculatedStats?.attackSpeed ?? 0)),
-  gearsSummary: computed(() => {
-    const active = Object.values(store.activeEquippedGears || {}).filter(Boolean) as any[]
-    return active.map(g => g.Name).join(', ')
-  })
-})
 
 function getRarityColor(rarity?: string): any {
   switch (rarity) {
