@@ -174,3 +174,15 @@ export function getElementConfig(element: string | undefined) {
       };
   }
 }
+
+export function getRarityColor(rarity?: string): any {
+  switch (rarity) {
+    case 'Secret': return 'error'
+    case 'Mythic': return 'error'
+    case 'Legendary': return 'warning'
+    case 'Epic': return 'secondary'
+    case 'Rare': return 'info'
+    default: return 'neutral'
+  }
+}
+
