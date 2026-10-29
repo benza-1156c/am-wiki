@@ -1,16 +1,5 @@
 <template>
   <div class="space-y-6">
-    <!-- Dedicated SSR SEO & OpenGraph Image Component -->
-    <UnitSeo
-      :unit="store.currentUnit"
-      :stats="store.calculatedStats"
-      :stars="store.selectedStars"
-      :level="store.unitLevel"
-      :upgrade="store.upgradeLevel"
-      :traits="store.currentTraits"
-      :gears-summary="gearsSummary"
-    />
-
     <!-- Loading State -->
     <div v-if="store.pending" class="flex flex-col items-center justify-center min-h-[40vh] space-y-3">
       <UIcon name="i-lucide-loader-2" class="w-8 h-8 animate-spin text-primary" />
@@ -190,7 +179,6 @@ const route = useRoute()
 const router = useRouter()
 const toast = useToast()
 
-// SSR Data Preload: Ensure database is resolved during SSR before template renders
 const { data: dbData } = await useFetch<any>('/api/database', {
   key: 'am-db-data',
   default: () => null
@@ -198,26 +186,20 @@ const { data: dbData } = await useFetch<any>('/api/database', {
 
 const store = useCombatCalculatorStore()
 
-// Synchronous SSR Initialization of requested unit
 if (dbData.value?.units) {
   const initialFound = findUnitByParam(dbData.value.units, route.params.name as string)
   if (initialFound) {
-    if (store.selectedUnitId !== initialFound.id) {
-      store.setUnit(initialFound.id)
-    }
+    store.setUnit(initialFound.id)
     if (route.query && Object.keys(route.query).length > 0) {
       store.initFromQuery(route.query)
     }
   }
 }
 
+useUnitSeo(store)
+
 const targetUnit = computed(() => {
   return findUnitByParam(store.units, route.params.name)
-})
-
-const gearsSummary = computed(() => {
-  const active = Object.values(store.activeEquippedGears || {}).filter(Boolean) as any[]
-  return active.map(g => g.Name).join(', ')
 })
 
 watch(

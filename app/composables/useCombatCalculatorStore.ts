@@ -1,4 +1,4 @@
-import { ref, computed, watch, reactive } from 'vue'
+import { ref, computed, watch, reactive } from "vue";
 import type {
   PotentialRank,
   StatPotentials,
@@ -8,145 +8,169 @@ import type {
   GearSlot,
   GearItem,
   EquippedGears,
-  GearStatsAggregated
-} from '~/types/unit'
+  GearStatsAggregated,
+} from "~/types/unit";
 import {
-  DEFAULT_POTENTIALS,
   calculateCombatStats,
   getLevelMultiplier,
   getMaxUnitLevel,
-  resolveGearStatsForUnit
-} from '~/utils/unitCalculator'
+  resolveGearStatsForUnit,
+} from "~/utils/unitCalculator";
 
-// Global Singleton Reactive State (Shared across all calculator components without emits)
-// Default preselected: Dracula (Vampire Progenitor) with full buffs as requested
-const selectedUnitId = ref<string>('Alucard_001_evo')
-const unitLevel = ref<number>(80)
-const selectedStars = ref<number>(6)
-const upgradeLevel = ref<number>(7)
+const selectedUnitId = ref<string>("Alucard_001_evo");
+const unitLevel = ref<number>(80);
+const selectedStars = ref<number>(6);
+const upgradeLevel = ref<number>(7);
 const potentials = ref<StatPotentials>({
-  damage: 'GOD',
-  health: 'GOD',
-  range: 'GOD',
-  speed: 'GOD',
-  cooldown: 'GOD'
-})
-const selectedTraitIds = ref<[string | null, string | null]>(['13', null])
-const isSelectorOpen = ref<boolean>(false)
+  damage: "GOD",
+  health: "GOD",
+  range: "GOD",
+  speed: "GOD",
+  cooldown: "GOD",
+});
+const selectedTraitIds = ref<[string | null, string | null]>([null, null]);
+const isSelectorOpen = ref<boolean>(false);
 const equippedGears = ref<EquippedGears>({
-  Head: '15',
-  Body: '26',
-  Arm: '22',
-  Legs: '47'
-})
+  Head: null,
+  Body: null,
+  Arm: null,
+  Legs: null,
+});
 
 export function useCombatCalculatorStore() {
-  const { units, skills, traits, gears, dbPending: pending, dbError: error, refresh } = useDatabase()
+  const {
+    units,
+    skills,
+    traits,
+    gears,
+    dbPending: pending,
+    dbError: error,
+    refresh,
+  } = useDatabase();
 
   // Ensure selectedUnitId resolves to Dracula (Vampire Progenitor) upon data load if not already matched
   watch(
     () => units.value,
     (newUnits) => {
       if (newUnits && newUnits.length > 0) {
-        const found = newUnits.find((u: any) => u.id === selectedUnitId.value || u.name === selectedUnitId.value)
+        const found = newUnits.find(
+          (u: any) =>
+            u.id === selectedUnitId.value || u.name === selectedUnitId.value,
+        );
         if (!found) {
-          const dracula = newUnits.find((u: any) =>
-            u.id === 'Alucard_001_evo' ||
-            u.displayName?.includes('Dracula (Vampire Progenitor)') ||
-            u.displayName?.includes('Dracula')
-          )
-          selectedUnitId.value = dracula ? (dracula.id || dracula.name) : (newUnits[0].id || newUnits[0].name)
+          const dracula = newUnits.find(
+            (u: any) =>
+              u.id === "Alucard_001_evo" ||
+              u.displayName?.includes("Dracula (Vampire Progenitor)") ||
+              u.displayName?.includes("Dracula"),
+          );
+          selectedUnitId.value = dracula
+            ? dracula.id || dracula.name
+            : newUnits[0].id || newUnits[0].name;
         }
       }
     },
-    { immediate: true }
-  )
+    { immediate: true },
+  );
 
   const currentUnit = computed<NormalizedUnit | null>(() => {
-    return units.value.find((u: any) => u.id === selectedUnitId.value || u.name === selectedUnitId.value)
-      || units.value.find((u: any) => u.id === 'Alucard_001_evo' || u.displayName?.includes('Dracula'))
-      || units.value[0]
-      || null
-  })
+    return (
+      units.value.find(
+        (u: any) =>
+          u.id === selectedUnitId.value || u.name === selectedUnitId.value,
+      ) ||
+      units.value.find(
+        (u: any) =>
+          u.id === "Alucard_001_evo" || u.displayName?.includes("Dracula"),
+      ) ||
+      units.value[0] ||
+      null
+    );
+  });
 
   // Normalized list of traits from database.json, sorted by Rarity Tier (Mythic > Legendary > Epic > Rare)
   const traitsList = computed<UnitTrait[]>(() => {
-    const raw = traits.value || {}
+    const raw = traits.value || {};
     const list = Object.entries(raw).map(([key, t]: [string, any]) => ({
       id: key,
       TraitDisplayName: t.TraitDisplayName || t.name || `Trait ${key}`,
-      RarityName: t.RarityName || 'Rare',
-      TraitStatus: t.TraitStatus || '',
-      TraitIcon: t.TraitIcon || '',
+      RarityName: t.RarityName || "Rare",
+      TraitStatus: t.TraitStatus || "",
+      TraitIcon: t.TraitIcon || "",
       Stats: t.Stats || {},
-      Weight: t.Weight || 0
-    }))
+      Weight: t.Weight || 0,
+    }));
 
     const rarityOrder: Record<string, number> = {
       Mythic: 1,
       Legendary: 2,
       Epic: 3,
-      Rare: 4
-    }
+      Rare: 4,
+    };
 
     return list.sort((a, b) => {
-      const orderA = rarityOrder[a.RarityName] ?? 99
-      const orderB = rarityOrder[b.RarityName] ?? 99
-      if (orderA !== orderB) return orderA - orderB
-      return a.TraitDisplayName.localeCompare(b.TraitDisplayName)
-    })
-  })
+      const orderA = rarityOrder[a.RarityName] ?? 99;
+      const orderB = rarityOrder[b.RarityName] ?? 99;
+      if (orderA !== orderB) return orderA - orderB;
+      return a.TraitDisplayName.localeCompare(b.TraitDisplayName);
+    });
+  });
 
   const currentTraits = computed<UnitTrait[]>(() => {
-    const list: UnitTrait[] = []
+    const list: UnitTrait[] = [];
     for (const id of selectedTraitIds.value) {
-      if (!id || id === 'none') continue
-      const found = traitsList.value.find(t => t.id === id)
-      if (found) list.push(found)
+      if (!id || id === "none") continue;
+      const found = traitsList.value.find((t) => t.id === id);
+      if (found) list.push(found);
     }
-    return list
-  })
+    return list;
+  });
 
   const currentTrait = computed<UnitTrait | null>(() => {
-    return currentTraits.value[0] || null
-  })
+    return currentTraits.value[0] || null;
+  });
 
   const maxUpgradeLevel = computed<number>(() => {
-    return currentUnit.value?.maxLevel || 5
-  })
+    return currentUnit.value?.maxLevel || 5;
+  });
 
   const currentMaxLevel = computed<number>(() => {
-    return getMaxUnitLevel(selectedStars.value)
-  })
+    return getMaxUnitLevel(selectedStars.value);
+  });
 
   watch(currentMaxLevel, (newMax) => {
     if (unitLevel.value > newMax) {
-      unitLevel.value = newMax
+      unitLevel.value = newMax;
     }
-  })
+  });
 
   const levelMultiplier = computed<number>(() => {
-    return getLevelMultiplier(unitLevel.value)
-  })
+    return getLevelMultiplier(unitLevel.value);
+  });
 
   const unitSkillInfo = computed(() => {
-    if (!currentUnit.value) return null
-    const name = currentUnit.value.name || currentUnit.value.displayName
-    return currentUnit.value.skill || skills.value[name] || skills.value[currentUnit.value.displayName] || null
-  })
+    if (!currentUnit.value) return null;
+    const name = currentUnit.value.name || currentUnit.value.displayName;
+    return (
+      currentUnit.value.skill ||
+      skills.value[name] ||
+      skills.value[currentUnit.value.displayName] ||
+      null
+    );
+  });
 
   // Normalized list of gears from database.json, sorted by Rarity Tier
   const gearsList = computed<GearItem[]>(() => {
-    const raw = gears.value || {}
+    const raw = gears.value || {};
     const list = Object.entries(raw).map(([key, g]: [string, any]) => ({
       id: key,
       Name: g.Name || `Gear ${key}`,
-      Slot: (g.Slot || 'Head') as GearSlot,
-      Rarity: g.Rarity || 'Rare',
+      Slot: (g.Slot || "Head") as GearSlot,
+      Rarity: g.Rarity || "Rare",
       Stats: g.Stats || {},
-      Icon: g.Icon || '',
-      Description: g.Description || ''
-    }))
+      Icon: g.Icon || "",
+      Description: g.Description || "",
+    }));
 
     const rarityOrder: Record<string, number> = {
       Exclusive: 1,
@@ -154,40 +178,49 @@ export function useCombatCalculatorStore() {
       Mythic: 3,
       Legendary: 4,
       Epic: 5,
-      Rare: 6
-    }
+      Rare: 6,
+    };
 
     return list.sort((a, b) => {
-      const orderA = rarityOrder[a.Rarity] ?? 99
-      const orderB = rarityOrder[b.Rarity] ?? 99
-      if (orderA !== orderB) return orderA - orderB
-      return a.Name.localeCompare(b.Name)
-    })
-  })
+      const orderA = rarityOrder[a.Rarity] ?? 99;
+      const orderB = rarityOrder[b.Rarity] ?? 99;
+      if (orderA !== orderB) return orderA - orderB;
+      return a.Name.localeCompare(b.Name);
+    });
+  });
 
   const gearsBySlot = computed<Record<GearSlot, GearItem[]>>(() => {
     const map: Record<GearSlot, GearItem[]> = {
       Head: [],
       Body: [],
       Arm: [],
-      Legs: []
-    }
+      Legs: [],
+    };
     for (const g of gearsList.value) {
       if (map[g.Slot]) {
-        map[g.Slot].push(g)
+        map[g.Slot].push(g);
       }
     }
-    return map
-  })
+    return map;
+  });
 
-  const activeEquippedGears = computed<Record<GearSlot, GearItem | null>>(() => {
-    return {
-      Head: gearsList.value.find(g => g.id === equippedGears.value.Head) || null,
-      Body: gearsList.value.find(g => g.id === equippedGears.value.Body) || null,
-      Arm: gearsList.value.find(g => g.id === equippedGears.value.Arm) || null,
-      Legs: gearsList.value.find(g => g.id === equippedGears.value.Legs) || null
-    }
-  })
+  const activeEquippedGears = computed<Record<GearSlot, GearItem | null>>(
+    () => {
+      return {
+        Head:
+          gearsList.value.find((g) => g.id === equippedGears.value.Head) ||
+          null,
+        Body:
+          gearsList.value.find((g) => g.id === equippedGears.value.Body) ||
+          null,
+        Arm:
+          gearsList.value.find((g) => g.id === equippedGears.value.Arm) || null,
+        Legs:
+          gearsList.value.find((g) => g.id === equippedGears.value.Legs) ||
+          null,
+      };
+    },
+  );
 
   // Aggregated Gear Stats across all 4 slots + unit exclusive bonuses
   const aggregatedGearStats = computed<GearStatsAggregated>(() => {
@@ -211,23 +244,26 @@ export function useCombatCalculatorStore() {
       Armor: 0,
       Shield: 0,
       UnitCap: 0,
-      activeExclusiveBonuses: []
-    }
+      activeExclusiveBonuses: [],
+    };
 
-    const equipped = activeEquippedGears.value
-    const slots: GearSlot[] = ['Head', 'Body', 'Arm', 'Legs']
+    const equipped = activeEquippedGears.value;
+    const slots: GearSlot[] = ["Head", "Body", "Arm", "Legs"];
 
     for (const s of slots) {
-      const g = equipped[s]
-      if (!g) continue
+      const g = equipped[s];
+      if (!g) continue;
 
-      const { baseStats, exclusiveBonus } = resolveGearStatsForUnit(g, currentUnit.value)
+      const { baseStats, exclusiveBonus } = resolveGearStatsForUnit(
+        g,
+        currentUnit.value,
+      );
 
       for (const [k, v] of Object.entries(baseStats)) {
-        if (typeof (totals as any)[k] === 'number') {
-          ;(totals as any)[k] += v
+        if (typeof (totals as any)[k] === "number") {
+          (totals as any)[k] += v;
         } else {
-          ;(totals as any)[k] = v
+          (totals as any)[k] = v;
         }
       }
 
@@ -235,13 +271,13 @@ export function useCombatCalculatorStore() {
         totals.activeExclusiveBonuses.push({
           gearName: g.Name,
           unitKey: exclusiveBonus.unitKey,
-          stats: exclusiveBonus.stats
-        })
+          stats: exclusiveBonus.stats,
+        });
       }
     }
 
-    return totals
-  })
+    return totals;
+  });
 
   // Canonical central stats computation with 2-Trait & Gear support
   const calculatedStats = computed<CalculatedStats>(() => {
@@ -252,52 +288,59 @@ export function useCombatCalculatorStore() {
       upgradeLevel.value,
       potentials.value,
       currentTraits.value,
-      aggregatedGearStats.value
-    )
-  })
+      aggregatedGearStats.value,
+    );
+  });
 
   // Action methods
   function setUnit(id: string) {
-    selectedUnitId.value = id
-    if (upgradeLevel.value > maxUpgradeLevel.value) {
-      upgradeLevel.value = maxUpgradeLevel.value
-    }
+    selectedUnitId.value = id;
+
+    // Automatically max out Awakening Stars (6★)
+    selectedStars.value = 6;
+
+    // Automatically max out Unit Level (Lv. 80)
+    unitLevel.value = getMaxUnitLevel(6);
+
+    // Automatically max out In-Game Upgrade Level to target unit's maxLevel
+    const target = units.value?.find((u: any) => u.id === id || u.name === id);
+    upgradeLevel.value = target?.maxLevel ?? 5;
   }
 
   function setLevel(lvl: number) {
-    unitLevel.value = Math.max(1, Math.min(currentMaxLevel.value, lvl))
+    unitLevel.value = Math.max(1, Math.min(currentMaxLevel.value, lvl));
   }
 
   function setStars(stars: number) {
-    selectedStars.value = Math.max(0, Math.min(6, stars))
+    selectedStars.value = Math.max(0, Math.min(6, stars));
   }
 
   function setUpgradeLevel(lvl: number) {
-    upgradeLevel.value = Math.max(0, Math.min(maxUpgradeLevel.value, lvl))
+    upgradeLevel.value = Math.max(0, Math.min(maxUpgradeLevel.value, lvl));
   }
 
   function setPotential(key: keyof StatPotentials, rank: PotentialRank) {
     potentials.value = {
       ...potentials.value,
-      [key]: rank
-    }
+      [key]: rank,
+    };
   }
 
   function setTrait(traitId: string | null, slotIndex: number = 0) {
-    const next: [string | null, string | null] = [...selectedTraitIds.value]
-    next[slotIndex] = traitId && traitId !== 'none' ? traitId : null
-    selectedTraitIds.value = next
+    const next: [string | null, string | null] = [...selectedTraitIds.value];
+    next[slotIndex] = traitId && traitId !== "none" ? traitId : null;
+    selectedTraitIds.value = next;
   }
 
   function clearTraits() {
-    selectedTraitIds.value = [null, null]
+    selectedTraitIds.value = [null, null];
   }
 
   function setGear(slot: GearSlot, gearId: string | null) {
     equippedGears.value = {
       ...equippedGears.value,
-      [slot]: gearId && gearId !== 'none' ? gearId : null
-    }
+      [slot]: gearId && gearId !== "none" ? gearId : null,
+    };
   }
 
   function clearGears() {
@@ -305,80 +348,89 @@ export function useCombatCalculatorStore() {
       Head: null,
       Body: null,
       Arm: null,
-      Legs: null
-    }
+      Legs: null,
+    };
   }
 
-  function resetPotentials(defaultRank: PotentialRank = 'D') {
+  function resetPotentials(defaultRank: PotentialRank = "D") {
     potentials.value = {
       damage: defaultRank,
       health: defaultRank,
       range: defaultRank,
       speed: defaultRank,
-      cooldown: defaultRank
-    }
+      cooldown: defaultRank,
+    };
   }
 
   // URL Query Sync Helpers
   function initFromQuery(query: Record<string, any>) {
-    if (!query) return
-    if (query.unit) selectedUnitId.value = String(query.unit)
-    if (query.stars !== undefined && query.stars !== '') {
-      const s = parseInt(String(query.stars), 10)
-      if (!isNaN(s)) selectedStars.value = Math.max(0, Math.min(6, s))
+    if (!query) return;
+    if (query.unit) selectedUnitId.value = String(query.unit);
+    if (query.stars !== undefined && query.stars !== "") {
+      const s = parseInt(String(query.stars), 10);
+      if (!isNaN(s)) selectedStars.value = Math.max(0, Math.min(6, s));
     }
-    if (query.level !== undefined && query.level !== '') {
-      const l = parseInt(String(query.level), 10)
-      if (!isNaN(l)) unitLevel.value = Math.max(1, Math.min(80, l))
+    if (query.level !== undefined && query.level !== "") {
+      const l = parseInt(String(query.level), 10);
+      if (!isNaN(l)) unitLevel.value = Math.max(1, Math.min(80, l));
     }
-    if (query.upgrade !== undefined && query.upgrade !== '') {
-      const u = parseInt(String(query.upgrade), 10)
-      if (!isNaN(u)) upgradeLevel.value = Math.max(0, u)
+    if (query.upgrade !== undefined && query.upgrade !== "") {
+      const u = parseInt(String(query.upgrade), 10);
+      if (!isNaN(u)) upgradeLevel.value = Math.max(0, u);
     }
     if (query.trait1 !== undefined) {
-      selectedTraitIds.value[0] = query.trait1 && query.trait1 !== 'none' ? String(query.trait1) : null
+      selectedTraitIds.value[0] =
+        query.trait1 && query.trait1 !== "none" ? String(query.trait1) : null;
     }
     if (query.trait2 !== undefined) {
-      selectedTraitIds.value[1] = query.trait2 && query.trait2 !== 'none' ? String(query.trait2) : null
+      selectedTraitIds.value[1] =
+        query.trait2 && query.trait2 !== "none" ? String(query.trait2) : null;
     }
     if (query.head !== undefined) {
-      equippedGears.value.Head = query.head && query.head !== 'none' ? String(query.head) : null
+      equippedGears.value.Head =
+        query.head && query.head !== "none" ? String(query.head) : null;
     }
     if (query.body !== undefined) {
-      equippedGears.value.Body = query.body && query.body !== 'none' ? String(query.body) : null
+      equippedGears.value.Body =
+        query.body && query.body !== "none" ? String(query.body) : null;
     }
     if (query.arm !== undefined) {
-      equippedGears.value.Arm = query.arm && query.arm !== 'none' ? String(query.arm) : null
+      equippedGears.value.Arm =
+        query.arm && query.arm !== "none" ? String(query.arm) : null;
     }
     if (query.legs !== undefined) {
-      equippedGears.value.Legs = query.legs && query.legs !== 'none' ? String(query.legs) : null
+      equippedGears.value.Legs =
+        query.legs && query.legs !== "none" ? String(query.legs) : null;
     }
-    if (query.pot_dmg) potentials.value.damage = String(query.pot_dmg) as any
-    if (query.pot_hp) potentials.value.health = String(query.pot_hp) as any
-    if (query.pot_range) potentials.value.range = String(query.pot_range) as any
-    if (query.pot_spd) potentials.value.speed = String(query.pot_spd) as any
-    if (query.pot_cd) potentials.value.cooldown = String(query.pot_cd) as any
+    if (query.pot_dmg) potentials.value.damage = String(query.pot_dmg) as any;
+    if (query.pot_hp) potentials.value.health = String(query.pot_hp) as any;
+    if (query.pot_range)
+      potentials.value.range = String(query.pot_range) as any;
+    if (query.pot_spd) potentials.value.speed = String(query.pot_spd) as any;
+    if (query.pot_cd) potentials.value.cooldown = String(query.pot_cd) as any;
   }
 
   const buildQueryParams = computed(() => {
-    const q: Record<string, string> = {}
-    if (selectedUnitId.value) q.unit = selectedUnitId.value
-    if (selectedStars.value !== undefined) q.stars = String(selectedStars.value)
-    if (unitLevel.value) q.level = String(unitLevel.value)
-    if (upgradeLevel.value !== undefined) q.upgrade = String(upgradeLevel.value)
-    if (selectedTraitIds.value[0]) q.trait1 = selectedTraitIds.value[0]
-    if (selectedTraitIds.value[1]) q.trait2 = selectedTraitIds.value[1]
-    if (equippedGears.value.Head) q.head = equippedGears.value.Head
-    if (equippedGears.value.Body) q.body = equippedGears.value.Body
-    if (equippedGears.value.Arm) q.arm = equippedGears.value.Arm
-    if (equippedGears.value.Legs) q.legs = equippedGears.value.Legs
-    if (potentials.value.damage) q.pot_dmg = potentials.value.damage
-    if (potentials.value.health) q.pot_hp = potentials.value.health
-    if (potentials.value.range) q.pot_range = potentials.value.range
-    if (potentials.value.speed) q.pot_spd = potentials.value.speed
-    if (potentials.value.cooldown) q.pot_cd = potentials.value.cooldown
-    return q
-  })
+    const q: Record<string, string> = {};
+    if (selectedUnitId.value) q.unit = selectedUnitId.value;
+    if (selectedStars.value !== undefined)
+      q.stars = String(selectedStars.value);
+    if (unitLevel.value) q.level = String(unitLevel.value);
+    if (upgradeLevel.value !== undefined)
+      q.upgrade = String(upgradeLevel.value);
+    if (selectedTraitIds.value[0]) q.trait1 = selectedTraitIds.value[0];
+    if (selectedTraitIds.value[1]) q.trait2 = selectedTraitIds.value[1];
+    if (equippedGears.value.Head) q.head = equippedGears.value.Head;
+    if (equippedGears.value.Body) q.body = equippedGears.value.Body;
+    if (equippedGears.value.Arm) q.arm = equippedGears.value.Arm;
+    if (equippedGears.value.Legs) q.legs = equippedGears.value.Legs;
+    if (potentials.value.damage) q.pot_dmg = potentials.value.damage;
+    if (potentials.value.health) q.pot_hp = potentials.value.health;
+    if (potentials.value.range) q.pot_range = potentials.value.range;
+    if (potentials.value.speed) q.pot_spd = potentials.value.speed;
+    if (potentials.value.cooldown) q.pot_cd = potentials.value.cooldown;
+    return q;
+  });
 
   // Returning reactive ensures all refs and computed values are automatically unwrapped in templates and script
   return reactive({
@@ -426,6 +478,6 @@ export function useCombatCalculatorStore() {
     setGear,
     clearGears,
     resetPotentials,
-    initFromQuery
-  })
+    initFromQuery,
+  });
 }
