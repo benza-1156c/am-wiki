@@ -1,14 +1,15 @@
 {
   "meta": {
     "totalUnits": 85,
-    "version": "2.0.0"
+    "version": "2.0.0",
+    "updatedAt": "2026-10-29T03:08:58.166Z"
   },
   "units": [
     {
       "id": "Saber_001",
       "name": "Saber",
       "icon": null,
-      "model": null,
+      "model": "Saber",
       "displayName": "Siri",
       "series": "Fate",
       "rarity": "Secret",
@@ -218,7 +219,7 @@
       "id": "Buddha_001",
       "name": "Buddha",
       "icon": null,
-      "model": null,
+      "model": "Buddha",
       "displayName": "Bodhod",
       "series": "Ragnarok",
       "rarity": "Mythic",
@@ -418,7 +419,7 @@
       "id": "Sungjinwoo_001",
       "name": "SungJinwoo",
       "icon": null,
-      "model": null,
+      "model": "SungJinwoo",
       "displayName": "Jinwoo",
       "series": "SOLOLEVELING",
       "rarity": "Secret",
@@ -612,7 +613,7 @@
       "id": "Alucard_001",
       "name": "Alucard",
       "icon": null,
-      "model": null,
+      "model": "Alucard",
       "displayName": "Dracula",
       "series": "Other",
       "rarity": "Secret",
@@ -794,7 +795,7 @@
       "id": "Igris_001",
       "name": "Igris",
       "icon": null,
-      "model": null,
+      "model": "Igris",
       "displayName": "Knight",
       "series": "SOLOLEVELING",
       "rarity": "Secret",
@@ -1075,7 +1076,7 @@
       "id": "unit_024",
       "name": "Ryuk",
       "icon": null,
-      "model": null,
+      "model": "Ryuk",
       "displayName": "Ryu",
       "series": "DN",
       "rarity": "Secret",
@@ -1284,7 +1285,7 @@
       "id": "unit_046",
       "name": "Wignall",
       "icon": null,
-      "model": null,
+      "model": "Wignall",
       "displayName": "Wignoll",
       "series": "Wistoria",
       "rarity": "Legendary",
@@ -1572,7 +1573,7 @@
       "id": "unit_007",
       "name": "Sukuna",
       "icon": null,
-      "model": null,
+      "model": "Sukuna",
       "displayName": "Sukuno",
       "series": "JJK",
       "rarity": "Mythic",
@@ -1596,14 +1597,8 @@
       "upgradeBase": {
         "1": 1275
       },
-      "upgradeOverrides": {
-        "1": {
-          "SkillCooldown": 3.7,
-          "WalkSpeed": 11.5,
-          "Range": 14
-        }
-      },
-      "upgradeStatMultiplier": 1.35,
+      "upgradeOverrides": {},
+      "upgradeStatMultiplier": 1.03,
       "levels": {
         "0": {
           "Attack": 42.2,
@@ -1613,7 +1608,7 @@
           "SkillRange": 9.4,
           "SkillRadius": 9,
           "SkillWidth": 5,
-          "SkillDamage": 126.6,
+          "SkillDamage": 88.6,
           "SkillCooldown": 4.87,
           "Cost": 1400,
           "NextUpgradeCost": 1275,
@@ -1630,13 +1625,13 @@
         "1": {
           "Attack": 42.2,
           "Health": 130,
-          "Range": 14,
+          "Range": 9.4,
           "AttackSpeed": 2.1,
           "SkillRange": 9.4,
           "SkillRadius": 9,
           "SkillWidth": 5,
-          "SkillDamage": 126.6,
-          "SkillCooldown": 3.7,
+          "SkillDamage": 88.6,
+          "SkillCooldown": 4.87,
           "Cost": 1400,
           "NextUpgradeCost": 0,
           "Element": "Abyss",
@@ -1645,7 +1640,7 @@
           "CritDamage": 1.1,
           "SellCost": 363,
           "SpawnCooldown": 12,
-          "Speed": 11.5,
+          "Speed": 7,
           "unitsCapp": 1,
           "Name": "Sukuna"
         }
@@ -1664,17 +1659,17 @@
         "range": 9.4,
         "health": 130,
         "speed": 7,
-        "skillDamage": 126.6,
+        "skillDamage": 88.6,
         "cost": 1400
       },
       "statsAtMax": {
         "attack": 398.1,
         "dps": 189.6,
         "attackSpeed": 2.1,
-        "range": 14.3,
+        "range": 9.6,
         "health": 1180.1,
-        "speed": 11.7,
-        "skillDamage": 1149.3,
+        "speed": 7.1,
+        "skillDamage": 804.3,
         "cost": 1400
       }
     },
@@ -1682,7 +1677,7 @@
       "id": "worldisalwaysleep_001",
       "name": "worldisalwaysleep",
       "icon": null,
-      "model": null,
+      "model": "worldisalwaysleep",
       "displayName": "worldisalwaysleep",
       "series": "Other",
       "rarity": "Mysterious",
@@ -1856,7 +1851,7 @@
       "id": "unit_044",
       "name": "Sion",
       "icon": null,
-      "model": null,
+      "model": "Sion",
       "displayName": "Sin",
       "series": "Wistoria",
       "rarity": "Mythic",
@@ -2078,7 +2073,7 @@
       "id": "unit_049",
       "name": "Hainiya",
       "icon": null,
-      "model": null,
+      "model": "Hainiya",
       "displayName": "School Girl",
       "series": "Other",
       "rarity": "Exclusive",
@@ -2225,7 +2220,7 @@
       "id": "Yoriichi_001",
       "name": "Yoriichi",
       "icon": null,
-      "model": null,
+      "model": "Yoriichi",
       "displayName": "Yuruisha",
       "series": "Other",
       "rarity": "Exclusive",
@@ -2454,7 +2449,7 @@
       "id": "unit_040",
       "name": "Goku",
       "icon": null,
-      "model": null,
+      "model": "Goku",
       "displayName": "Goju",
       "series": "DGB",
       "rarity": "Rare",
@@ -2610,7 +2605,7 @@
       "id": "NEW_002",
       "name": "Luffy",
       "icon": null,
-      "model": null,
+      "model": "Luffy",
       "displayName": "Laffer",
       "series": "OnePiece",
       "rarity": "Rare",
@@ -2742,7 +2737,7 @@
       "id": "Frieza_001",
       "name": "Frieza_Player",
       "icon": null,
-      "model": null,
+      "model": "Frieza_Player",
       "displayName": "Frie",
       "series": "DBZ",
       "rarity": "Secret",
@@ -3017,7 +3012,7 @@
       "id": "Lancer_001",
       "name": "Lancer",
       "icon": null,
-      "model": null,
+      "model": "Lancer",
       "displayName": "Laser",
       "series": "Fate",
       "rarity": "Secret",
@@ -3207,7 +3202,7 @@
       "id": "unit_042_evo",
       "name": "Will_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Will_Awakened",
       "displayName": "Woll (Limit OFF)",
       "series": "Wistoria",
       "rarity": "Secret",
@@ -3355,11 +3350,11 @@
         "5": {
           "Attack": 32.6,
           "Health": 170.2,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 71.7,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3377,11 +3372,11 @@
         "6": {
           "Attack": 37.8,
           "Health": 197.4,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 83.2,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3399,11 +3394,11 @@
         "7": {
           "Attack": 43.9,
           "Health": 229,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 96.6,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3421,11 +3416,11 @@
         "8": {
           "Attack": 50.9,
           "Health": 265.7,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 112,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3443,11 +3438,11 @@
         "9": {
           "Attack": 59,
           "Health": 308.2,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 129.8,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3465,11 +3460,11 @@
         "10": {
           "Attack": 68.5,
           "Health": 357.5,
-          "Range": 11,
-          "AttackSpeed": 3.5,
+          "Range": 17,
+          "AttackSpeed": 1.9,
           "SkillRange": 11,
           "SkillRadius": 11.5,
-          "SkillWidth": 4.26,
+          "SkillWidth": 4.5,
           "SkillDamage": 150.7,
           "SkillCooldown": 6.8,
           "Cost": 1400,
@@ -3504,9 +3499,9 @@
       },
       "statsAtMax": {
         "attack": 646.2,
-        "dps": 184.6,
-        "attackSpeed": 3.5,
-        "range": 11.2,
+        "dps": 340.1,
+        "attackSpeed": 1.9,
+        "range": 17.3,
         "health": 3245.4,
         "speed": 14.3,
         "skillDamage": 1368.1,
@@ -3517,7 +3512,7 @@
       "id": "Sakai_001",
       "name": "Sakai",
       "icon": null,
-      "model": null,
+      "model": "Sakai",
       "displayName": "Sakei",
       "series": "Other",
       "rarity": "Exclusive",
@@ -3716,7 +3711,7 @@
       "id": "Gilgamesh_001",
       "name": "Gilgamesh",
       "icon": null,
-      "model": null,
+      "model": "Gilgamesh",
       "displayName": "Gilga",
       "series": "Fate",
       "rarity": "Secret",
@@ -3995,7 +3990,7 @@
       "id": "Astolfo_001",
       "name": "Astolfo",
       "icon": null,
-      "model": null,
+      "model": "Astolfo",
       "displayName": "Astol",
       "series": "Other",
       "rarity": "Secret",
@@ -4141,7 +4136,7 @@
       "id": "unit_52",
       "name": "SpeedWagon",
       "icon": null,
-      "model": null,
+      "model": "SpeedWagon",
       "displayName": "Spood (Yen)",
       "series": "Other",
       "rarity": "Epic",
@@ -4282,7 +4277,7 @@
       "id": "unit_006",
       "name": "Nobara",
       "icon": null,
-      "model": null,
+      "model": "Nobara",
       "displayName": "Nobaro",
       "series": "JJK",
       "rarity": "Rare",
@@ -4428,7 +4423,7 @@
       "id": "unit_008_evo",
       "name": "Toji_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Toji_Awakened",
       "displayName": "Tojo (Caterpillar insecticide)",
       "series": "JJK",
       "rarity": "Mythic",
@@ -4691,7 +4686,7 @@
       "id": "Akaza_001",
       "name": "Akaza",
       "icon": null,
-      "model": null,
+      "model": "Akaza",
       "displayName": "Akazu",
       "series": "DMSlayer",
       "rarity": "Exclusive",
@@ -4711,14 +4706,14 @@
       },
       "upgradeOverrides": {
         "4": {
-          "WalkSpeed": 11.5
+          "WalkSpeed": 13.5
         }
       },
       "upgradeStatMultiplier": 1.16,
       "levels": {
         "0": {
           "Attack": 35.7,
-          "Health": 138,
+          "Health": 148,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4740,7 +4735,7 @@
         },
         "1": {
           "Attack": 35.7,
-          "Health": 138,
+          "Health": 148,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4762,7 +4757,7 @@
         },
         "2": {
           "Attack": 41.4,
-          "Health": 160.1,
+          "Health": 171.7,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4784,7 +4779,7 @@
         },
         "3": {
           "Attack": 48,
-          "Health": 185.7,
+          "Health": 199.1,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4806,7 +4801,7 @@
         },
         "4": {
           "Attack": 55.7,
-          "Health": 215.4,
+          "Health": 231,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4822,13 +4817,13 @@
           "CritDamage": 1.1,
           "SellCost": 107,
           "SpawnCooldown": 13,
-          "Speed": 11.5,
+          "Speed": 13.5,
           "unitsCapp": 2,
           "Name": "Akaza"
         },
         "5": {
           "Attack": 64.6,
-          "Health": 249.9,
+          "Health": 268,
           "Range": 13,
           "AttackSpeed": 3.15,
           "SkillRange": 13,
@@ -4861,7 +4856,7 @@
         "dps": 11.3,
         "attackSpeed": 3.15,
         "range": 13,
-        "health": 138,
+        "health": 148,
         "speed": 6,
         "skillDamage": 107.1,
         "cost": 1400
@@ -4871,7 +4866,7 @@
         "dps": 193.5,
         "attackSpeed": 3.15,
         "range": 13.3,
-        "health": 2268.6,
+        "health": 2432.9,
         "speed": 6.1,
         "skillDamage": 1759.3,
         "cost": 1400
@@ -4881,7 +4876,7 @@
       "id": "unit_002_evo",
       "name": "Gojo_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Gojo_Awakened",
       "displayName": "JoGo (Six-eye)",
       "series": "JJK",
       "rarity": "Mythic",
@@ -4925,8 +4920,8 @@
           "NextUpgradeCost": 97,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -4947,8 +4942,8 @@
           "NextUpgradeCost": 183,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -4969,8 +4964,8 @@
           "NextUpgradeCost": 316,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -4991,8 +4986,8 @@
           "NextUpgradeCost": 497,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -5013,8 +5008,8 @@
           "NextUpgradeCost": 693,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -5035,8 +5030,8 @@
           "NextUpgradeCost": 901,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -5057,8 +5052,8 @@
           "NextUpgradeCost": 1313,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -5079,8 +5074,8 @@
           "NextUpgradeCost": 0,
           "Element": "Dimenion",
           "SkillMode": "AOE",
-          "CritChance": 0.4,
-          "CritDamage": 1.25,
+          "CritChance": 0.05,
+          "CritDamage": 1.1,
           "SellCost": 376,
           "SpawnCooldown": 18,
           "Speed": 7,
@@ -5095,7 +5090,7 @@
         "UltimateHeader": "<font color='rgb(233,170,235)'>Void Enlightenment</font>",
         "UltimateDescription": "Cleanses <font color='rgb(233,170,235)'>all debuffs</font> from this unit and allies.<br/>Freezes <font color='rgb(100,200,255)'>all enemies map-wide</font>, excluding allies.<br/>Upon ending, <font color='rgb(255,180,0)'>deals 1 Hit</font> to <font color='rgb(255,120,120)'>all enemies</font>."
       },
-      "ultimateName": "Infinite Void",
+      "ultimateName": "Infinite Void(並行次元)",
       "ultimateCooldown": 100,
       "statsAtBase": {
         "attack": 40,
@@ -5122,7 +5117,7 @@
       "id": "unit_038",
       "name": "Broly",
       "icon": null,
-      "model": null,
+      "model": "Broly",
       "displayName": "Bory",
       "series": "DGB",
       "rarity": "Mythic",
@@ -5319,7 +5314,7 @@
       "id": "unit_007_evo",
       "name": "Sukuna_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Sukuna_Awakened",
       "displayName": "Sukuno (Mohoraga)",
       "series": "JJK",
       "rarity": "Mythic",
@@ -5357,7 +5352,7 @@
       "levels": {
         "0": {
           "Attack": 31,
-          "Health": 177,
+          "Health": 77,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5379,7 +5374,7 @@
         },
         "1": {
           "Attack": 31,
-          "Health": 177,
+          "Health": 77,
           "Range": 16,
           "AttackSpeed": 2.4,
           "SkillRange": 16,
@@ -5401,7 +5396,7 @@
         },
         "2": {
           "Attack": 34.9,
-          "Health": 199,
+          "Health": 86.6,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5423,7 +5418,7 @@
         },
         "3": {
           "Attack": 39.2,
-          "Health": 223.8,
+          "Health": 97.4,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5445,7 +5440,7 @@
         },
         "4": {
           "Attack": 44.1,
-          "Health": 251.7,
+          "Health": 109.5,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5467,7 +5462,7 @@
         },
         "5": {
           "Attack": 49.6,
-          "Health": 283,
+          "Health": 123.1,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5489,7 +5484,7 @@
         },
         "6": {
           "Attack": 55.7,
-          "Health": 318.3,
+          "Health": 138.4,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5511,7 +5506,7 @@
         },
         "7": {
           "Attack": 62.7,
-          "Health": 357.9,
+          "Health": 155.7,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5533,7 +5528,7 @@
         },
         "8": {
           "Attack": 70.5,
-          "Health": 402.4,
+          "Health": 175.1,
           "Range": 14,
           "AttackSpeed": 2.4,
           "SkillRange": 14,
@@ -5555,7 +5550,7 @@
         },
         "9": {
           "Attack": 79.3,
-          "Health": 452.5,
+          "Health": 196.9,
           "Range": 14,
           "AttackSpeed": 1.21,
           "SkillRange": 14,
@@ -5583,14 +5578,14 @@
         "UltimateHeader": "<font color='rgb(233,170,235)'>Malevolent Shrine</font>",
         "UltimateDescription": "Deals <font color='rgb(255,80,80)'>DMG to all enemies map-wide</font> while the <font color='rgb(233,170,235)'>Domain</font> is active."
       },
-      "ultimateName": "Malevolent Shrine",
+      "ultimateName": "Malevolent Shrine(悪魔)",
       "ultimateCooldown": 150,
       "statsAtBase": {
         "attack": 31,
         "dps": 12.9,
         "attackSpeed": 2.4,
         "range": 14,
-        "health": 177,
+        "health": 77,
         "speed": 7,
         "skillDamage": 55.8,
         "cost": 1800
@@ -5600,7 +5595,7 @@
         "dps": 618.3,
         "attackSpeed": 1.21,
         "range": 14.3,
-        "health": 4107.8,
+        "health": 1787.5,
         "speed": 7.1,
         "skillDamage": 1295.4,
         "cost": 1800
@@ -5610,7 +5605,7 @@
       "id": "NEW_003",
       "name": "Zoro",
       "icon": null,
-      "model": null,
+      "model": "Zoro",
       "displayName": "Soro",
       "series": "OnePiece",
       "rarity": "Rare",
@@ -5765,7 +5760,7 @@
       "id": "Beru_001",
       "name": "Beru",
       "icon": null,
-      "model": null,
+      "model": "Beru",
       "displayName": "Bey",
       "series": "SOLOLEVELING",
       "rarity": "Secret",
@@ -6018,7 +6013,7 @@
       "id": "NEW_007",
       "name": "Basil",
       "icon": null,
-      "model": null,
+      "model": "Basil",
       "displayName": "Barate",
       "series": "Other",
       "rarity": "Epic",
@@ -6162,7 +6157,7 @@
       "id": "unit_043",
       "name": "Elfaria",
       "icon": null,
-      "model": null,
+      "model": "Elfaria",
       "displayName": "Elforia",
       "series": "Wistoria",
       "rarity": "Secret",
@@ -6402,7 +6397,7 @@
       "id": "unit_039",
       "name": "Vegeta",
       "icon": null,
-      "model": null,
+      "model": "Vegeta",
       "displayName": "Vegato",
       "series": "DGB",
       "rarity": "Epic",
@@ -6571,7 +6566,7 @@
       "id": "unit_002",
       "name": "Gojo",
       "icon": null,
-      "model": null,
+      "model": "Gojo",
       "displayName": "JoGo",
       "series": "JJK",
       "rarity": "Mythic",
@@ -6605,9 +6600,8 @@
           "WalkSpeed": 9
         },
         "3": {
-          "Range": 13,
           "WalkSpeed": 9,
-          "AttackSpeed": 2.4
+          "Range": 13
         },
         "4": {
           "SkillWidth": 8.1,
@@ -6615,13 +6609,13 @@
           "Range": 13
         }
       },
-      "upgradeStatMultiplier": 1.1,
+      "upgradeStatMultiplier": 1.01,
       "levels": {
         "0": {
           "Attack": 46,
           "Health": 140,
           "Range": 11.7,
-          "AttackSpeed": 1.8,
+          "AttackSpeed": 4,
           "SkillRange": 11.7,
           "SkillRadius": 6.2,
           "SkillWidth": 4.2,
@@ -6643,7 +6637,7 @@
           "Attack": 46,
           "Health": 140,
           "Range": 11.7,
-          "AttackSpeed": 1.8,
+          "AttackSpeed": 4,
           "SkillRange": 11.7,
           "SkillRadius": 6.2,
           "SkillWidth": 4.2,
@@ -6662,14 +6656,14 @@
           "Name": "Gojo"
         },
         "2": {
-          "Attack": 50.6,
-          "Health": 154,
+          "Attack": 46.5,
+          "Health": 141.4,
           "Range": 11.7,
-          "AttackSpeed": 1.8,
+          "AttackSpeed": 4,
           "SkillRange": 11.7,
           "SkillRadius": 6.2,
           "SkillWidth": 4.2,
-          "SkillDamage": 101.2,
+          "SkillDamage": 93,
           "SkillCooldown": 5.34,
           "Cost": 1350,
           "NextUpgradeCost": 641,
@@ -6684,14 +6678,14 @@
           "Name": "Gojo"
         },
         "3": {
-          "Attack": 55.7,
-          "Health": 169.4,
+          "Attack": 46.9,
+          "Health": 142.8,
           "Range": 13,
-          "AttackSpeed": 2.4,
+          "AttackSpeed": 4,
           "SkillRange": 11.7,
           "SkillRadius": 6.2,
           "SkillWidth": 4.2,
-          "SkillDamage": 111.4,
+          "SkillDamage": 93.8,
           "SkillCooldown": 5.34,
           "Cost": 1350,
           "NextUpgradeCost": 1089,
@@ -6706,14 +6700,14 @@
           "Name": "Gojo"
         },
         "4": {
-          "Attack": 61.2,
-          "Health": 186.3,
+          "Attack": 47.4,
+          "Health": 144.2,
           "Range": 13,
-          "AttackSpeed": 1.8,
+          "AttackSpeed": 4,
           "SkillRange": 11.7,
           "SkillRadius": 6.2,
           "SkillWidth": 8.1,
-          "SkillDamage": 122.4,
+          "SkillDamage": 94.8,
           "SkillCooldown": 5.34,
           "Cost": 1350,
           "NextUpgradeCost": 0,
@@ -6737,8 +6731,8 @@
       },
       "statsAtBase": {
         "attack": 46,
-        "dps": 25.6,
-        "attackSpeed": 1.8,
+        "dps": 11.5,
+        "attackSpeed": 4,
         "range": 11.7,
         "health": 140,
         "speed": 6,
@@ -6746,13 +6740,13 @@
         "cost": 1350
       },
       "statsAtMax": {
-        "attack": 577.4,
-        "dps": 320.8,
-        "attackSpeed": 1.8,
+        "attack": 447.2,
+        "dps": 111.8,
+        "attackSpeed": 4,
         "range": 13.3,
-        "health": 1691.2,
+        "health": 1309,
         "speed": 9.2,
-        "skillDamage": 1111.1,
+        "skillDamage": 860.6,
         "cost": 1350
       }
     },
@@ -6760,7 +6754,7 @@
       "id": "unit_005",
       "name": "Yuta",
       "icon": null,
-      "model": null,
+      "model": "Yuta",
       "displayName": "Yuto",
       "series": "JJK",
       "rarity": "Secret",
@@ -6935,7 +6929,7 @@
       "id": "unit_008",
       "name": "Toji",
       "icon": null,
-      "model": null,
+      "model": "Toji",
       "displayName": "Tojo",
       "series": "JJK",
       "rarity": "Legendary",
@@ -6968,9 +6962,7 @@
       "upgradeOverrides": {
         "1": {
           "SkillRadius": 10,
-          "SkillRange": 12,
-          "WalkSpeed": 12.4,
-          "SkillCooldown": 4.7
+          "SkillRange": 12
         }
       },
       "upgradeStatMultiplier": 1.02,
@@ -7006,7 +6998,7 @@
           "SkillRadius": 10,
           "SkillWidth": 55,
           "SkillDamage": 67.6,
-          "SkillCooldown": 4.7,
+          "SkillCooldown": 6.7,
           "Cost": 550,
           "NextUpgradeCost": 96,
           "Element": "Abyss",
@@ -7015,7 +7007,7 @@
           "CritDamage": 1.1,
           "SellCost": 110,
           "SpawnCooldown": 9.4,
-          "Speed": 12.4,
+          "Speed": 4,
           "unitsCapp": 3,
           "Name": "Toji"
         },
@@ -7140,7 +7132,7 @@
       "id": "unit_043_evo",
       "name": "Elfaria_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Elfaria_Awakened",
       "displayName": "Elforia (Frozen Empress)",
       "series": "Wistoria",
       "rarity": "Secret",
@@ -7301,7 +7293,7 @@
         "UltimateHeader": "<font color='rgb(233,170,235)'>Frozen Clause</font>",
         "UltimateDescription": "Grants <font color='rgb(255,180,0)'>+50% DMG</font> to all allied units of the same series within this unit's <font color='rgb(100,200,255)'>Range</font>.<br/>Grants <font color='rgb(80,200,255)'>+30% HP</font> to allied <font color='rgb(80,180,255)'>Water</font> units.<br/>Deals <font color='rgb(255,80,80)'>Line AOE DMG</font>.<br/>All effects last <font color='rgb(255,180,0)'>20s</font> and <u>do not stack</u> when recast."
       },
-      "ultimateName": "Freeze Queen",
+      "ultimateName": "Elfaria Ultimate",
       "ultimateCooldown": 38.8,
       "statsAtBase": {
         "attack": 45,
@@ -7328,13 +7320,13 @@
       "id": "Naoya_001",
       "name": "NaoyaPlayer",
       "icon": null,
-      "model": null,
+      "model": "NaoyaPlayer",
       "displayName": "Nao",
       "series": "JJK",
       "rarity": "Mythic",
       "element": "Noctis",
       "skillMode": "Line",
-      "baseDamage": 38.7,
+      "baseDamage": 24.7,
       "maxLevel": 5,
       "unitCap": 2,
       "spawnCooldown": 7.5,
@@ -7348,28 +7340,26 @@
       },
       "upgradeOverrides": {
         "1": {
-          "SkillCooldown": 4.7,
+          "SkillWidth": 6.5,
           "SkillRange": 9,
-          "AttackSpeed": 1.86,
-          "WalkSpeed": 10,
           "Range": 9,
-          "SkillWidth": 6.5
+          "WalkSpeed": 10
         },
         "5": {
           "Accuracy": 0.2
         }
       },
-      "upgradeStatMultiplier": 1.05,
+      "upgradeStatMultiplier": 1.3,
       "levels": {
         "0": {
-          "Attack": 38.7,
-          "Health": 164,
+          "Attack": 24.7,
+          "Health": 64,
           "Range": 9,
           "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 104.5,
+          "SkillDamage": 66.7,
           "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 128,
@@ -7384,15 +7374,15 @@
           "Name": "NaoyaPlayer"
         },
         "1": {
-          "Attack": 38.7,
-          "Health": 164,
+          "Attack": 24.7,
+          "Health": 64,
           "Range": 9,
-          "AttackSpeed": 1.86,
+          "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 104.5,
-          "SkillCooldown": 4.7,
+          "SkillDamage": 66.7,
+          "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 347,
           "Element": "Noctis",
@@ -7406,14 +7396,14 @@
           "Name": "NaoyaPlayer"
         },
         "2": {
-          "Attack": 40.6,
-          "Health": 172.2,
+          "Attack": 32.1,
+          "Health": 83.2,
           "Range": 9,
           "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 109.6,
+          "SkillDamage": 86.7,
           "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 586,
@@ -7428,14 +7418,14 @@
           "Name": "NaoyaPlayer"
         },
         "3": {
-          "Attack": 42.7,
-          "Health": 180.8,
+          "Attack": 41.7,
+          "Health": 108.2,
           "Range": 9,
           "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 115.3,
+          "SkillDamage": 112.6,
           "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 918,
@@ -7450,14 +7440,14 @@
           "Name": "NaoyaPlayer"
         },
         "4": {
-          "Attack": 44.8,
-          "Health": 189.9,
+          "Attack": 54.3,
+          "Health": 140.6,
           "Range": 9,
           "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 121,
+          "SkillDamage": 146.6,
           "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 1327,
@@ -7472,14 +7462,14 @@
           "Name": "NaoyaPlayer"
         },
         "5": {
-          "Attack": 47,
-          "Health": 199.3,
+          "Attack": 70.5,
+          "Health": 182.8,
           "Range": 9,
           "AttackSpeed": 3.6,
           "SkillRange": 9,
           "SkillRadius": 10,
           "SkillWidth": 6.5,
-          "SkillDamage": 126.9,
+          "SkillDamage": 190.4,
           "SkillCooldown": 6.1,
           "Cost": 1600,
           "NextUpgradeCost": 0,
@@ -7502,23 +7492,23 @@
         "UltimateDescription": ""
       },
       "statsAtBase": {
-        "attack": 38.7,
-        "dps": 10.8,
+        "attack": 24.7,
+        "dps": 6.9,
         "attackSpeed": 3.6,
         "range": 9,
-        "health": 164,
+        "health": 64,
         "speed": 9.5,
-        "skillDamage": 104.5,
+        "skillDamage": 66.7,
         "cost": 1600
       },
       "statsAtMax": {
-        "attack": 443.4,
-        "dps": 123.2,
+        "attack": 665.1,
+        "dps": 184.8,
         "attackSpeed": 3.6,
         "range": 9.2,
-        "health": 1809.2,
+        "health": 1659.5,
         "speed": 9.7,
-        "skillDamage": 1152,
+        "skillDamage": 1728.5,
         "cost": 1600
       }
     },
@@ -7526,7 +7516,7 @@
       "id": "unit_051",
       "name": "Tanzaburo",
       "icon": null,
-      "model": null,
+      "model": "Tanzaburo",
       "displayName": "Tanzaburo",
       "series": "Other",
       "rarity": "Exclusive",
@@ -7735,7 +7725,7 @@
       "id": "Asura_001",
       "name": "Asura",
       "icon": null,
-      "model": null,
+      "model": "Asura",
       "displayName": "Ashura",
       "series": "Other",
       "rarity": "Secret",
@@ -7963,7 +7953,7 @@
       "id": "Saber_001_Evo",
       "name": "Saber_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Saber_Awakened",
       "displayName": "Siri (Alter Blackened Crown)",
       "series": "Fate",
       "rarity": "Tactical",
@@ -8216,7 +8206,7 @@
       "id": "unit_022",
       "name": "Sasuke",
       "icon": null,
-      "model": null,
+      "model": "Sasuke",
       "displayName": "Sasuko",
       "series": "NRT",
       "rarity": "Epic",
@@ -8389,7 +8379,7 @@
       "id": "Gyutaro_001",
       "name": "Gyutaro",
       "icon": null,
-      "model": null,
+      "model": "Gyutaro",
       "displayName": "Gyuro",
       "series": "DMSlayer",
       "rarity": "Mythic",
@@ -8414,8 +8404,8 @@
           "Health": 136,
           "Range": 14,
           "AttackSpeed": 2.07,
-          "SkillRange": 14,
-          "SkillRadius": 10,
+          "SkillRange": 8,
+          "SkillRadius": 8,
           "SkillWidth": 0,
           "SkillDamage": 96.8,
           "SkillCooldown": 7.93,
@@ -8436,8 +8426,8 @@
           "Health": 136,
           "Range": 14,
           "AttackSpeed": 2.07,
-          "SkillRange": 14,
-          "SkillRadius": 10,
+          "SkillRange": 8,
+          "SkillRadius": 8,
           "SkillWidth": 0,
           "SkillDamage": 96.8,
           "SkillCooldown": 7.93,
@@ -8458,8 +8448,8 @@
           "Health": 163.2,
           "Range": 14,
           "AttackSpeed": 2.07,
-          "SkillRange": 14,
-          "SkillRadius": 10,
+          "SkillRange": 8,
+          "SkillRadius": 8,
           "SkillWidth": 0,
           "SkillDamage": 116.2,
           "SkillCooldown": 7.93,
@@ -8480,8 +8470,8 @@
           "Health": 195.8,
           "Range": 14,
           "AttackSpeed": 2.07,
-          "SkillRange": 14,
-          "SkillRadius": 10,
+          "SkillRange": 8,
+          "SkillRadius": 8,
           "SkillWidth": 0,
           "SkillDamage": 139.4,
           "SkillCooldown": 7.93,
@@ -8502,8 +8492,8 @@
           "Health": 235,
           "Range": 14,
           "AttackSpeed": 2.07,
-          "SkillRange": 14,
-          "SkillRadius": 10,
+          "SkillRange": 8,
+          "SkillRadius": 8,
           "SkillWidth": 0,
           "SkillDamage": 167.2,
           "SkillCooldown": 7.93,
@@ -8552,7 +8542,7 @@
       "id": "unit_021",
       "name": "Naruto",
       "icon": null,
-      "model": null,
+      "model": "Naruto",
       "displayName": "Naruta",
       "series": "NRT",
       "rarity": "Rare",
@@ -8715,13 +8705,13 @@
       "id": "Sungjinwoo_001_Evo",
       "name": "SungJinWoo_Awakened",
       "icon": null,
-      "model": null,
+      "model": "SungJinWoo_Awakened",
       "displayName": "Jinwoo (Shadow Monarch)",
       "series": "SOLOLEVELING",
       "rarity": "Celestial",
       "element": "Riddle",
       "skillMode": "AOE",
-      "baseDamage": 70,
+      "baseDamage": 74,
       "maxLevel": 10,
       "unitCap": 1,
       "spawnCooldown": 20,
@@ -8746,7 +8736,7 @@
           "Range": 9
         },
         "3": {
-          "SkillCooldown": 4.36,
+          "SkillCooldown": 3.8,
           "SkillRange": 15,
           "AttackSpeed": 2.33,
           "Range": 15,
@@ -8757,21 +8747,21 @@
       "upgradeStatMultiplier": 1.139,
       "levels": {
         "0": {
-          "Attack": 70,
+          "Attack": 74,
           "Health": 170,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 77,
+          "SkillDamage": 244.2,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 287,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8779,21 +8769,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "1": {
-          "Attack": 70,
+          "Attack": 74,
           "Health": 170,
           "Range": 9,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 9,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 77,
+          "SkillDamage": 244.2,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 419,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8801,21 +8791,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "2": {
-          "Attack": 79.7,
+          "Attack": 84.3,
           "Health": 193.6,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 87.7,
+          "SkillDamage": 278.2,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 536,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8823,21 +8813,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "3": {
-          "Attack": 90.8,
+          "Attack": 96,
           "Health": 220.5,
           "Range": 15,
           "AttackSpeed": 2.33,
           "SkillRange": 15,
           "SkillRadius": 10.7,
           "SkillWidth": 0,
-          "SkillDamage": 99.9,
-          "SkillCooldown": 4.36,
+          "SkillDamage": 316.8,
+          "SkillCooldown": 3.8,
           "Cost": 2400,
           "NextUpgradeCost": 648,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 12,
@@ -8845,21 +8835,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "4": {
-          "Attack": 103.4,
+          "Attack": 109.3,
           "Health": 251.2,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 113.7,
+          "SkillDamage": 360.7,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 759,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8867,21 +8857,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "5": {
-          "Attack": 117.8,
+          "Attack": 124.5,
           "Health": 286.1,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 129.6,
+          "SkillDamage": 410.9,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 873,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8889,21 +8879,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "6": {
-          "Attack": 134.2,
+          "Attack": 141.9,
           "Health": 325.9,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 147.6,
+          "SkillDamage": 468.3,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 991,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8911,21 +8901,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "7": {
-          "Attack": 152.8,
+          "Attack": 161.6,
           "Health": 371.2,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 168.1,
+          "SkillDamage": 533.3,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 1087,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8933,21 +8923,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "8": {
-          "Attack": 174.1,
+          "Attack": 184,
           "Health": 422.8,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 191.5,
+          "SkillDamage": 607.2,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 1174,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8955,21 +8945,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "9": {
-          "Attack": 198.3,
+          "Attack": 209.6,
           "Health": 481.5,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 218.1,
+          "SkillDamage": 691.7,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 1226,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -8977,21 +8967,21 @@
           "Name": "SungJinWoo_Awakened"
         },
         "10": {
-          "Attack": 225.8,
+          "Attack": 238.8,
           "Health": 548.5,
           "Range": 14,
-          "AttackSpeed": 2.79,
+          "AttackSpeed": 2.39,
           "SkillRange": 14,
           "SkillRadius": 7.4,
           "SkillWidth": 0,
-          "SkillDamage": 248.4,
+          "SkillDamage": 788,
           "SkillCooldown": 5.34,
           "Cost": 2400,
           "NextUpgradeCost": 0,
           "Element": "Riddle",
           "SkillMode": "AOE",
-          "CritChance": 0.05,
-          "CritDamage": 1.1,
+          "CritChance": 0.3,
+          "CritDamage": 1.5,
           "SellCost": 600,
           "SpawnCooldown": 20,
           "Speed": 13,
@@ -9015,23 +9005,23 @@
       "ultimateName": "Arise",
       "ultimateCooldown": 60,
       "statsAtBase": {
-        "attack": 70,
-        "dps": 25.1,
-        "attackSpeed": 2.79,
+        "attack": 74,
+        "dps": 31,
+        "attackSpeed": 2.39,
         "range": 14,
         "health": 170,
         "speed": 13,
-        "skillDamage": 77,
+        "skillDamage": 244.2,
         "cost": 2400
       },
       "statsAtMax": {
-        "attack": 2130.2,
-        "dps": 763.5,
-        "attackSpeed": 2.79,
+        "attack": 2252.8,
+        "dps": 942.6,
+        "attackSpeed": 2.39,
         "range": 14.3,
         "health": 4979.3,
         "speed": 13.3,
-        "skillDamage": 2255,
+        "skillDamage": 7153.5,
         "cost": 2400
       }
     },
@@ -9039,7 +9029,7 @@
       "id": "Kizaru_001",
       "name": "Kizaru_Player",
       "icon": null,
-      "model": null,
+      "model": "Kizaru_Player",
       "displayName": "Kizao",
       "series": "OnePiece",
       "rarity": "Legendary",
@@ -9221,7 +9211,7 @@
       "id": "Perona_001",
       "name": "Perona",
       "icon": null,
-      "model": null,
+      "model": "Perona",
       "displayName": "Peora",
       "series": "Other",
       "rarity": "Mythic",
@@ -9257,7 +9247,7 @@
       "levels": {
         "0": {
           "Attack": 31,
-          "Health": 95,
+          "Health": 49,
           "Range": 12,
           "AttackSpeed": 3.23,
           "SkillRange": 12,
@@ -9279,7 +9269,7 @@
         },
         "1": {
           "Attack": 31,
-          "Health": 95,
+          "Health": 49,
           "Range": 12,
           "AttackSpeed": 3.23,
           "SkillRange": 12,
@@ -9301,7 +9291,7 @@
         },
         "2": {
           "Attack": 44.9,
-          "Health": 137.8,
+          "Health": 71.1,
           "Range": 12,
           "AttackSpeed": 3.23,
           "SkillRange": 12,
@@ -9323,7 +9313,7 @@
         },
         "3": {
           "Attack": 65.2,
-          "Health": 199.7,
+          "Health": 103,
           "Range": 12,
           "AttackSpeed": 3.23,
           "SkillRange": 12,
@@ -9345,7 +9335,7 @@
         },
         "4": {
           "Attack": 94.5,
-          "Health": 289.6,
+          "Health": 149.4,
           "Range": 18,
           "AttackSpeed": 3.23,
           "SkillRange": 18,
@@ -9378,7 +9368,7 @@
         "dps": 9.6,
         "attackSpeed": 3.23,
         "range": 12,
-        "health": 95,
+        "health": 49,
         "speed": 5,
         "skillDamage": 49.6,
         "cost": 1000
@@ -9388,7 +9378,7 @@
         "dps": 276,
         "attackSpeed": 3.23,
         "range": 18.4,
-        "health": 2629,
+        "health": 1356.3,
         "speed": 6.1,
         "skillDamage": 1372.6,
         "cost": 1000
@@ -9398,7 +9388,7 @@
       "id": "Cid_001_evo",
       "name": "Cid_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Cid_Awakened",
       "displayName": "Zid (Atomic Overlord)",
       "series": "Other",
       "rarity": "Tactical",
@@ -9451,7 +9441,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9473,7 +9463,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9495,7 +9485,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9517,7 +9507,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9539,7 +9529,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9561,7 +9551,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9583,7 +9573,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9605,7 +9595,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9627,7 +9617,7 @@
           "Element": "Moon",
           "SkillMode": "Cone",
           "CritChance": 0.4,
-          "CritDamage": 1.125,
+          "CritDamage": 1.25,
           "SellCost": 145,
           "SpawnCooldown": 22,
           "Speed": 11,
@@ -9669,7 +9659,7 @@
       "id": "NEW_002_EVO",
       "name": "Luffy_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Luffy_Awakened",
       "displayName": "Laffer (TS)",
       "series": "OnePiece",
       "rarity": "Legendary",
@@ -9836,7 +9826,7 @@
       "id": "NEW_005",
       "name": "Nezuko",
       "icon": null,
-      "model": null,
+      "model": "Nezuko",
       "displayName": "Bamboo Demon",
       "series": "DMSlayer",
       "rarity": "Epic",
@@ -9958,7 +9948,7 @@
       "id": "unit_021_evo",
       "name": "Naruto_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Naruto_Awakened",
       "displayName": "Naruta (Sage Mode)",
       "series": "NRT",
       "rarity": "Legendary",
@@ -10148,7 +10138,7 @@
       "id": "Yisang_001",
       "name": "YiSang",
       "icon": null,
-      "model": null,
+      "model": "YiSang",
       "displayName": "Yisan",
       "series": "Other",
       "rarity": "Exclusive_Yisang",
@@ -10415,7 +10405,7 @@
       "id": "unit_017",
       "name": "Itachi",
       "icon": null,
-      "model": null,
+      "model": "Itachi",
       "displayName": "Itacho",
       "series": "NRT",
       "rarity": "Mythic",
@@ -10634,7 +10624,7 @@
       "id": "unit_047",
       "name": "Colette",
       "icon": null,
-      "model": null,
+      "model": "Colette",
       "displayName": "Colotto",
       "series": "Wistoria",
       "rarity": "Legendary",
@@ -10774,7 +10764,7 @@
       "id": "Alucard_001_evo",
       "name": "Alucard_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Alucard_Awakened",
       "displayName": "Dracula (Vampire Progenitor)",
       "series": "Other",
       "rarity": "Secret",
@@ -11020,7 +11010,7 @@
       "id": "Yamcha_001",
       "name": "Yamcha",
       "icon": null,
-      "model": null,
+      "model": "Yamcha",
       "displayName": "Yamacho",
       "series": "Other",
       "rarity": "Exclusive",
@@ -11233,7 +11223,7 @@
       "id": "Doflami_001",
       "name": "Doflamingo_Player",
       "icon": null,
-      "model": null,
+      "model": "Doflamingo_Player",
       "displayName": "Doflam",
       "series": "OP",
       "rarity": "Secret",
@@ -11263,11 +11253,11 @@
           "Accuracy": 0.2
         }
       },
-      "upgradeStatMultiplier": 1.48,
+      "upgradeStatMultiplier": 1.8,
       "levels": {
         "0": {
           "Attack": 40,
-          "Health": 173,
+          "Health": 183,
           "Range": 16,
           "AttackSpeed": 4.8,
           "SkillRange": 11,
@@ -11289,7 +11279,7 @@
         },
         "1": {
           "Attack": 40,
-          "Health": 173,
+          "Health": 183,
           "Range": 16,
           "AttackSpeed": 4.8,
           "SkillRange": 11,
@@ -11310,14 +11300,14 @@
           "Name": "Doflamingo_Player"
         },
         "2": {
-          "Attack": 59.2,
-          "Health": 256,
+          "Attack": 72,
+          "Health": 329.4,
           "Range": 16,
           "AttackSpeed": 4.8,
           "SkillRange": 11,
           "SkillRadius": 10,
           "SkillWidth": 3.2,
-          "SkillDamage": 153.9,
+          "SkillDamage": 187.2,
           "SkillCooldown": 3.5,
           "Cost": 1600,
           "NextUpgradeCost": 1687,
@@ -11332,14 +11322,14 @@
           "Name": "Doflamingo_Player"
         },
         "3": {
-          "Attack": 87.6,
-          "Health": 378.9,
+          "Attack": 129.6,
+          "Health": 592.9,
           "Range": 16,
           "AttackSpeed": 4.8,
           "SkillRange": 11,
           "SkillRadius": 10,
           "SkillWidth": 3.2,
-          "SkillDamage": 227.8,
+          "SkillDamage": 337,
           "SkillCooldown": 3.5,
           "Cost": 1600,
           "NextUpgradeCost": 1936,
@@ -11354,14 +11344,14 @@
           "Name": "Doflamingo_Player"
         },
         "4": {
-          "Attack": 129.7,
-          "Health": 560.8,
+          "Attack": 233.3,
+          "Health": 1067.3,
           "Range": 16,
           "AttackSpeed": 4.8,
           "SkillRange": 11,
           "SkillRadius": 10,
           "SkillWidth": 3.2,
-          "SkillDamage": 337.2,
+          "SkillDamage": 606.6,
           "SkillCooldown": 2.5,
           "Cost": 1600,
           "NextUpgradeCost": 0,
@@ -11388,19 +11378,19 @@
         "dps": 8.3,
         "attackSpeed": 4.8,
         "range": 16,
-        "health": 173,
+        "health": 183,
         "speed": 5,
         "skillDamage": 104,
         "cost": 1600
       },
       "statsAtMax": {
-        "attack": 1223.6,
-        "dps": 254.9,
+        "attack": 2201,
+        "dps": 458.5,
         "attackSpeed": 4.8,
         "range": 16.3,
-        "health": 5090.9,
+        "health": 9688.9,
         "speed": 5.1,
-        "skillDamage": 3061.1,
+        "skillDamage": 5506.7,
         "cost": 1600
       }
     },
@@ -11408,7 +11398,7 @@
       "id": "Cid_001",
       "name": "Cid",
       "icon": null,
-      "model": null,
+      "model": "Cid",
       "displayName": "Zid",
       "series": "Other",
       "rarity": "Secret",
@@ -11859,7 +11849,7 @@
       "id": "unit_005_evo",
       "name": "Yuta_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Yuta_Awakened",
       "displayName": "Yuto (Pure Love)",
       "series": "JJK",
       "rarity": "Secret",
@@ -11962,11 +11952,11 @@
         "3": {
           "Attack": 72.6,
           "Health": 167,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 214.9,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -11977,18 +11967,18 @@
           "CritDamage": 1.15,
           "SellCost": 450,
           "SpawnCooldown": 24.5,
-          "Speed": 8,
+          "Speed": 10,
           "unitsCapp": 2,
           "Name": "Yuta_Awakened"
         },
         "4": {
           "Attack": 79.9,
           "Health": 183.7,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 236.5,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -11999,18 +11989,18 @@
           "CritDamage": 1.15,
           "SellCost": 450,
           "SpawnCooldown": 24.5,
-          "Speed": 8,
+          "Speed": 10,
           "unitsCapp": 2,
           "Name": "Yuta_Awakened"
         },
         "5": {
           "Attack": 87.8,
           "Health": 202,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 259.9,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -12021,18 +12011,18 @@
           "CritDamage": 1.15,
           "SellCost": 450,
           "SpawnCooldown": 24.5,
-          "Speed": 8,
+          "Speed": 10,
           "unitsCapp": 2,
           "Name": "Yuta_Awakened"
         },
         "6": {
           "Attack": 96.6,
           "Health": 222.3,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 285.9,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -12043,18 +12033,18 @@
           "CritDamage": 1.15,
           "SellCost": 450,
           "SpawnCooldown": 24.5,
-          "Speed": 8,
+          "Speed": 10,
           "unitsCapp": 2,
           "Name": "Yuta_Awakened"
         },
         "7": {
           "Attack": 106.3,
           "Health": 244.5,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 314.6,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -12065,18 +12055,18 @@
           "CritDamage": 1.15,
           "SellCost": 450,
           "SpawnCooldown": 24.5,
-          "Speed": 8,
+          "Speed": 10,
           "unitsCapp": 2,
           "Name": "Yuta_Awakened"
         },
         "8": {
           "Attack": 116.9,
           "Health": 268.9,
-          "Range": 14,
+          "Range": 22,
           "AttackSpeed": 2.3,
-          "SkillRange": 18,
+          "SkillRange": 30,
           "SkillRadius": 20,
-          "SkillWidth": 4.5,
+          "SkillWidth": 13.2,
           "SkillDamage": 346,
           "SkillCooldown": 6,
           "Cost": 1800,
@@ -12099,8 +12089,6 @@
         "UltimateHeader": "<font color='rgb(233,170,235)'>Rika's Guard</font>",
         "UltimateDescription": "Attacks <font color='rgb(255,80,80)'>all enemies within this unit's range</font>, dealing <font color='rgb(255,180,0)'>+100% DMG</font> based on <font color='rgb(255,80,80)'>Skill DMG</font>.<br/>Grants <font color='rgb(100,200,255)'>+10 Shield</font> to <font color='rgb(100,200,255)'>all allied units</font>.<br/><font color='rgb(255,120,120)'>Can only be used once per game.</font>"
       },
-      "ultimateName": "Rika’s Guardian(愛)",
-      "ultimateCooldown": 999,
       "statsAtBase": {
         "attack": 60,
         "dps": 26.1,
@@ -12115,7 +12103,7 @@
         "attack": 1102.8,
         "dps": 479.5,
         "attackSpeed": 2.3,
-        "range": 14.3,
+        "range": 22.4,
         "health": 2441.1,
         "speed": 10.2,
         "skillDamage": 3141,
@@ -12126,7 +12114,7 @@
       "id": "unit_036",
       "name": "Bulma",
       "icon": null,
-      "model": null,
+      "model": "Bulma",
       "displayName": "Bulme",
       "series": "DGB",
       "rarity": "Legendary",
@@ -12284,7 +12272,7 @@
       "id": "Atalanta_001",
       "name": "Atalanta",
       "icon": null,
-      "model": null,
+      "model": "Atalanta",
       "displayName": "Atala",
       "series": "Fate",
       "rarity": "Mythic",
@@ -12504,13 +12492,13 @@
       "id": "Kaitokid_001",
       "name": "Kaitokid",
       "icon": null,
-      "model": null,
+      "model": "Kaitokid",
       "displayName": "KitCat",
       "series": "Other",
       "rarity": "Exclusive",
       "element": "Moon",
       "skillMode": "Line",
-      "baseDamage": 23,
+      "baseDamage": 43,
       "maxLevel": 4,
       "unitCap": 2,
       "spawnCooldown": 17.4,
@@ -12539,14 +12527,14 @@
       "upgradeStatMultiplier": 2,
       "levels": {
         "0": {
-          "Attack": 23,
+          "Attack": 43,
           "Health": 28,
           "Range": 13,
           "AttackSpeed": 2,
           "SkillRange": 13,
           "SkillRadius": 0,
           "SkillWidth": 2.5,
-          "SkillDamage": 32.2,
+          "SkillDamage": 60.2,
           "SkillCooldown": 4,
           "Cost": 1900,
           "NextUpgradeCost": 387,
@@ -12561,14 +12549,14 @@
           "Name": "Kaitokid"
         },
         "1": {
-          "Attack": 23,
+          "Attack": 43,
           "Health": 28,
           "Range": 13,
           "AttackSpeed": 2,
           "SkillRange": 13,
           "SkillRadius": 0,
           "SkillWidth": 2.5,
-          "SkillDamage": 32.2,
+          "SkillDamage": 60.2,
           "SkillCooldown": 4,
           "Cost": 1900,
           "NextUpgradeCost": 521,
@@ -12583,14 +12571,14 @@
           "Name": "Kaitokid"
         },
         "2": {
-          "Attack": 46,
+          "Attack": 86,
           "Health": 56,
           "Range": 13,
           "AttackSpeed": 2,
           "SkillRange": 13,
           "SkillRadius": 0,
           "SkillWidth": 2.5,
-          "SkillDamage": 64.4,
+          "SkillDamage": 120.4,
           "SkillCooldown": 4,
           "Cost": 1900,
           "NextUpgradeCost": 673,
@@ -12605,14 +12593,14 @@
           "Name": "Kaitokid"
         },
         "3": {
-          "Attack": 92,
+          "Attack": 172,
           "Health": 112,
           "Range": 13,
           "AttackSpeed": 2,
           "SkillRange": 13,
           "SkillRadius": 0,
           "SkillWidth": 2.5,
-          "SkillDamage": 128.8,
+          "SkillDamage": 240.8,
           "SkillCooldown": 4,
           "Cost": 1900,
           "NextUpgradeCost": 819,
@@ -12627,14 +12615,14 @@
           "Name": "Kaitokid"
         },
         "4": {
-          "Attack": 184,
+          "Attack": 344,
           "Health": 224,
           "Range": 15,
           "AttackSpeed": 1.82,
           "SkillRange": 15,
           "SkillRadius": 0,
           "SkillWidth": 3,
-          "SkillDamage": 257.6,
+          "SkillDamage": 481.6,
           "SkillCooldown": 4,
           "Cost": 1900,
           "NextUpgradeCost": 0,
@@ -12663,23 +12651,23 @@
       "ultimateName": "Magician",
       "ultimateCooldown": 20,
       "statsAtBase": {
-        "attack": 23,
-        "dps": 11.5,
+        "attack": 43,
+        "dps": 21.5,
         "attackSpeed": 2,
         "range": 13,
         "health": 28,
         "speed": 10,
-        "skillDamage": 32.2,
+        "skillDamage": 60.2,
         "cost": 1900
       },
       "statsAtMax": {
-        "attack": 1735.9,
-        "dps": 953.8,
+        "attack": 3245.3,
+        "dps": 1783.1,
         "attackSpeed": 1.82,
         "range": 15.3,
         "health": 2033.5,
         "speed": 11.2,
-        "skillDamage": 2338.5,
+        "skillDamage": 4372,
         "cost": 1900
       }
     },
@@ -12687,7 +12675,7 @@
       "id": "unit_042",
       "name": "Will",
       "icon": null,
-      "model": null,
+      "model": "Will",
       "displayName": "Woll",
       "series": "Wistoria",
       "rarity": "Mythic",
@@ -12806,8 +12794,8 @@
         "4": {
           "Attack": 48.4,
           "Health": 86.4,
-          "Range": 7,
-          "AttackSpeed": 7.2,
+          "Range": 11,
+          "AttackSpeed": 2.7,
           "SkillRange": 7,
           "SkillRadius": 8,
           "SkillWidth": 4.26,
@@ -12845,9 +12833,9 @@
       },
       "statsAtMax": {
         "attack": 456.6,
-        "dps": 63.4,
-        "attackSpeed": 7.2,
-        "range": 7.1,
+        "dps": 169.1,
+        "attackSpeed": 2.7,
+        "range": 11.2,
         "health": 784.3,
         "speed": 6.1,
         "skillDamage": 1098.4,
@@ -12858,7 +12846,7 @@
       "id": "Qinshi_001",
       "name": "Qinshi",
       "icon": null,
-      "model": null,
+      "model": "Qinshi",
       "displayName": "Qin",
       "series": "Ragnarok",
       "rarity": "Secret",
@@ -13148,7 +13136,7 @@
       "id": "Kojiro_001",
       "name": "Kojiro",
       "icon": null,
-      "model": null,
+      "model": "Kojiro",
       "displayName": "Kojira",
       "series": "Other",
       "rarity": "Legendary",
@@ -13295,7 +13283,7 @@
       "id": "NEW_001",
       "name": "Shinobu",
       "icon": null,
-      "model": null,
+      "model": "Shinobu",
       "displayName": "Shinoba",
       "series": "DMSlayer",
       "rarity": "Legendary",
@@ -13485,7 +13473,7 @@
       "id": "NEW_004",
       "name": "Tanjiro",
       "icon": null,
-      "model": null,
+      "model": "Tanjiro",
       "displayName": "Crimson Slayer",
       "series": "DMSlayer",
       "rarity": "Epic",
@@ -13629,7 +13617,7 @@
       "id": "Archer_001",
       "name": "Archer_P",
       "icon": null,
-      "model": null,
+      "model": "Archer_P",
       "displayName": "Archor",
       "series": "Fate",
       "rarity": "Mythic",
@@ -13845,7 +13833,7 @@
       "id": "Okarun_001",
       "name": "Okarun",
       "icon": null,
-      "model": null,
+      "model": "Okarun",
       "displayName": "Okalan",
       "series": "Other",
       "rarity": "Mythic",
@@ -13976,7 +13964,7 @@
       "id": "Bellion_001",
       "name": "Bellion",
       "icon": null,
-      "model": null,
+      "model": "Bellion",
       "displayName": "Burlion",
       "series": "SOLOLEVELING",
       "rarity": "Secret",
@@ -14262,7 +14250,7 @@
       "id": "Choso_001",
       "name": "Choso",
       "icon": null,
-      "model": null,
+      "model": "Choso",
       "displayName": "Chosa",
       "series": "JJK",
       "rarity": "Secret",
@@ -14500,7 +14488,7 @@
       "id": "Gabimaru_001",
       "name": "Gabimaru",
       "icon": null,
-      "model": null,
+      "model": "Gabimaru",
       "displayName": "Gabumara",
       "series": "Other",
       "rarity": "Exclusive",
@@ -14701,7 +14689,7 @@
       "id": "unit_038_evo",
       "name": "Broly_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Broly_Awakened",
       "displayName": "Bory (Awakened)",
       "series": "DGB",
       "rarity": "Mythic",
@@ -14955,7 +14943,7 @@
       "id": "NEW_003_EVO",
       "name": "Zoro_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Zoro_Awakened",
       "displayName": "SoRo (TS)",
       "series": "OnePiece",
       "rarity": "Legendary",
@@ -15020,7 +15008,7 @@
           "CritDamage": 1.1,
           "SellCost": 88.60759494,
           "SpawnCooldown": 7.9,
-          "Speed": 6,
+          "Speed": 12,
           "unitsCapp": 3,
           "Name": "Zoro_Awakened"
         },
@@ -15042,7 +15030,7 @@
           "CritDamage": 1.1,
           "SellCost": 88.60759494,
           "SpawnCooldown": 7.9,
-          "Speed": 6,
+          "Speed": 12,
           "unitsCapp": 3,
           "Name": "Zoro_Awakened"
         },
@@ -15064,7 +15052,7 @@
           "CritDamage": 1.1,
           "SellCost": 88.60759494,
           "SpawnCooldown": 7.9,
-          "Speed": 6,
+          "Speed": 12,
           "unitsCapp": 3,
           "Name": "Zoro_Awakened"
         },
@@ -15086,7 +15074,7 @@
           "CritDamage": 1.1,
           "SellCost": 88.60759494,
           "SpawnCooldown": 7.9,
-          "Speed": 6,
+          "Speed": 12,
           "unitsCapp": 3,
           "Name": "Zoro_Awakened"
         },
@@ -15108,7 +15096,7 @@
           "CritDamage": 1.1,
           "SellCost": 88.60759494,
           "SpawnCooldown": 7.9,
-          "Speed": 6,
+          "Speed": 12,
           "unitsCapp": 3,
           "Name": "Zoro_Awakened"
         }
@@ -15136,7 +15124,7 @@
         "attackSpeed": 2.6,
         "range": 10.2,
         "health": 393.1,
-        "speed": 6.1,
+        "speed": 12.2,
         "skillDamage": 488.4,
         "cost": 700
       }
@@ -15145,7 +15133,7 @@
       "id": "Gilgamesh_001_Evo",
       "name": "Gilgamesh_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Gilgamesh_Awakened",
       "displayName": "Gilga (Golden Sovereign)",
       "series": "Fate",
       "rarity": "Tactical",
@@ -15191,7 +15179,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 146.4,
+          "SkillDamage": 149.5,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 350,
@@ -15213,7 +15201,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 146.4,
+          "SkillDamage": 149.5,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 580,
@@ -15235,7 +15223,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 175.7,
+          "SkillDamage": 179.3,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 760,
@@ -15257,7 +15245,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 210.7,
+          "SkillDamage": 215.1,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 930,
@@ -15279,7 +15267,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 253,
+          "SkillDamage": 258.2,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 1060,
@@ -15301,7 +15289,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 303.6,
+          "SkillDamage": 309.9,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 1180,
@@ -15323,7 +15311,7 @@
           "SkillRange": 28,
           "SkillRadius": 13,
           "SkillWidth": 0,
-          "SkillDamage": 364.3,
+          "SkillDamage": 371.9,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 1300,
@@ -15345,7 +15333,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 437,
+          "SkillDamage": 446.1,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 1400,
@@ -15367,7 +15355,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 524.6,
+          "SkillDamage": 535.6,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 1440,
@@ -15389,7 +15377,7 @@
           "SkillRange": 20,
           "SkillRadius": 9,
           "SkillWidth": 0,
-          "SkillDamage": 629.5,
+          "SkillDamage": 642.6,
           "SkillCooldown": 6.6,
           "Cost": 3500,
           "NextUpgradeCost": 0,
@@ -15420,7 +15408,7 @@
         "range": 20,
         "health": 149,
         "speed": 7.3,
-        "skillDamage": 146.4,
+        "skillDamage": 149.5,
         "cost": 3500
       },
       "statsAtMax": {
@@ -15430,7 +15418,7 @@
         "range": 20.4,
         "health": 5816.3,
         "speed": 7.4,
-        "skillDamage": 5714.6,
+        "skillDamage": 5833.5,
         "cost": 3500
       }
     },
@@ -15438,7 +15426,7 @@
       "id": "unit_017_evo",
       "name": "Itachi_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Itachi_Awakened",
       "displayName": "Itacho (Susano'o)",
       "series": "NRT",
       "rarity": "Mythic",
@@ -15693,7 +15681,7 @@
       "id": "unit_041",
       "name": "Goku_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Goku_Awakened",
       "displayName": "Goju (Saiyan)",
       "series": "DGB",
       "rarity": "Legendary",
@@ -15893,7 +15881,7 @@
       "id": "unit_045",
       "name": "Lihanna",
       "icon": null,
-      "model": null,
+      "model": "Lihanna",
       "displayName": "Lihona",
       "series": "Wistoria",
       "rarity": "Legendary",
@@ -16062,13 +16050,13 @@
       "id": "admin_001",
       "name": "Yuta_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Yuta_Awakened",
       "displayName": "Yuto (Admin Units)",
       "series": "JJK",
       "rarity": "Mysterious",
       "element": "Noctis",
       "skillMode": "Cone",
-      "baseDamage": 72000000,
+      "baseDamage": 7200,
       "maxLevel": 8,
       "unitCap": 1,
       "spawnCooldown": 24.5,
@@ -16087,14 +16075,14 @@
       "upgradeStatMultiplier": 1.07,
       "levels": {
         "0": {
-          "Attack": 72000000,
-          "Health": 2080000000,
+          "Attack": 7200,
+          "Health": 208,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 720000000,
+          "SkillDamage": 72000,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16109,14 +16097,14 @@
           "Name": "Yuta_Awakened"
         },
         "1": {
-          "Attack": 72000000,
-          "Health": 2080000000,
+          "Attack": 7200,
+          "Health": 208,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 720000000,
+          "SkillDamage": 72000,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16131,14 +16119,14 @@
           "Name": "Yuta_Awakened"
         },
         "2": {
-          "Attack": 77040000,
-          "Health": 2225600000,
+          "Attack": 7704,
+          "Health": 222.6,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 770400000,
+          "SkillDamage": 77040,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16153,14 +16141,14 @@
           "Name": "Yuta_Awakened"
         },
         "3": {
-          "Attack": 82432800,
-          "Health": 2381392000,
+          "Attack": 8243.3,
+          "Health": 238.1,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 824328000,
+          "SkillDamage": 82433,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16175,14 +16163,14 @@
           "Name": "Yuta_Awakened"
         },
         "4": {
-          "Attack": 88203096,
-          "Health": 2548089440,
+          "Attack": 8820.3,
+          "Health": 254.8,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 882030960,
+          "SkillDamage": 88203,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16197,14 +16185,14 @@
           "Name": "Yuta_Awakened"
         },
         "5": {
-          "Attack": 94377312.7,
-          "Health": 2726455700.8,
+          "Attack": 9437.7,
+          "Health": 272.6,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 943773127,
+          "SkillDamage": 94377,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16219,14 +16207,14 @@
           "Name": "Yuta_Awakened"
         },
         "6": {
-          "Attack": 100983724.6,
-          "Health": 2917307599.9,
+          "Attack": 10098.4,
+          "Health": 291.7,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 1009837246,
+          "SkillDamage": 100984,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16241,14 +16229,14 @@
           "Name": "Yuta_Awakened"
         },
         "7": {
-          "Attack": 108052585.3,
-          "Health": 3121519131.8,
+          "Attack": 10805.3,
+          "Health": 312.2,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 1080525853,
+          "SkillDamage": 108053,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 20,
@@ -16263,14 +16251,14 @@
           "Name": "Yuta_Awakened"
         },
         "8": {
-          "Attack": 115616266.3,
-          "Health": 3340025471.1,
+          "Attack": 11561.6,
+          "Health": 334,
           "Range": 20,
           "AttackSpeed": 0.5,
           "SkillRange": 20,
           "SkillRadius": 20,
           "SkillWidth": 30,
-          "SkillDamage": 1156162663,
+          "SkillDamage": 115616,
           "SkillCooldown": 2,
           "Cost": 200,
           "NextUpgradeCost": 0,
@@ -16293,23 +16281,23 @@
         "UltimateDescription": "Attacks <font color='rgb(255,80,80)'>all enemies within this unit's range</font>, dealing <font color='rgb(255,180,0)'>+100% DMG</font> based on <font color='rgb(255,80,80)'>Skill DMG</font>.<br/>Grants <font color='rgb(100,200,255)'>+10 Shield</font> to <font color='rgb(100,200,255)'>all allied units</font>.<br/><font color='rgb(255,120,120)'>Can only be used once per game.</font>"
       },
       "statsAtBase": {
-        "attack": 72000000,
-        "dps": 144000000,
+        "attack": 7200,
+        "dps": 14400,
         "attackSpeed": 0.5,
         "range": 20,
-        "health": 2080000000,
+        "health": 208,
         "speed": 24,
-        "skillDamage": 720000000,
+        "skillDamage": 72000,
         "cost": 200
       },
       "statsAtMax": {
-        "attack": 1090723856.3,
-        "dps": 2181447712.6,
+        "attack": 109072.1,
+        "dps": 218144.2,
         "attackSpeed": 0.5,
         "range": 20.4,
-        "health": 30320751226.6,
+        "health": 3032.1,
         "speed": 24.5,
-        "skillDamage": 10495644654.7,
+        "skillDamage": 1049562,
         "cost": 200
       }
     },
@@ -16317,7 +16305,7 @@
       "id": "Ishtar_001",
       "name": "Ishtar",
       "icon": null,
-      "model": null,
+      "model": "Ishtar",
       "displayName": "Ishtor",
       "series": "Fate",
       "rarity": "Mythic",
@@ -16539,7 +16527,7 @@
       "id": "unit_050",
       "name": "Finn",
       "icon": null,
-      "model": null,
+      "model": "Finn",
       "displayName": "Fammy",
       "series": "Wistoria",
       "rarity": "Secret",
@@ -16606,7 +16594,7 @@
           "CritDamage": 1.1,
           "SellCost": 140,
           "SpawnCooldown": 7.8,
-          "Speed": 9,
+          "Speed": 6,
           "unitsCapp": 1,
           "Name": "Finn"
         },
@@ -16628,7 +16616,7 @@
           "CritDamage": 1.1,
           "SellCost": 140,
           "SpawnCooldown": 7.8,
-          "Speed": 9,
+          "Speed": 6,
           "unitsCapp": 1,
           "Name": "Finn"
         },
@@ -16650,14 +16638,14 @@
           "CritDamage": 1.1,
           "SellCost": 140,
           "SpawnCooldown": 7.8,
-          "Speed": 9,
+          "Speed": 6,
           "unitsCapp": 1,
           "Name": "Finn"
         },
         "4": {
           "Attack": 56.2,
           "Health": 75.9,
-          "Range": 12,
+          "Range": 11,
           "AttackSpeed": 2,
           "SkillRange": 12,
           "SkillRadius": 0,
@@ -16672,7 +16660,7 @@
           "CritDamage": 1.1,
           "SellCost": 140,
           "SpawnCooldown": 7.8,
-          "Speed": 9,
+          "Speed": 6,
           "unitsCapp": 1,
           "Name": "Finn"
         }
@@ -16698,9 +16686,9 @@
         "attack": 530.2,
         "dps": 265.1,
         "attackSpeed": 2,
-        "range": 12.2,
+        "range": 11.2,
         "health": 689,
-        "speed": 9.2,
+        "speed": 6.1,
         "skillDamage": 1224.6,
         "cost": 1800
       }
@@ -16709,7 +16697,7 @@
       "id": "Asura_001_evo",
       "name": "Asura_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Asura_Awakened",
       "displayName": "Ashura (鬼神)",
       "series": "Other",
       "rarity": "Tactical",
@@ -16718,7 +16706,7 @@
       "baseDamage": 75,
       "maxLevel": 8,
       "unitCap": 1,
-      "spawnCooldown": 18,
+      "spawnCooldown": 25,
       "evolution": null,
       "upgradeBase": {
         "1": 600,
@@ -16755,7 +16743,7 @@
       "levels": {
         "0": {
           "Attack": 75,
-          "Health": 153,
+          "Health": 230,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16770,14 +16758,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "1": {
           "Attack": 75,
-          "Health": 153,
+          "Health": 230,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16792,14 +16780,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "2": {
           "Attack": 85.5,
-          "Health": 174.4,
+          "Health": 262.2,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16814,14 +16802,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "3": {
           "Attack": 97.5,
-          "Health": 198.8,
+          "Health": 298.9,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16836,14 +16824,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "4": {
           "Attack": 111.1,
-          "Health": 226.7,
+          "Health": 340.8,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16858,14 +16846,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "5": {
           "Attack": 126.7,
-          "Health": 258.4,
+          "Health": 388.5,
           "Range": 17,
           "AttackSpeed": 2.43,
           "SkillRange": 17,
@@ -16880,14 +16868,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "6": {
           "Attack": 144.4,
-          "Health": 294.6,
+          "Health": 442.8,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16902,14 +16890,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "7": {
           "Attack": 164.6,
-          "Health": 335.8,
+          "Health": 504.8,
           "Range": 19,
           "AttackSpeed": 2.43,
           "SkillRange": 19,
@@ -16924,14 +16912,14 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
         },
         "8": {
           "Attack": 187.7,
-          "Health": 382.8,
+          "Health": 575.5,
           "Range": 16,
           "AttackSpeed": 2.43,
           "SkillRange": 16,
@@ -16946,7 +16934,7 @@
           "CritChance": 0.3,
           "CritDamage": 1.2,
           "SellCost": 105,
-          "SpawnCooldown": 18,
+          "SpawnCooldown": 25,
           "Speed": 11,
           "unitsCapp": 1,
           "Name": "Asura_Awakened"
@@ -16966,7 +16954,7 @@
         "dps": 30.9,
         "attackSpeed": 2.43,
         "range": 16,
-        "health": 153,
+        "health": 230,
         "speed": 11,
         "skillDamage": 300,
         "cost": 1900
@@ -16976,7 +16964,7 @@
         "dps": 728.7,
         "attackSpeed": 2.43,
         "range": 16.3,
-        "health": 3475.1,
+        "health": 5224.4,
         "speed": 11.2,
         "skillDamage": 6815.8,
         "cost": 1900
@@ -16986,7 +16974,7 @@
       "id": "NEW_006",
       "name": "Tsunayoshi",
       "icon": null,
-      "model": null,
+      "model": "Tsunayoshi",
       "displayName": "Last Heir",
       "series": "Other",
       "rarity": "Epic",
@@ -17144,7 +17132,7 @@
       "id": "NEW_006_EVO",
       "name": "Tsunayoshi_Awakened",
       "icon": null,
-      "model": null,
+      "model": "Tsunayoshi_Awakened",
       "displayName": "Last Heir (Awakened)",
       "series": "Other",
       "rarity": "Mythic",
@@ -17441,24 +17429,10 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Frieza": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Transformation Crusher</font>",
-      "isUltimate": false,
-      "PassiveDescription": "<b>Energy Gauge (100):</b> Loses 1 Energy/sec while moving. Reaching 0 Energy inflicts <font color='rgb(100,180,255)'>Sleep</font> and triggers 1 of 3 Random Auras:<br/>  • <font color='rgb(0,180,255)'>Blue Aura:</font> Instantly restores +50 Energy (Wakes up).<br/>  • <font color='rgb(255,80,80)'>Red Aura:</font> +50% Damage buff.<br/>  • <font color='rgb(200,80,255)'>Purple Aura:</font> +50% HP buff.<br/><b>Defense Mode Charge:</b> Restores +1 Energy every 0.2s. Reaching 100 Energy purifies all debuffs.<br/><b>Speed Scaling:</b> Speed scales with Energy (100 Energy = <font color='rgb(80,255,80)'>+10% Speed</font>).<br/><b>Death Retaliation:</b> If this unit dies in Defense Mode with &lt; 3 Energy, inflicts <font color='rgb(180,220,255)'>50% Slow</font> on all enemies in range for 4s.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
     "Gojo": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>Infinity Reflex</font>",
       "isUltimate": true,
       "PassiveDescription": "Has a <font color='rgb(255,105,180)'>permanent 20% Dodge Chance</font> to avoid all incoming attacks.<br/>If this unit <font color='rgb(255,215,0)'>has not been hit since deployment</font>,<br/>its Dodge Chance becomes <font color='rgb(255,105,180)'>100%</font>.<br/>This effect <font color='rgb(255,120,120)'>resets upon Upgrade</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Naoya": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Projection Sorcery: Arrogance</font>",
-      "isUltimate": false,
-      "PassiveDescription": "<b>Hunt Mode:</b> Increases Damage by <font color='rgb(255,80,80)'>+15%</font> and Speed by <font color='rgb(80,255,80)'>+12%</font>.<br/><b>Defense Mode:</b> Reduces Attack Interval (SPA) by <font color='rgb(0,200,255)'>-15%</font>, but inflicts <font color='rgb(180,80,255)'>Curse</font> debuff on all deployed allies from the <font color='rgb(255,215,0)'>JJK</font> series.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17636,13 +17610,6 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Wignall": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Overgrowth</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Gains <font color='rgb(0,255,0)'>+15% Evade</font>. If allies have Evade, this unit <font color='rgb(255,105,180)'>steals</font> it for itself, granting those allies <font color='rgb(0,255,0)'>+8% Armor Pierce</font> instead.<br/>If there are <font color='rgb(255,105,180)'>more than 20 enemies</font> on the map, those allies' Evade becomes <font color='rgb(255,105,180)'>0</font>.<br/>When there are <font color='rgb(255,105,180)'>more than 20 enemies</font> on the map, periodically grows <font color='rgb(255,105,180)'>damaging plants</font> at random spots within its range.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
     "Minato": {
       "PassiveHeader": "Inventor",
       "isUltimate": true,
@@ -17650,12 +17617,18 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Gara": {
-      "PassiveHeader": "Sand seal",
+    "SungJinWoo_Awakened": {
+      "PassiveHeader": {
+        "1": "<font color='rgb(255,235,0)'>System Arise</font>",
+        "2": "<font color='rgb(255,235,0)'>Absolute Shadow</font>"
+      },
       "isUltimate": true,
-      "PassiveDescription": "Any enemy that attacks this unit becomes permanently <font color='rgb(255,105,180)'>slowed</font>.<br/>If this unit dies, the slow effect on all enemies is immediately removed.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
+      "PassiveDescription": {
+        "1": "When this unit defeats an enemy, there is an <font color='rgb(0,255,0)'>80%</font> chance to raise it as a <font color='rgb(170,120,255)'>Shadow Soldier</font> from your base with <font color='rgb(0,255,0)'>10%</font> of this unit's current stats.<br/>While this unit is on the field, every ally has a <font color='rgb(0,255,0)'>40%</font> chance to raise a <font color='rgb(170,120,255)'>Shadow Soldier</font> on kill with <font color='rgb(0,255,0)'>2.5%</font> of this unit's stats.<br/>Shadow Soldier limit: <font color='rgb(0,255,0)'>10</font>. If this unit dies while the limit is full, <font color='rgb(255,105,180)'>all Shadow Soldiers die with it</font>, granting this unit <font color='rgb(0,255,0)'>+10% HP</font> per Shadow (Max <font color='rgb(0,255,0)'>50%</font>) and <font color='rgb(0,255,0)'>+1 Shield</font> to future Shadows (Max <font color='rgb(0,255,0)'>5</font>).<br/>Defeating a <font color='rgb(255,105,180)'>Boss</font> deals <font color='rgb(0,255,0)'>50% DMG</font> to every enemy on the field <font color='rgb(0,255,0)'>4 times</font> instead of raising it.",
+        "2": "When deployed, inflicts <font color='rgb(255,105,180)'>Curse</font> (cannot crit) on all enemies for <font color='rgb(0,255,0)'>3.2s</font>.<br/>Normal attacks have a <font color='rgb(0,255,0)'>20%</font> chance to inflict <font color='rgb(255,105,180)'>Poison</font> for <font color='rgb(0,255,0)'>4s</font> (also on enemies that lifesteal from this unit). In <font color='rgb(255,105,180)'>Hunt Mode</font> the chance is <font color='rgb(0,255,0)'>5%</font> for <font color='rgb(0,255,0)'>2s</font>. Poison deals <font color='rgb(0,255,0)'>50% DMG</font> per second and cannot stack.<br/><b>Hunter:</b> marks <font color='rgb(0,255,0)'>5</font> random enemies 👁️‍🗨️. All damage to marked enemies is <font color='rgb(0,255,0)'>+50%</font>. When all are gone, a new hunt starts after <font color='rgb(0,255,0)'>5s</font>.<br/>Gains <font color='rgb(0,255,0)'>+10% Skill DMG</font> per Shadow Soldier on the field (no limit).<br/>On first contact with an enemy, <font color='rgb(255,105,180)'>Slows</font> the 5 nearest enemies by <font color='rgb(0,255,0)'>7%</font> for <font color='rgb(0,255,0)'>1s</font> (once per deployment)."
+      },
+      "UltimateHeader": "<font color='rgb(255,235,0)'>Administrator</font>",
+      "UltimateDescription": "Instantly raises <font color='rgb(0,255,0)'>3</font> <font color='rgb(170,120,255)'>Shadow Soldiers</font> from your base (limit <font color='rgb(0,255,0)'>10</font> still applies).<br/>Deals <font color='rgb(0,255,0)'>50%</font> of this unit's DMG (including all passives) to every enemy in range and inflicts <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(0,255,0)'>2%</font> DMG) for <font color='rgb(0,255,0)'>4s</font>.<br/>All <font color='rgb(170,120,255)'>Shadow Soldiers</font> on the field gain <font color='rgb(0,255,0)'>+10% All Stats</font> (does not stack).<br/>Shadow Soldiers already on the field (not the newly raised ones) gain <font color='rgb(255,105,180)'>Regeneration</font> (<font color='rgb(0,255,0)'>10%</font> HP every <font color='rgb(0,255,0)'>2s</font>) for <font color='rgb(0,255,0)'>1.5s</font>.<br/>If you have more than <font color='rgb(0,255,0)'>1</font> <font color='rgb(170,120,255)'>Shadow Soldier</font> after casting, enemy waves spawn faster by <font color='rgb(0,255,0)'>+0.2x</font> per Shadow (Max <font color='rgb(0,255,0)'>+2x</font>) for <font color='rgb(0,255,0)'>3.5s</font>."
     },
     "Sukuna_Awakened": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>King’s Final Ascent</font>",
@@ -17664,29 +17637,17 @@
       "UltimateHeader": "<font color='rgb(233,170,235)'>Malevolent Shrine</font>",
       "UltimateDescription": "Deals <font color='rgb(255,80,80)'>DMG to all enemies map-wide</font> while the <font color='rgb(233,170,235)'>Domain</font> is active."
     },
-    "Beru": {
-      "PassiveHeader": {
-        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
-        "2": "<font color='rgb(255,235,0)'>Winged Executioner</font>"
-      },
+    "Megumi": {
+      "PassiveHeader": "Shadow Zone",
       "isUltimate": true,
-      "PassiveDescription": {
-        "1": "With a Solo Leveling ally, whenever a <font color='rgb(170,120,255)'>Shadow Soldier</font> is raised this unit <font color='rgb(255,105,180)'>Roars</font> (<font color='rgb(0,255,0)'>4s</font> cooldown), dealing <font color='rgb(0,255,0)'>30% DMG</font> to every enemy in range and <font color='rgb(255,105,180)'>pulling</font> them in.<br/>Each Roar removes <font color='rgb(0,255,0)'>3 Shield</font> from the frontmost enemy.<br/>Increases the <font color='rgb(170,120,255)'>Shadow Soldier</font> limit by <font color='rgb(0,255,0)'>+2</font>.",
-        "2": "Every attack has a <font color='rgb(0,255,0)'>50%</font> chance to inflict <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(0,255,0)'>100% DMG</font> per second).<br/>Starts with <font color='rgb(0,255,0)'>10 Hunger</font>. Each hit taken removes 1. At 0, all enemies in range are <font color='rgb(255,105,180)'>Stunned</font> for <font color='rgb(0,255,0)'>2.3s</font> and <font color='rgb(255,105,180)'>Poisoned</font> for <font color='rgb(0,255,0)'>7s</font> (<font color='rgb(0,255,0)'>100% DMG</font> per second).<br/>When an enemy attacks your base, this unit is deployed <font color='rgb(0,255,0)'>for free</font> ignoring Spawn Cooldown (1 unit, once per match)."
-      },
-      "UltimateHeader": "<font color='rgb(255,235,0)'>Shadow Queen's</font>",
-      "UltimateDescription": "<font color='rgb(255,105,180)'>Roars</font>, dealing <font color='rgb(0,255,0)'>50%</font> of this unit's DMG to every enemy in range with a <font color='rgb(0,255,0)'>100%</font> crit chance, and inflicts <font color='rgb(255,105,180)'>Fear</font> for <font color='rgb(0,255,0)'>0.4s</font>.<br/>After each Ultimate, all Solo Leveling units (including this unit) gain <font color='rgb(0,255,0)'>+10% HP</font> (Max <font color='rgb(0,255,0)'>50%</font>)."
+      "PassiveDescription": "Enemies outside the range will be slowed for 3 seconds. (Only activates upon death.)",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
     },
-    "Igris": {
-      "PassiveHeader": {
-        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
-        "2": "<font color='rgb(255,235,0)'>Knight's Resolve</font>"
-      },
+    "Luffy": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Rubber Fighter</font>",
       "isUltimate": true,
-      "PassiveDescription": {
-        "1": "Gains <font color='rgb(0,255,0)'>+2 Shield</font> for each other Solo Leveling unit on the field (not counting itself, no limit).<br/>While <font color='rgb(255,105,180)'>Sung Jin-Woo</font> is in range, each attack removes <font color='rgb(0,255,0)'>3 Shield</font> from the enemy.<br/>Increases the <font color='rgb(170,120,255)'>Shadow Soldier</font> limit by <font color='rgb(0,255,0)'>+2</font>.",
-        "2": "Every attack inflicts <font color='rgb(255,105,180)'>Corrosion 30%</font> for <font color='rgb(0,255,0)'>10s</font> on enemies of an opposing element, or <font color='rgb(0,255,0)'>permanently</font> on enemies of the same element.<br/>Enemies cannot <font color='rgb(255,105,180)'>Armor Pierce</font> this unit.<br/>Gains <font color='rgb(0,255,0)'>+10% Armor and HP</font> per <font color='rgb(170,120,255)'>Shadow Soldier</font> on the field (Max <font color='rgb(0,255,0)'>50%</font>) and <font color='rgb(0,255,0)'>+10% HP</font> each time a Shadow dies (Max <font color='rgb(0,255,0)'>50%</font>). These stacks are kept after death.<br/>Attacks against armored enemies have a <font color='rgb(0,255,0)'>70%</font> chance to crit, with bonus crit damage equal to <font color='rgb(0,255,0)'>50%</font> of this unit's Armor Pierce (including Corrosion)."
-      },
+      "PassiveDescription": "Every <font color='rgb(255,105,180)'>4 Attacks or Skill uses</font>, the next Attack deals <font color='rgb(255,105,180)'>20% bonus damage</font> and <font color='rgb(255,105,180)'>Slows the enemy</font>.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17703,18 +17664,12 @@
       "UltimateHeader": "<font color='rgb(255,235,0)'>Supreme Shadow Marshal</font>",
       "UltimateDescription": "Solo Leveling units (including this unit) gain <font color='rgb(0,255,0)'>+15% Range</font> for <font color='rgb(0,255,0)'>10s</font>.<br/>Deals <font color='rgb(0,255,0)'>50%</font> of this unit's DMG to every enemy in range (<font color='rgb(0,255,0)'>1 Hit</font>). If any enemy shares an element with your Solo Leveling team, the attack <font color='rgb(255,105,180)'>ignores range</font>.<br/>Every enemy hit gets <font color='rgb(255,105,180)'>Butterfly</font> for <font color='rgb(0,255,0)'>2.4s</font>.<br/>After the Ultimate ends, this unit's attacks permanently inflict <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(0,255,0)'>4%</font> DMG) for <font color='rgb(0,255,0)'>2s</font> (stacks)."
     },
-    "SungJinWoo_Awakened": {
-      "PassiveHeader": {
-        "1": "<font color='rgb(255,235,0)'>System Arise</font>",
-        "2": "<font color='rgb(255,235,0)'>Absolute Shadow</font>"
-      },
+    "Zoro": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Three Sword Style</font>",
       "isUltimate": true,
-      "PassiveDescription": {
-        "1": "When this unit defeats an enemy, there is an <font color='rgb(0,255,0)'>80%</font> chance to raise it as a <font color='rgb(170,120,255)'>Shadow Soldier</font> from your base with <font color='rgb(0,255,0)'>10%</font> of this unit's current stats.<br/>While this unit is on the field, every ally has a <font color='rgb(0,255,0)'>40%</font> chance to raise a <font color='rgb(170,120,255)'>Shadow Soldier</font> on kill with <font color='rgb(0,255,0)'>2.5%</font> of this unit's stats.<br/>Shadow Soldier limit: <font color='rgb(0,255,0)'>10</font>. If this unit dies while the limit is full, <font color='rgb(255,105,180)'>all Shadow Soldiers die with it</font>, granting this unit <font color='rgb(0,255,0)'>+10% HP</font> per Shadow (Max <font color='rgb(0,255,0)'>50%</font>) and <font color='rgb(0,255,0)'>+1 Shield</font> to future Shadows (Max <font color='rgb(0,255,0)'>5</font>).<br/>Defeating a <font color='rgb(255,105,180)'>Boss</font> deals <font color='rgb(0,255,0)'>50% DMG</font> to every enemy on the field <font color='rgb(0,255,0)'>4 times</font> instead of raising it.",
-        "2": "When deployed, inflicts <font color='rgb(255,105,180)'>Curse</font> (cannot crit) on all enemies for <font color='rgb(0,255,0)'>3.2s</font>.<br/>Normal attacks have a <font color='rgb(0,255,0)'>20%</font> chance to inflict <font color='rgb(255,105,180)'>Poison</font> for <font color='rgb(0,255,0)'>4s</font> (also on enemies that lifesteal from this unit). In <font color='rgb(255,105,180)'>Hunt Mode</font> the chance is <font color='rgb(0,255,0)'>5%</font> for <font color='rgb(0,255,0)'>2s</font>. Poison deals <font color='rgb(0,255,0)'>50% DMG</font> per second and cannot stack.<br/><b>Hunter:</b> marks <font color='rgb(0,255,0)'>5</font> random enemies 👁️‍🗨️. All damage to marked enemies is <font color='rgb(0,255,0)'>+50%</font>. When all are gone, a new hunt starts after <font color='rgb(0,255,0)'>5s</font>.<br/>Gains <font color='rgb(0,255,0)'>+10% Skill DMG</font> per Shadow Soldier on the field (no limit).<br/>On first contact with an enemy, <font color='rgb(255,105,180)'>Slows</font> the 5 nearest enemies by <font color='rgb(0,255,0)'>7%</font> for <font color='rgb(0,255,0)'>1s</font> (once per deployment)."
-      },
-      "UltimateHeader": "<font color='rgb(255,235,0)'>Administrator</font>",
-      "UltimateDescription": "Instantly raises <font color='rgb(0,255,0)'>3</font> <font color='rgb(170,120,255)'>Shadow Soldiers</font> from your base (limit <font color='rgb(0,255,0)'>10</font> still applies).<br/>Deals <font color='rgb(0,255,0)'>50%</font> of this unit's DMG (including all passives) to every enemy in range and inflicts <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(0,255,0)'>2%</font> DMG) for <font color='rgb(0,255,0)'>4s</font>.<br/>All <font color='rgb(170,120,255)'>Shadow Soldiers</font> on the field gain <font color='rgb(0,255,0)'>+10% All Stats</font> (does not stack).<br/>Shadow Soldiers already on the field (not the newly raised ones) gain <font color='rgb(255,105,180)'>Regeneration</font> (<font color='rgb(0,255,0)'>10%</font> HP every <font color='rgb(0,255,0)'>2s</font>) for <font color='rgb(0,255,0)'>1.5s</font>.<br/>If you have more than <font color='rgb(0,255,0)'>1</font> <font color='rgb(170,120,255)'>Shadow Soldier</font> after casting, enemy waves spawn faster by <font color='rgb(0,255,0)'>+0.2x</font> per Shadow (Max <font color='rgb(0,255,0)'>+2x</font>) for <font color='rgb(0,255,0)'>3.5s</font>."
+      "PassiveDescription": "Attacks inflict <font color='rgb(255,105,180)'>Bleed</font>, dealing damage equal to <font color='rgb(255,105,180)'>2% of Base DMG</font>.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
     },
     "Luffy_Awakened": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>Gear Second</font>",
@@ -17723,16 +17678,12 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Kaitokid": {
-      "PassiveHeader": {
-        "1": "<font color='rgb(255,235,0)'>Ladies and Gentlemen</font>"
-      },
+    "Finn": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Dwarf God</font>",
       "isUltimate": true,
-      "PassiveDescription": {
-        "1": "Normal attacks attach an <font color='rgb(255,105,180)'>Illusion Card</font> 🃏. When an enemy holds <font color='rgb(0,255,0)'>5</font> cards, every carded enemy takes <font color='rgb(0,255,0)'>15% bonus DMG</font> and all cards reset.<br/>The burst inflicts <font color='rgb(255,105,180)'>Fear</font> on all enemies in range for <font color='rgb(0,255,0)'>2s</font> and grants <font color='rgb(0,255,0)'>+10 Gauge</font> to allies that use a gauge.<br/>With more than <font color='rgb(0,255,0)'>5</font> enemies in range, it strikes each enemy only once before switching targets.<br/>The first deployment each match has a <font color='rgb(0,255,0)'>5%</font> chance to reduce the team's total upgrade cost by <font color='rgb(0,255,0)'>10%</font> (once per match)."
-      },
-      "UltimateHeader": "<font color='rgb(255,235,0)'>Illusion Show</font>",
-      "UltimateDescription": "Instantly attaches <font color='rgb(0,255,0)'>1</font> <font color='rgb(255,105,180)'>Illusion Card</font> 🃏 to every enemy in range (stacks up to <font color='rgb(0,255,0)'>5</font>). Enemies reaching <font color='rgb(0,255,0)'>5</font> cards trigger the card burst.<br/>Grants the player <font color='rgb(0,255,0)'>+50 Yen</font>."
+      "PassiveDescription": "Each attack has a <font color='rgb(255,180,0)'>45% chance</font> to inflict <font color='rgb(200,0,0)'>Bleed</font>, causing enemies to take 15% of the attack's DMG over time.<br/>When Bleed is applied, grants <font color='rgb(0,255,0)'>+5% Speed</font> to this unit and all teammates with Luminous or Water elements.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
     },
     "Sion": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>Redline Logic</font>",
@@ -17748,18 +17699,12 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "SungJinwoo": {
-      "PassiveHeader": {
-        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
-        "2": "<font color='rgb(255,235,0)'>The Last Reject</font>"
-      },
+    "Gojo_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Six Eyes Protocol</font>",
       "isUltimate": true,
-      "PassiveDescription": {
-        "1": "When this unit defeats an enemy, there is an <font color='rgb(0,255,0)'>80%</font> chance to turn it into a <font color='rgb(170,120,255)'>Shadow Soldier</font> that rises from your base with <font color='rgb(0,255,0)'>20%</font> of this unit's current stats.<br/>Shadow Soldier limit: <font color='rgb(0,255,0)'>10</font> (Igris, Beru and Bellion each add <font color='rgb(0,255,0)'>+2</font> when a Solo Leveling ally is present). Bosses cannot be raised.",
-        "2": "The first time this unit is deployed each match, its <font color='rgb(255,105,180)'>DMG, HP and Skill DMG are always 1</font> (Speed and Range unchanged).<br/>From the second deployment onward, its stats return to normal."
-      },
-      "UltimateHeader": "",
-      "UltimateDescription": ""
+      "PassiveDescription": "For each enemy within range, gain <font color='rgb(255,180,0)'>+0.1% RNG and DMG</font>.<br/>This effect <font color='rgb(255,180,0)'>stacks</font> for every enemy that enters the range and <u>resets to the base value when no enemies remain</u>.<br/>Every attack inflicts <font color='rgb(120,200,255)'>Slow for 4s</font>.",
+      "UltimateHeader": "<font color='rgb(233,170,235)'>Void Enlightenment</font>",
+      "UltimateDescription": "Cleanses <font color='rgb(233,170,235)'>all debuffs</font> from this unit and allies.<br/>Freezes <font color='rgb(100,200,255)'>all enemies map-wide</font>, excluding allies.<br/>Upon ending, <font color='rgb(255,180,0)'>deals 1 Hit</font> to <font color='rgb(255,120,120)'>all enemies</font>."
     },
     "Gabimaru": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>Hollow Flame</font>",
@@ -17775,10 +17720,10 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Asura": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Soul Devourer</font>",
+    "Geto_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Cursed Spirit Absorption</font>",
       "isUltimate": true,
-      "PassiveDescription": "Each attack grants <font color='rgb(255,105,180)'>1 Wrath Stack</font> (Max 20). Each stack grants <font color='rgb(0,255,0)'>+2% Base DMG</font> (<font color='rgb(0,255,0)'>+40%</font> at 20 stacks). Stacks are kept even if this unit dies.<br/>At max stacks, this unit's deploy cost increases by <font color='rgb(255,105,180)'>25%</font> and Skill hits inflict <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>20% of DMG</font>) for <font color='rgb(255,105,180)'>4s</font>.",
+      "PassiveDescription": "Every time an enemy dies within Geto's attack range, grants <font color='rgb(0,255,0)'>+2% DMG</font> (Permanent Stack).",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17824,17 +17769,17 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Asura_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>The Embodiment Of Fear</font>",
+    "Nezuko": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Demon Blood</font>",
       "isUltimate": true,
-      "PassiveDescription": "Every attack has a <font color='rgb(0,255,0)'>50%</font> chance to inflict <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>5% of DMG</font>). Attacking a <font color='rgb(255,105,180)'>Bleeding</font> enemy grants <font color='rgb(0,255,0)'>+20% Crit Chance</font> and <font color='rgb(0,255,0)'>+2% Crit DMG</font> per hit (stacks up to <font color='rgb(0,255,0)'>20%</font>).<br/>Enemies that <font color='rgb(255,105,180)'>Lifesteal</font> from this unit receive <font color='rgb(255,105,180)'>Reaper</font> for <font color='rgb(255,105,180)'>3s</font> (does not stack).<br/>While an enemy has <font color='rgb(255,105,180)'>Reaper</font>, attacks inflict <font color='rgb(255,105,180)'>Corrosion</font> and Crit Chance becomes <font color='rgb(0,255,0)'>100%</font> for <font color='rgb(255,105,180)'>4.2s</font>.<br/>All enemies in range receive <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>50% of DMG</font>) for <font color='rgb(255,105,180)'>5s</font> (Cooldown <font color='rgb(255,105,180)'>5s</font>).",
-      "UltimateHeader": "<font color='rgb(200,0,40)'>Madness Wavelength</font>",
-      "UltimateDescription": "Inflicts <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>50% of current DMG</font>) on every enemy on the field for <font color='rgb(255,105,180)'>5.5s</font>. <font color='rgb(255,105,180)'>Bosses</font> take <font color='rgb(0,255,0)'>15% more</font> damage.<br/>Afterwards this unit gains the <font color='rgb(255,120,0)'>Fire</font> element for <font color='rgb(255,105,180)'>10s</font>, then receives a permanent <font color='rgb(255,105,180)'>Pull</font> (enemies focus this unit) until it dies."
+      "PassiveDescription": "Every <font color='rgb(255,105,180)'>1% Dodge</font> is converted into <font color='rgb(255,105,180)'>0.1% Burn Damage</font>.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
     },
-    "Cid": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Master of Shadows</font>",
-      "isUltimate": true,
-      "PassiveDescription": "At the start of each <font color='rgb(255,105,180)'>Wave</font>, gains <font color='rgb(0,255,0)'>+25% Base DMG</font> for <font color='rgb(255,105,180)'>20s</font>.<br/>Deals <font color='rgb(0,255,0)'>+14% DMG</font> to enemies whose HP is more than <font color='rgb(255,105,180)'>10%</font> higher than this unit's HP.",
+    "Buddha": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Ragnarok's Guardian</font>",
+      "isUltimate": false,
+      "PassiveDescription": "In <font color='rgb(100,160,255)'>Defense Mode</font>, this unit deals <font color='rgb(255,80,80)'>0 DMG</font> and gains <font color='rgb(100,200,255)'>Map-Wide Range</font>.<br/>Skill Attacks inflict <font color='rgb(100,200,255)'>Slow 30%</font> for <font color='rgb(255,180,0)'>5s</font>.<br/>Grants <font color='rgb(80,170,255)'>Armor equal to 35% of its HP</font> to all <font color='rgb(255,165,0)'>Ragnarok</font> units except itself, <font color='rgb(255,215,0)'>once per life</font>.<br/>Units that have already received this <font color='rgb(80,170,255)'>Armor buff</font> will not receive it again when redeployed.<br/>If a buffed unit's <font color='rgb(255,80,80)'>Armor reaches 0</font>, this unit can <font color='rgb(80,170,255)'>grant the Armor buff again</font>.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17852,19 +17797,25 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Perona": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Ghost Party</font>",
+    "Will_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Command of the Unarmed King</font>",
       "isUltimate": true,
-      "PassiveDescription": "Each enemy that enters this unit's <font color='rgb(255,105,180)'>Range</font> adds <font color='rgb(0,255,0)'>1 Despair Stack</font> (once per enemy). Stacks last the whole match, even if this unit dies.<br/>Every <font color='rgb(0,255,0)'>30 Despair Stacks</font>, all enemies on the map with <font color='rgb(255,105,180)'>Bleed</font> fall into <font color='rgb(255,105,180)'>Sleep</font>.",
+      "PassiveDescription": "Every attack from this unit and its teammates grants <font color='rgb(255,127,80)'>+1 Fracture Stack</font> (Max 10). The team's subsequent attacks will randomly trigger one effect by consuming 1 Fracture Stack per attack (cannot trigger if stacks are at 0):<br/><br/>1. Focus Fire: Teammates target the same enemy as this unit and gain <font color='rgb(0,255,0)'>+20% DMG</font> for that round.<br/>2. Advance: Teammates receive <font color='rgb(0,255,0)'>+15% HP</font> and <font color='rgb(0,255,0)'>+15% SPD</font>.<br/>3. Hold Line: This unit's own attack damage is added to the teammates' attacks when they strike.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Cid_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Perfect Execution / Atomic Resonance</font>",
+    "SungJinwoo": {
+      "PassiveHeader": {
+        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
+        "2": "<font color='rgb(255,235,0)'>The Last Reject</font>"
+      },
       "isUltimate": true,
-      "PassiveDescription": "Builds <font color='rgb(255,105,180)'>Atomic Energy</font> from attacks and kills. At <font color='rgb(0,255,0)'>100%</font>, enters <font color='rgb(255,105,180)'>Overdrive Mode</font>: <font color='rgb(0,255,0)'>+25% DMG</font> and unlocks the Ultimate.<br/>Using the Ultimate inflicts <font color='rgb(255,105,180)'>Defense Break</font> on all enemies for <font color='rgb(255,105,180)'>5s</font>. After each Ultimate, gains <font color='rgb(255,105,180)'>Immunity</font> and <font color='rgb(0,255,0)'>50% Evade</font> for <font color='rgb(255,105,180)'>7s</font>.<br/>In Overdrive, all attacks gain <font color='rgb(255,105,180)'>Gold Time</font>, and killing an enemy worth <font color='rgb(0,255,0)'>100+ money</font> restores <font color='rgb(0,255,0)'>1% Atomic Energy</font>.<br/>In <font color='rgb(255,105,180)'>Hunt Mode</font>, attacks inflict stacking <font color='rgb(255,105,180)'>Defense Break</font> on every enemy hit, costing <font color='rgb(255,105,180)'>10% Atomic Energy</font> per attack.",
-      "UltimateHeader": "<font color='rgb(170,0,255)'>I Am Atomic</font>",
-      "UltimateDescription": "Deals bonus damage based on <font color='rgb(255,105,180)'>Atomic Energy %</font> (from <font color='rgb(0,255,0)'>Skill DMG</font>) to all enemies on the field and inflicts <font color='rgb(255,105,180)'>Slow 30%</font> for <font color='rgb(255,105,180)'>3s</font>. These hits have <font color='rgb(255,105,180)'>Rupture</font> (ignore Armor and Shield).<br/>If <font color='rgb(0,255,0)'>5+ enemies</font> die from it, restores <font color='rgb(0,255,0)'>100% Atomic Energy</font> and reduces the Ultimate cooldown by <font color='rgb(0,255,0)'>20%</font>."
+      "PassiveDescription": {
+        "1": "When this unit defeats an enemy, there is an <font color='rgb(0,255,0)'>80%</font> chance to turn it into a <font color='rgb(170,120,255)'>Shadow Soldier</font> that rises from your base with <font color='rgb(0,255,0)'>20%</font> of this unit's current stats.<br/>Shadow Soldier limit: <font color='rgb(0,255,0)'>10</font> (Igris, Beru and Bellion each add <font color='rgb(0,255,0)'>+2</font> when a Solo Leveling ally is present). Bosses cannot be raised.",
+        "2": "The first time this unit is deployed each match, its <font color='rgb(255,105,180)'>DMG, HP and Skill DMG are always 1</font> (Speed and Range unchanged).<br/>From the second deployment onward, its stats return to normal."
+      },
+      "UltimateHeader": "",
+      "UltimateDescription": ""
     },
     "Tsunayoshi_Awakened": {
       "PassiveHeader": "<font color='rgb(255,235,0)'>Hyper Mode</font>",
@@ -17873,17 +17824,17 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Okarun": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Turbo Rampage</font>",
+    "Tanjiro": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Hinokami Resolve</font>",
       "isUltimate": true,
-      "PassiveDescription": "Every attack inflicts <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>30% of DMG</font>) for <font color='rgb(255,105,180)'>1.2s</font>. Hitting a <font color='rgb(255,105,180)'>Burning</font> enemy also inflicts <font color='rgb(255,105,180)'>Slow 4%</font> for <font color='rgb(255,105,180)'>3.5s</font>.<br/>Landing a hit on an enemy with <font color='rgb(255,105,180)'>Evade</font> applies <font color='rgb(255,105,180)'>Tocsin</font> for <font color='rgb(255,105,180)'>2.4s</font> (does not stack).<br/>Enemies that <font color='rgb(255,105,180)'>Lifesteal</font> from this unit receive <font color='rgb(255,105,180)'>Defense Break</font> (<font color='rgb(0,255,0)'>-10% Armor</font>).",
+      "PassiveDescription": "The <font color='rgb(255,105,180)'>Burn</font> inflicted by this Unit lasts <font color='rgb(255,105,180)'>2s longer</font>. Gains a special effect: <font color='rgb(255,105,180)'>Immune to Burn inflicted by enemy attacks</font>. Attacks apply <font color='rgb(255,105,180)'>Hinokami Mark</font>. Fire-element Units and Allies that attack marked enemies inflict <font color='rgb(255,105,180)'>+0.5% stronger Burn</font>.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Alucard": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>The Undying Monster</font>",
+    "Doflamingo_Player": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Parasite Strings</font>",
       "isUltimate": true,
-      "PassiveDescription": "Every <font color='rgb(255,105,180)'>Lifesteal</font> also grants <font color='rgb(0,255,0)'>Armor</font> equal to the HP drained (Max <font color='rgb(0,255,0)'>50% of Max HP</font>).<br/>All attacks inflict <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>1.5% of DMG</font>).",
+      "PassiveDescription": "Each <font color='rgb(255,80,80)'>Skill Attack</font> inflicts <font color='rgb(100,200,255)'>Stun</font> for <font color='rgb(255,180,0)'>1.3s</font>, up to <font color='rgb(255,180,0)'>3 times per enemy</font>.<br/>After <font color='rgb(255,180,0)'>15s</font>, warps to a random allied <font color='rgb(255,165,0)'>One Piece</font> unit and gains <font color='rgb(80,200,100)'>+100% HP</font>.<br/><font color='rgb(255,180,0)'>Can only warp once per game.</font><br/>This unit will only deal <font color='rgb(255,180,0)'>10 DMG</font> after warping.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17928,10 +17879,10 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Kojiro": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Swallow Reversal</font>",
+    "Colette": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Rocky Support</font>",
       "isUltimate": true,
-      "PassiveDescription": "Attacking an enemy with <font color='rgb(255,105,180)'>20% more HP</font> than this unit strikes <font color='rgb(0,255,0)'>twice</font>.<br/>Enemies that hit this unit are inflicted with <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(255,105,180)'>3.7%</font> of main DMG) for <font color='rgb(255,105,180)'>2.5s</font>.",
+      "PassiveDescription": "When <font color='rgb(255,105,180)'>Will</font> or <font color='rgb(255,105,180)'>Will (Limit Off)</font> is on the field, they gain <font color='rgb(0,255,0)'>+5% Kill Reward</font>.<br/>",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17942,31 +17893,10 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Saber": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Knight of the Round</font>",
+    "Atalanta": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Huntress of the Wild</font>",
       "isUltimate": true,
-      "PassiveDescription": "When there is an ally from the <font color='rgb(255,105,180)'>Fate</font> series, this unit gains <font color='rgb(0,255,0)'>+10% DMG</font>.<br/>",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Gilgamesh_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>King of Heroes</font>",
-      "isUltimate": true,
-      "PassiveDescription": "The first deployment refunds <font color='rgb(0,255,0)'>50% of the deploy cost</font>. Every <font color='rgb(255,105,180)'>40 money</font> earned from kills grants <font color='rgb(0,255,0)'>+1% DMG</font> (Max <font color='rgb(0,255,0)'>40%</font>).<br/>Gains <font color='rgb(255,105,180)'>Immunity</font> every time it is deployed.<br/>Gains <font color='rgb(0,255,0)'>+4% Skill DMG</font> for every ally unit (1 Cap) in <font color='rgb(255,105,180)'>Defense Mode</font>. When <font color='rgb(255,105,180)'>all allies</font> are in Defense Mode, also gains <font color='rgb(0,255,0)'>+20% Range</font>.",
-      "UltimateHeader": "<font color='rgb(255,200,0)'>Enuma Elish</font>",
-      "UltimateDescription": "Gains <font color='rgb(0,255,0)'>+80% Range</font>, then deals <font color='rgb(0,255,0)'>100% of current DMG</font> to all enemies in range and <font color='rgb(255,105,180)'>heals 50%</font> of the damage dealt.<br/>Cuts the <font color='rgb(255,105,180)'>Shield</font> of every enemy on the map by <font color='rgb(0,255,0)'>half</font>."
-    },
-    "Tanjiro": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Hinokami Resolve</font>",
-      "isUltimate": true,
-      "PassiveDescription": "The <font color='rgb(255,105,180)'>Burn</font> inflicted by this Unit lasts <font color='rgb(255,105,180)'>2s longer</font>. Gains a special effect: <font color='rgb(255,105,180)'>Immune to Burn inflicted by enemy attacks</font>. Attacks apply <font color='rgb(255,105,180)'>Hinokami Mark</font>. Fire-element Units and Allies that attack marked enemies inflict <font color='rgb(255,105,180)'>+0.5% stronger Burn</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Kakashi": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Lightning Warrior</font>",
-      "isUltimate": true,
-      "PassiveDescription": "<font color='rgb(0,255,0)'>+7% DMG</font> when placed (Once per game only).",
+      "PassiveDescription": "Attacks against <font color='rgb(255,105,180)'>far enemies</font> in range inflict <font color='rgb(255,105,180)'>Bleed 2.5%</font>.<br/>When an enemy <font color='rgb(255,105,180)'>evades</font> this unit's attack, gains <font color='rgb(0,255,0)'>+70% Accuracy</font> and <font color='rgb(0,255,0)'>+50% Crit Chance</font> for <font color='rgb(255,105,180)'>5s</font>.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -17977,31 +17907,30 @@
       "UltimateHeader": "<font color='rgb(170,0,255)'>Excalibur Morgan</font>",
       "UltimateDescription": "Deals <font color='rgb(0,255,0)'>100% of current DMG</font> to all enemies in range and <font color='rgb(255,105,180)'>Stuns</font> them for <font color='rgb(255,105,180)'>4.5s</font>.<br/>Consumes all <font color='rgb(255,105,180)'>Dragon Force Stacks</font>: <font color='rgb(0,255,0)'>+5% DMG per stack</font> (Max <font color='rgb(0,255,0)'>50%</font>)."
     },
-    "Kizaru": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Glinting Photon Acceleration</font>",
-      "isUltimate": false,
-      "PassiveDescription": "<b>Death Re-deployment:</b> When this unit dies, increases UnitCap by <font color='rgb(80,255,80)'>+1</font> (MAX 3). Resets on new match, persists through death.<br/><b>Defense Mode:</b> Accumulates <font color='rgb(255,235,0)'>+1 Photon Point</font> every 0.5s (Up to <font color='rgb(255,127,80)'>20%</font>). Each point increases <font color='rgb(0,200,255)'>All Stats by +1%</font>.<br/><b>Hunt Mode Carryover:</b> Accumulated Photon Points and stat boosts carry over and remain active in Hunt Mode!",
+    "Beru": {
+      "PassiveHeader": {
+        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
+        "2": "<font color='rgb(255,235,0)'>Winged Executioner</font>"
+      },
+      "isUltimate": true,
+      "PassiveDescription": {
+        "1": "With a Solo Leveling ally, whenever a <font color='rgb(170,120,255)'>Shadow Soldier</font> is raised this unit <font color='rgb(255,105,180)'>Roars</font> (<font color='rgb(0,255,0)'>4s</font> cooldown), dealing <font color='rgb(0,255,0)'>30% DMG</font> to every enemy in range and <font color='rgb(255,105,180)'>pulling</font> them in.<br/>Each Roar removes <font color='rgb(0,255,0)'>3 Shield</font> from the frontmost enemy.<br/>Increases the <font color='rgb(170,120,255)'>Shadow Soldier</font> limit by <font color='rgb(0,255,0)'>+2</font>.",
+        "2": "Every attack has a <font color='rgb(0,255,0)'>50%</font> chance to inflict <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(0,255,0)'>100% DMG</font> per second).<br/>Starts with <font color='rgb(0,255,0)'>10 Hunger</font>. Each hit taken removes 1. At 0, all enemies in range are <font color='rgb(255,105,180)'>Stunned</font> for <font color='rgb(0,255,0)'>2.3s</font> and <font color='rgb(255,105,180)'>Poisoned</font> for <font color='rgb(0,255,0)'>7s</font> (<font color='rgb(0,255,0)'>100% DMG</font> per second).<br/>When an enemy attacks your base, this unit is deployed <font color='rgb(0,255,0)'>for free</font> ignoring Spawn Cooldown (1 unit, once per match)."
+      },
+      "UltimateHeader": "<font color='rgb(255,235,0)'>Shadow Queen's</font>",
+      "UltimateDescription": "<font color='rgb(255,105,180)'>Roars</font>, dealing <font color='rgb(0,255,0)'>50%</font> of this unit's DMG to every enemy in range with a <font color='rgb(0,255,0)'>100%</font> crit chance, and inflicts <font color='rgb(255,105,180)'>Fear</font> for <font color='rgb(0,255,0)'>0.4s</font>.<br/>After each Ultimate, all Solo Leveling units (including this unit) gain <font color='rgb(0,255,0)'>+10% HP</font> (Max <font color='rgb(0,255,0)'>50%</font>)."
+    },
+    "Cid": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Master of Shadows</font>",
+      "isUltimate": true,
+      "PassiveDescription": "At the start of each <font color='rgb(255,105,180)'>Wave</font>, gains <font color='rgb(0,255,0)'>+25% Base DMG</font> for <font color='rgb(255,105,180)'>20s</font>.<br/>Deals <font color='rgb(0,255,0)'>+14% DMG</font> to enemies whose HP is more than <font color='rgb(255,105,180)'>10%</font> higher than this unit's HP.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Atalanta": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Huntress of the Wild</font>",
+    "Kakashi": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Lightning Warrior</font>",
       "isUltimate": true,
-      "PassiveDescription": "Attacks against <font color='rgb(255,105,180)'>far enemies</font> in range inflict <font color='rgb(255,105,180)'>Bleed 2.5%</font>.<br/>When an enemy <font color='rgb(255,105,180)'>evades</font> this unit's attack, gains <font color='rgb(0,255,0)'>+70% Accuracy</font> and <font color='rgb(0,255,0)'>+50% Crit Chance</font> for <font color='rgb(255,105,180)'>5s</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Colette": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Rocky Support</font>",
-      "isUltimate": true,
-      "PassiveDescription": "When <font color='rgb(255,105,180)'>Will</font> or <font color='rgb(255,105,180)'>Will (Limit Off)</font> is on the field, they gain <font color='rgb(0,255,0)'>+5% Kill Reward</font>.<br/>",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Doflamingo_Player": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Parasite Strings</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Each <font color='rgb(255,80,80)'>Skill Attack</font> inflicts <font color='rgb(100,200,255)'>Stun</font> for <font color='rgb(255,180,0)'>1.3s</font>, up to <font color='rgb(255,180,0)'>3 times per enemy</font>.<br/>After <font color='rgb(255,180,0)'>15s</font>, warps to a random allied <font color='rgb(255,165,0)'>One Piece</font> unit and gains <font color='rgb(80,200,100)'>+100% HP</font>.<br/><font color='rgb(255,180,0)'>Can only warp once per game.</font><br/>This unit will only deal <font color='rgb(255,180,0)'>10 DMG</font> after warping.",
+      "PassiveDescription": "<font color='rgb(0,255,0)'>+7% DMG</font> when placed (Once per game only).",
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
@@ -18011,6 +17940,76 @@
       "PassiveDescription": "When first deployed, strikes the <font color='rgb(255,105,180)'>first enemy</font> on the map regardless of range.<br/>Gains <font color='rgb(255,105,180)'>1 Pride Stack</font> every <font color='rgb(255,105,180)'>2.5s</font>. At <font color='rgb(255,105,180)'>10 Stacks</font>, strikes 1 enemy regardless of range with <font color='rgb(0,255,0)'>+20% Crit DMG</font> (does not stack).",
       "UltimateHeader": "",
       "UltimateDescription": ""
+    },
+    "Gilgamesh_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>King of Heroes</font>",
+      "isUltimate": true,
+      "PassiveDescription": "The first deployment refunds <font color='rgb(0,255,0)'>50% of the deploy cost</font>. Every <font color='rgb(255,105,180)'>40 money</font> earned from kills grants <font color='rgb(0,255,0)'>+1% DMG</font> (Max <font color='rgb(0,255,0)'>40%</font>).<br/>Gains <font color='rgb(255,105,180)'>Immunity</font> every time it is deployed.<br/>Gains <font color='rgb(0,255,0)'>+4% Skill DMG</font> for every ally unit (1 Cap) in <font color='rgb(255,105,180)'>Defense Mode</font>. When <font color='rgb(255,105,180)'>all allies</font> are in Defense Mode, also gains <font color='rgb(0,255,0)'>+20% Range</font>.",
+      "UltimateHeader": "<font color='rgb(255,200,0)'>Enuma Elish</font>",
+      "UltimateDescription": "Gains <font color='rgb(0,255,0)'>+80% Range</font>, then deals <font color='rgb(0,255,0)'>100% of current DMG</font> to all enemies in range and <font color='rgb(255,105,180)'>heals 50%</font> of the damage dealt.<br/>Cuts the <font color='rgb(255,105,180)'>Shield</font> of every enemy on the map by <font color='rgb(0,255,0)'>half</font>."
+    },
+    "Saber": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Knight of the Round</font>",
+      "isUltimate": true,
+      "PassiveDescription": "When there is an ally from the <font color='rgb(255,105,180)'>Fate</font> series, this unit gains <font color='rgb(0,255,0)'>+10% DMG</font>.<br/>",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Okarun": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Turbo Rampage</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Every attack inflicts <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>30% of DMG</font>) for <font color='rgb(255,105,180)'>1.2s</font>. Hitting a <font color='rgb(255,105,180)'>Burning</font> enemy also inflicts <font color='rgb(255,105,180)'>Slow 4%</font> for <font color='rgb(255,105,180)'>3.5s</font>.<br/>Landing a hit on an enemy with <font color='rgb(255,105,180)'>Evade</font> applies <font color='rgb(255,105,180)'>Tocsin</font> for <font color='rgb(255,105,180)'>2.4s</font> (does not stack).<br/>Enemies that <font color='rgb(255,105,180)'>Lifesteal</font> from this unit receive <font color='rgb(255,105,180)'>Defense Break</font> (<font color='rgb(0,255,0)'>-10% Armor</font>).",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Kojiro": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Swallow Reversal</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Attacking an enemy with <font color='rgb(255,105,180)'>20% more HP</font> than this unit strikes <font color='rgb(0,255,0)'>twice</font>.<br/>Enemies that hit this unit are inflicted with <font color='rgb(255,105,180)'>Poison</font> (<font color='rgb(255,105,180)'>3.7%</font> of main DMG) for <font color='rgb(255,105,180)'>2.5s</font>.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Alucard": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>The Undying Monster</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Every <font color='rgb(255,105,180)'>Lifesteal</font> also grants <font color='rgb(0,255,0)'>Armor</font> equal to the HP drained (Max <font color='rgb(0,255,0)'>50% of Max HP</font>).<br/>All attacks inflict <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>1.5% of DMG</font>).",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Gara": {
+      "PassiveHeader": "Sand seal",
+      "isUltimate": true,
+      "PassiveDescription": "Any enemy that attacks this unit becomes permanently <font color='rgb(255,105,180)'>slowed</font>.<br/>If this unit dies, the slow effect on all enemies is immediately removed.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Cid_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Perfect Execution / Atomic Resonance</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Builds <font color='rgb(255,105,180)'>Atomic Energy</font> from attacks and kills. At <font color='rgb(0,255,0)'>100%</font>, enters <font color='rgb(255,105,180)'>Overdrive Mode</font>: <font color='rgb(0,255,0)'>+25% DMG</font> and unlocks the Ultimate.<br/>Using the Ultimate inflicts <font color='rgb(255,105,180)'>Defense Break</font> on all enemies for <font color='rgb(255,105,180)'>5s</font>. After each Ultimate, gains <font color='rgb(255,105,180)'>Immunity</font> and <font color='rgb(0,255,0)'>50% Evade</font> for <font color='rgb(255,105,180)'>7s</font>.<br/>In Overdrive, all attacks gain <font color='rgb(255,105,180)'>Gold Time</font>, and killing an enemy worth <font color='rgb(0,255,0)'>100+ money</font> restores <font color='rgb(0,255,0)'>1% Atomic Energy</font>.<br/>In <font color='rgb(255,105,180)'>Hunt Mode</font>, every <font color='rgb(0,255,0)'>5 Atomic Energy</font> gained makes the next attack inflict stacking <font color='rgb(255,105,180)'>Defense Break</font> on every enemy hit.",
+      "UltimateHeader": "<font color='rgb(170,0,255)'>I Am Atomic</font>",
+      "UltimateDescription": "Deals bonus damage based on <font color='rgb(255,105,180)'>Atomic Energy %</font> (from <font color='rgb(0,255,0)'>Skill DMG</font>) to all enemies on the field and inflicts <font color='rgb(255,105,180)'>Slow 30%</font> for <font color='rgb(255,105,180)'>3s</font>. These hits have <font color='rgb(255,105,180)'>Rupture</font> (ignore Armor and Shield).<br/>If <font color='rgb(0,255,0)'>5+ enemies</font> die from it, restores <font color='rgb(0,255,0)'>100% Atomic Energy</font> and reduces the Ultimate cooldown by <font color='rgb(0,255,0)'>20%</font>."
+    },
+    "Perona": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Ghost Party</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Each enemy that enters this unit's <font color='rgb(255,105,180)'>Range</font> adds <font color='rgb(0,255,0)'>1 Despair Stack</font> (once per enemy). Stacks last the whole match, even if this unit dies.<br/>Every <font color='rgb(0,255,0)'>30 Despair Stacks</font>, all enemies on the map with <font color='rgb(255,105,180)'>Bleed</font> fall into <font color='rgb(255,105,180)'>Sleep</font>.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Asura": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Soul Devourer</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Each attack grants <font color='rgb(255,105,180)'>1 Wrath Stack</font> (Max 20). Each stack grants <font color='rgb(0,255,0)'>+2% Base DMG</font> (<font color='rgb(0,255,0)'>+40%</font> at 20 stacks). Stacks are kept even if this unit dies.<br/>At max stacks, this unit's deploy cost increases by <font color='rgb(255,105,180)'>25%</font> and Skill hits inflict <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>20% of DMG</font>) for <font color='rgb(255,105,180)'>4s</font>.",
+      "UltimateHeader": "",
+      "UltimateDescription": ""
+    },
+    "Asura_Awakened": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>The Embodiment Of Fear</font>",
+      "isUltimate": true,
+      "PassiveDescription": "Every attack has a <font color='rgb(0,255,0)'>50%</font> chance to inflict <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>5% of DMG</font>). Attacking a <font color='rgb(255,105,180)'>Bleeding</font> enemy grants <font color='rgb(0,255,0)'>+20% Crit Chance</font> and <font color='rgb(0,255,0)'>+2% Crit DMG</font> per hit (stacks up to <font color='rgb(0,255,0)'>20%</font>).<br/>Enemies that <font color='rgb(255,105,180)'>Lifesteal</font> from this unit receive <font color='rgb(255,105,180)'>Reaper</font> for <font color='rgb(255,105,180)'>3s</font> (does not stack).<br/>While an enemy has <font color='rgb(255,105,180)'>Reaper</font>, attacks inflict <font color='rgb(255,105,180)'>Corrosion</font> and Crit Chance becomes <font color='rgb(0,255,0)'>100%</font> for <font color='rgb(255,105,180)'>4.2s</font>.<br/>All enemies in range receive <font color='rgb(255,105,180)'>Burn</font> (<font color='rgb(0,255,0)'>50% of DMG</font>) for <font color='rgb(255,105,180)'>5s</font> (Cooldown <font color='rgb(255,105,180)'>5s</font>).",
+      "UltimateHeader": "<font color='rgb(200,0,40)'>Madness Wavelength</font>",
+      "UltimateDescription": "Inflicts <font color='rgb(255,105,180)'>Bleed</font> (<font color='rgb(0,255,0)'>50% of current DMG</font>) on every enemy on the field for <font color='rgb(255,105,180)'>5.5s</font>. <font color='rgb(255,105,180)'>Bosses</font> take <font color='rgb(0,255,0)'>15% more</font> damage.<br/>Afterwards this unit gains the <font color='rgb(255,120,0)'>Fire</font> element for <font color='rgb(255,105,180)'>10s</font>, then receives a permanent <font color='rgb(255,105,180)'>Pull</font> (enemies focus this unit) until it dies."
     },
     "Qinshi": {
       "PassiveHeader": {
@@ -18025,72 +18024,40 @@
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Will_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Command of the Unarmed King</font>",
+    "Kaitokid": {
+      "PassiveHeader": {
+        "1": "<font color='rgb(255,235,0)'>Ladies and Gentlemen</font>"
+      },
       "isUltimate": true,
-      "PassiveDescription": "Every attack from this unit and its teammates grants <font color='rgb(255,127,80)'>+1 Fracture Stack</font> (Max 10). The team's subsequent attacks will randomly trigger one effect by consuming 1 Fracture Stack per attack (cannot trigger if stacks are at 0):<br/><br/>1. Focus Fire: Teammates target the same enemy as this unit and gain <font color='rgb(0,255,0)'>+20% DMG</font> for that round.<br/>2. Advance: Teammates receive <font color='rgb(0,255,0)'>+15% HP</font> and <font color='rgb(0,255,0)'>+15% SPD</font>.<br/>3. Hold Line: This unit's own attack damage is added to the teammates' attacks when they strike.",
+      "PassiveDescription": {
+        "1": "Normal attacks attach an <font color='rgb(255,105,180)'>Illusion Card</font> 🃏. When an enemy holds <font color='rgb(0,255,0)'>5</font> cards, every carded enemy takes <font color='rgb(0,255,0)'>15% bonus DMG</font> and all cards reset.<br/>The burst inflicts <font color='rgb(255,105,180)'>Fear</font> on all enemies in range for <font color='rgb(0,255,0)'>2s</font> and grants <font color='rgb(0,255,0)'>+10 Gauge</font> to allies that use a gauge.<br/>With more than <font color='rgb(0,255,0)'>5</font> enemies in range, it strikes each enemy only once before switching targets.<br/>The first deployment each match has a <font color='rgb(0,255,0)'>5%</font> chance to reduce the team's total upgrade cost by <font color='rgb(0,255,0)'>10%</font> (once per match)."
+      },
+      "UltimateHeader": "<font color='rgb(255,235,0)'>Illusion Show</font>",
+      "UltimateDescription": "Instantly attaches <font color='rgb(0,255,0)'>1</font> <font color='rgb(255,105,180)'>Illusion Card</font> 🃏 to every enemy in range (stacks up to <font color='rgb(0,255,0)'>5</font>). Enemies reaching <font color='rgb(0,255,0)'>5</font> cards trigger the card burst.<br/>Grants the player <font color='rgb(0,255,0)'>+50 Yen</font>."
+    },
+    "Igris": {
+      "PassiveHeader": {
+        "1": "<font color='rgb(255,235,0)'>United Shadows</font>",
+        "2": "<font color='rgb(255,235,0)'>Knight's Resolve</font>"
+      },
+      "isUltimate": true,
+      "PassiveDescription": {
+        "1": "Gains <font color='rgb(0,255,0)'>+2 Shield</font> for each other Solo Leveling unit on the field (not counting itself, no limit).<br/>While <font color='rgb(255,105,180)'>Sung Jin-Woo</font> is in range, each attack removes <font color='rgb(0,255,0)'>3 Shield</font> from the enemy.<br/>Increases the <font color='rgb(170,120,255)'>Shadow Soldier</font> limit by <font color='rgb(0,255,0)'>+2</font>.",
+        "2": "Every attack inflicts <font color='rgb(255,105,180)'>Corrosion 30%</font> for <font color='rgb(0,255,0)'>10s</font> on enemies of an opposing element, or <font color='rgb(0,255,0)'>permanently</font> on enemies of the same element.<br/>Enemies cannot <font color='rgb(255,105,180)'>Armor Pierce</font> this unit.<br/>Gains <font color='rgb(0,255,0)'>+10% Armor and HP</font> per <font color='rgb(170,120,255)'>Shadow Soldier</font> on the field (Max <font color='rgb(0,255,0)'>50%</font>) and <font color='rgb(0,255,0)'>+10% HP</font> each time a Shadow dies (Max <font color='rgb(0,255,0)'>50%</font>). These stacks are kept after death.<br/>Attacks against armored enemies have a <font color='rgb(0,255,0)'>70%</font> chance to crit, with bonus crit damage equal to <font color='rgb(0,255,0)'>50%</font> of this unit's Armor Pierce (including Corrosion)."
+      },
       "UltimateHeader": "",
       "UltimateDescription": ""
     },
-    "Buddha": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Ragnarok's Guardian</font>",
-      "isUltimate": false,
-      "PassiveDescription": "In <font color='rgb(100,160,255)'>Defense Mode</font>, this unit deals <font color='rgb(255,80,80)'>0 DMG</font> and gains <font color='rgb(100,200,255)'>Map-Wide Range</font>.<br/>Skill Attacks inflict <font color='rgb(100,200,255)'>Slow 30%</font> for <font color='rgb(255,180,0)'>5s</font>.<br/>Grants <font color='rgb(80,170,255)'>Armor equal to 35% of its HP</font> to all <font color='rgb(255,165,0)'>Ragnarok</font> units except itself, <font color='rgb(255,215,0)'>once per life</font>.<br/>Units that have already received this <font color='rgb(80,170,255)'>Armor buff</font> will not receive it again when redeployed.<br/>If a buffed unit's <font color='rgb(255,80,80)'>Armor reaches 0</font>, this unit can <font color='rgb(80,170,255)'>grant the Armor buff again</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Nezuko": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Demon Blood</font>",
+    "Wignall": {
+      "PassiveHeader": "<font color='rgb(255,235,0)'>Overgrowth</font>",
       "isUltimate": true,
-      "PassiveDescription": "Every <font color='rgb(255,105,180)'>1% Dodge</font> is converted into <font color='rgb(255,105,180)'>0.1% Burn Damage</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Geto_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Cursed Spirit Absorption</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Every time an enemy dies within Geto's attack range, grants <font color='rgb(0,255,0)'>+2% DMG</font> (Permanent Stack).",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Gojo_Awakened": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Six Eyes Protocol</font>",
-      "isUltimate": true,
-      "PassiveDescription": "For each enemy within range, gain <font color='rgb(255,180,0)'>+0.1% RNG and DMG</font>.<br/>This effect <font color='rgb(255,180,0)'>stacks</font> for every enemy that enters the range and <u>resets to the base value when no enemies remain</u>.<br/>Every attack inflicts <font color='rgb(120,200,255)'>Slow for 4s</font>.",
-      "UltimateHeader": "<font color='rgb(233,170,235)'>Void Enlightenment</font>",
-      "UltimateDescription": "Cleanses <font color='rgb(233,170,235)'>all debuffs</font> from this unit and allies.<br/>Freezes <font color='rgb(100,200,255)'>all enemies map-wide</font>, excluding allies.<br/>Upon ending, <font color='rgb(255,180,0)'>deals 1 Hit</font> to <font color='rgb(255,120,120)'>all enemies</font>."
-    },
-    "Finn": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Dwarf God</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Each attack has a <font color='rgb(255,180,0)'>45% chance</font> to inflict <font color='rgb(200,0,0)'>Bleed</font>, causing enemies to take 15% of the attack's DMG over time.<br/>When Bleed is applied, grants <font color='rgb(0,255,0)'>+5% Speed</font> to this unit and all teammates with Luminous or Water elements.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Zoro": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Three Sword Style</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Attacks inflict <font color='rgb(255,105,180)'>Bleed</font>, dealing damage equal to <font color='rgb(255,105,180)'>2% of Base DMG</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Luffy": {
-      "PassiveHeader": "<font color='rgb(255,235,0)'>Rubber Fighter</font>",
-      "isUltimate": true,
-      "PassiveDescription": "Every <font color='rgb(255,105,180)'>4 Attacks or Skill uses</font>, the next Attack deals <font color='rgb(255,105,180)'>20% bonus damage</font> and <font color='rgb(255,105,180)'>Slows the enemy</font>.",
-      "UltimateHeader": "",
-      "UltimateDescription": ""
-    },
-    "Megumi": {
-      "PassiveHeader": "Shadow Zone",
-      "isUltimate": true,
-      "PassiveDescription": "Enemies outside the range will be slowed for 3 seconds. (Only activates upon death.)",
+      "PassiveDescription": "Gains <font color='rgb(0,255,0)'>+15% Evade</font>. If allies have Evade, this unit <font color='rgb(255,105,180)'>steals</font> it for itself, granting those allies <font color='rgb(0,255,0)'>+8% Armor Pierce</font> instead.<br/>If there are <font color='rgb(255,105,180)'>more than 20 enemies</font> on the map, those allies' Evade becomes <font color='rgb(255,105,180)'>0</font>.<br/>When there are <font color='rgb(255,105,180)'>more than 20 enemies</font> on the map, periodically grows <font color='rgb(255,105,180)'>damaging plants</font> at random spots within its range.",
       "UltimateHeader": "",
       "UltimateDescription": ""
     }
   },
-  "gears": [
-    {
+  "gears": {
+    "DaggerFang": {
       "Type": "Gear",
       "Name": "Dagger Fang",
       "Slot": "Arm",
@@ -18103,7 +18070,7 @@
       "Icon": "rbxassetid://106082101923697",
       "Description": "+17% ArmorPen\n+4% LifeSteal\n-3.5% SPA"
     },
-    {
+    "HeadGear1": {
       "Type": "Gear",
       "Name": "TestHead",
       "Slot": "Head",
@@ -18114,7 +18081,7 @@
       "Icon": "rbxassetid://0",
       "Description": " -- "
     },
-    {
+    "ArmGear1": {
       "Type": "Gear",
       "Name": "TestArm",
       "Slot": "Arm",
@@ -18125,7 +18092,7 @@
       "Icon": "rbxassetid://0",
       "Description": " -- "
     },
-    {
+    "HalloweenArm": {
       "Type": "Gear",
       "Name": "Halloween Arm",
       "Slot": "Arm",
@@ -18137,7 +18104,7 @@
       "Icon": "rbxassetid://88210844879388",
       "Description": "+7% ArmorPen, +5% Evade"
     },
-    {
+    "FlameHat": {
       "Type": "Gear",
       "Name": "Flame Hat",
       "Slot": "Head",
@@ -18149,7 +18116,7 @@
       "Icon": "rbxassetid://130854399956222",
       "Description": "+2.3% Burn \n+3% Range"
     },
-    {
+    "Waistguard": {
       "Type": "Gear",
       "Name": "Waistguard",
       "Slot": "Body",
@@ -18161,7 +18128,7 @@
       "Icon": "rbxassetid://91884264786399",
       "Description": "+2% Speed\n -2% CritChance"
     },
-    {
+    "AbyssalBand": {
       "Type": "Gear",
       "Name": "Abyssal Band",
       "Slot": "Arm",
@@ -18174,7 +18141,7 @@
       "Icon": "rbxassetid://128175231583382",
       "Description": "-4.2% SpawnCooldown\n+5% Accuracy\n+3% Walkspeed"
     },
-    {
+    "HornedVisor": {
       "Type": "Gear",
       "Name": "Horned Visor",
       "Slot": "Head",
@@ -18186,7 +18153,7 @@
       "Icon": "rbxassetid://92365922826157",
       "Description": "+10% Range\n -2.5% Cost"
     },
-    {
+    "KillerPants": {
       "Type": "Gear",
       "Name": "Killer Pants",
       "Slot": "Legs",
@@ -18197,7 +18164,7 @@
       "Icon": "rbxassetid://118887519882189",
       "Description": "+1.4% Evade"
     },
-    {
+    "SwanDanceCostume ": {
       "Type": "Gear",
       "Name": "Swan Dance Costume",
       "Slot": "Body",
@@ -18208,7 +18175,7 @@
       "Icon": "rbxassetid://135665913183165",
       "Description": "+10% Burn"
     },
-    {
+    "ShadowHood": {
       "Type": "Gear",
       "Name": "Shadow Hood",
       "Slot": "Head",
@@ -18219,7 +18186,7 @@
       "Icon": "rbxassetid://80561659830178",
       "Description": "+3% Range"
     },
-    {
+    "Insurance": {
       "Type": "Gear",
       "Name": "Insurance Helmet",
       "Slot": "Head",
@@ -18231,7 +18198,7 @@
       "Icon": "rbxassetid://78627855475134",
       "Description": "+2% HP \n+1.2% Speed"
     },
-    {
+    "Narubeat": {
       "Type": "Gear",
       "Name": "Narubeat",
       "Slot": "Legs",
@@ -18242,7 +18209,7 @@
       "Icon": "rbxassetid://112250764049565",
       "Description": "+6% Speed"
     },
-    {
+    "WarlordMantle": {
       "Type": "Gear",
       "Name": "Warlord Mantle",
       "Slot": "Body",
@@ -18255,7 +18222,7 @@
       "Icon": "rbxassetid://88505963328860",
       "Description": "+9% ArmorPen\n+5% Health\n+8% Burn"
     },
-    {
+    "CursedCarrier": {
       "Type": "Gear",
       "Name": "CursedCarrier",
       "Slot": "Body",
@@ -18268,7 +18235,7 @@
       "Icon": "rbxassetid://131208841636355",
       "Description": "Increases Armor Penetration by +1.2%."
     },
-    {
+    "HellsingHat": {
       "Type": "Gear",
       "Name": "Hellsing Lord's Hat",
       "Slot": "Head",
@@ -18290,7 +18257,7 @@
       "Icon": "rbxassetid://82322902092207",
       "Description": "+50 Armor, +3% LifeSteal, -3% Skill Cooldown\n(When equipped on Dracula), +250% HP, +70% DMG, +80% Accuracy, +50% Speed, +20% Range, +20% Burn, -20% Cost, -15% Spawn Cooldown"
     },
-    {
+    "GilgameshArm": {
       "Type": "Gear",
       "Name": "Royal Golden Arm",
       "Slot": "Arm",
@@ -18303,7 +18270,7 @@
       "Icon": "rbxassetid://83592938161803",
       "Description": "+8% Crit Damage\n -8% Spawn Cooldown%\n +100 Armor"
     },
-    {
+    "ShadowCloak": {
       "Type": "Gear",
       "Name": "Shadow Cloak",
       "Slot": "Body",
@@ -18316,7 +18283,7 @@
       "Icon": "rbxassetid://103116006598996",
       "Description": "+15% HP\n+1 Shield\n-4.5% AbilityCooldown"
     },
-    {
+    "SaiyanWristbands": {
       "Type": "Gear",
       "Name": "Saiyan Wristbands",
       "Slot": "Arm",
@@ -18328,7 +18295,7 @@
       "Icon": "rbxassetid://110415799892842",
       "Description": "+2% Skill Damage\n -2% SPA"
     },
-    {
+    "Heracles1": {
       "Type": "Gear",
       "Name": "Heracles Helmet",
       "Slot": "Head",
@@ -18339,7 +18306,7 @@
       "Icon": "rbxassetid://134620933869122",
       "Description": "10% Health Boost"
     },
-    {
+    "ShadowBoots": {
       "Type": "Gear",
       "Name": "Shadow Boots",
       "Slot": "Legs",
@@ -18351,7 +18318,7 @@
       "Icon": "rbxassetid://137244256337510",
       "Description": "+5% HP\n+8% CritDamage"
     },
-    {
+    "Heracles4": {
       "Type": "Gear",
       "Name": "Heracles Boots",
       "Slot": "Legs",
@@ -18362,7 +18329,7 @@
       "Icon": "rbxassetid://134597664686754",
       "Description": "+7% Speed Boost"
     },
-    {
+    "CursedRing": {
       "Type": "Gear",
       "Name": "Cursed Ring",
       "Slot": "Arm",
@@ -18381,7 +18348,7 @@
       "Icon": "rbxassetid://132456565456304",
       "Description": "-7% SPA +5% Skill Damage +4% Critical Chance (When equipped on Yuta, Skill SPA is reduced by 90% instead.)"
     },
-    {
+    "SunBinding": {
       "Type": "Gear",
       "Name": "Sun Binding",
       "Slot": "Arm",
@@ -18394,7 +18361,7 @@
       "Icon": "rbxassetid://137482859126873",
       "Description": "+3% Skill Dmg \n-7.2% Cost \n Burn +2% "
     },
-    {
+    "Heracles3": {
       "Type": "Gear",
       "Name": "Heracles Gauntlets",
       "Slot": "Arm",
@@ -18405,7 +18372,7 @@
       "Icon": "rbxassetid://96649735154406",
       "Description": "-8% SkillCooldown"
     },
-    {
+    "DemonicProfit": {
       "Type": "Gear",
       "Name": "Demonic Profit",
       "Slot": "Legs",
@@ -18417,7 +18384,7 @@
       "Icon": "rbxassetid://75641935910891",
       "Description": "+10% HP\n +1 Shield"
     },
-    {
+    "Heracles2": {
       "Type": "Gear",
       "Name": "Heracles Plate",
       "Slot": "Body",
@@ -18428,7 +18395,7 @@
       "Icon": "rbxassetid://101088683692143",
       "Description": "-10% SkillCooldown"
     },
-    {
+    "Blindfold": {
       "Type": "Gear",
       "Name": "Blindfold",
       "Slot": "Head",
@@ -18441,7 +18408,7 @@
       "Icon": "rbxassetid://78694288136441",
       "Description": "+5% Crit Damage\n -5% Spawn Cooldown%\n +50 Armor"
     },
-    {
+    "ClawBoots": {
       "Type": "Gear",
       "Name": "Claw Boots",
       "Slot": "Legs",
@@ -18453,7 +18420,7 @@
       "Icon": "rbxassetid://95629984030437",
       "Description": "+8.2% WalkSpeedBoost\n+5.8% Evade"
     },
-    {
+    "AegisPendant": {
       "Type": "Gear",
       "Name": "Aegis Pendant",
       "Slot": "Head",
@@ -18465,7 +18432,7 @@
       "Icon": "rbxassetid://117853785169576",
       "Description": "+150 Arrmor , -3.4% Cost"
     },
-    {
+    "HeroGloves": {
       "Type": "Gear",
       "Name": "Hero's Gloves",
       "Slot": "Arm",
@@ -18476,7 +18443,7 @@
       "Icon": "rbxassetid://92499973490348",
       "Description": "+1.5% DMG"
     },
-    {
+    "HalloweenHead": {
       "Type": "Gear",
       "Name": "Halloween Head",
       "Slot": "Head",
@@ -18489,7 +18456,7 @@
       "Icon": "rbxassetid://135069738108160",
       "Description": "+10 % Damage , +5% Crit Chance , +5% Crit Damage "
     },
-    {
+    "SilverCrestDiadem": {
       "Type": "Gear",
       "Name": "Silver Crest Diadem",
       "Slot": "Head",
@@ -18501,7 +18468,7 @@
       "Icon": "rbxassetid://103696550967093",
       "Description": "+3.5% Evade \n +7% Ability Damage"
     },
-    {
+    "LegsGear1": {
       "Type": "Gear",
       "Name": "TestLegs",
       "Slot": "Legs",
@@ -18512,7 +18479,7 @@
       "Icon": "rbxassetid://0",
       "Description": " -- "
     },
-    {
+    "KnightPlate": {
       "Type": "Gear",
       "Name": "Knight's Plate",
       "Slot": "Body",
@@ -18523,7 +18490,7 @@
       "Icon": "rbxassetid://93453877977414",
       "Description": "+2.5% HP"
     },
-    {
+    "BodyGear1": {
       "Type": "Gear",
       "Name": "TestBody",
       "Slot": "Body",
@@ -18534,7 +18501,7 @@
       "Icon": "rbxassetid://0",
       "Description": " -- "
     },
-    {
+    "Greaves": {
       "Type": "Gear",
       "Name": "Greaves",
       "Slot": "Legs",
@@ -18545,7 +18512,7 @@
       "Icon": "rbxassetid://108029009728466",
       "Description": "-3% SkillCooldown"
     },
-    {
+    "GilgameshHead": {
       "Type": "Gear",
       "Name": "Royal Golden Head",
       "Slot": "Head",
@@ -18557,7 +18524,7 @@
       "Icon": "rbxassetid://112946117319172",
       "Description": "+7% Health \n +7% Range"
     },
-    {
+    "GlacialStaff": {
       "Type": "Gear",
       "Name": "Glacial Staff",
       "Slot": "Arm",
@@ -18568,7 +18535,7 @@
       "Icon": "rbxassetid://114568696395723",
       "Description": "+3% Skill Dmg"
     },
-    {
+    "GilgameshBody": {
       "Type": "Gear",
       "Name": "Royal Golden Body",
       "Slot": "Body",
@@ -18582,7 +18549,7 @@
       "Icon": "rbxassetid://116760956576333",
       "Description": "+5% Damage\n +5% Evade\n +5% Crit Chance\n +5% Crit Damage"
     },
-    {
+    "HalloweenArmor": {
       "Type": "Gear",
       "Name": "Halloween Armor",
       "Slot": "Body",
@@ -18594,7 +18561,7 @@
       "Icon": "rbxassetid://129979320366668",
       "Description": "+7% ArmorPen, + 200 Armor"
     },
-    {
+    "CrimsonShadowTunic": {
       "Type": "Gear",
       "Name": "Crimson Shadow Tunic",
       "Slot": "Body",
@@ -18605,7 +18572,7 @@
       "Icon": "rbxassetid://117776871404830",
       "Description": "+5% ArmorPen"
     },
-    {
+    "DivineCrown": {
       "Type": "Gear",
       "Name": "Divine Crown",
       "Slot": "Head",
@@ -18616,7 +18583,7 @@
       "Icon": "rbxassetid://135560793131354",
       "Description": "+5% HP"
     },
-    {
+    "GilgameshLegs": {
       "Type": "Gear",
       "Name": "Royal Golden Boots",
       "Slot": "Legs",
@@ -18629,7 +18596,7 @@
       "Icon": "rbxassetid://137162253098012",
       "Description": "+10% Burn\n -15% Skill Cooldown\n LifeSteal 10%"
     },
-    {
+    "ShadowCrown": {
       "Type": "Gear",
       "Name": "Shadow Crown",
       "Slot": "Head",
@@ -18642,7 +18609,7 @@
       "Icon": "rbxassetid://79692719088314",
       "Description": "+5% Damage\n+10% Accuracy\n+7.3% Range"
     },
-    {
+    "RiderMask": {
       "Type": "Gear",
       "Name": "Rider Mask",
       "Slot": "Head",
@@ -18665,7 +18632,7 @@
       "Icon": "rbxassetid://95309267426116",
       "Description": "+5% Crit Damage\n(When equipped on Tontaro), +160% HP, +100% DMG, +30% Skill Dmg, +90% Range, +15% Speed, +25% Evade, +2500 Armor, +2 Shield, -80% Skill Cooldown, +2 Unit Cap"
     },
-    {
+    "CrimsonTread": {
       "Type": "Gear",
       "Name": "Crimson Tread",
       "Slot": "Legs",
@@ -18677,7 +18644,7 @@
       "Icon": "rbxassetid://106428099237863",
       "Description": "+3% Speed, -2% SPA"
     },
-    {
+    "HalloweenBoost": {
       "Type": "Gear",
       "Name": "Halloween Arm",
       "Slot": "Legs",
@@ -18689,7 +18656,7 @@
       "Icon": "rbxassetid://132463826632934",
       "Description": "+7% ArmorPen , -6% Cost"
     },
-    {
+    "RevengeCloudCloak": {
       "Type": "Gear",
       "Name": "Revenge Cloud Cloak",
       "Slot": "Body",
@@ -18701,7 +18668,7 @@
       "Icon": "rbxassetid://79143926836112",
       "Description": "+5% DMG \n+2% Speed"
     },
-    {
+    "BladeBracers": {
       "Type": "Gear",
       "Name": "Blade Bracers",
       "Slot": "Arm",
@@ -18712,9 +18679,9 @@
       "Icon": "rbxassetid://102160830706872",
       "Description": "+7.5% Accuracy"
     }
-  ],
-  "traits": [
-    {
+  },
+  "traits": {
+    "Legends3": {
       "Stats": {
         "AttackSpeedBoost": 0.1,
         "SpeedBoost": 0.1
@@ -18725,7 +18692,7 @@
       "TraitDisplayName": "Enegy Arrow",
       "TraitStatus": "AttackSpeed +10%, Speed +10%"
     },
-    {
+    "Legends4": {
       "Stats": {
         "DamageBoost": 0.15,
         "CostReduction": -0.1,
@@ -18737,7 +18704,7 @@
       "TraitDisplayName": "Health Devil",
       "TraitStatus": "Attack +15%, Health +15%, Cost +10%"
     },
-    {
+    "Rare3": {
       "Stats": {
         "DamageBoost": 0.1
       },
@@ -18747,7 +18714,7 @@
       "TraitDisplayName": "Human Damage",
       "TraitStatus": "+10% Damage"
     },
-    {
+    "Epic2": {
       "Stats": {
         "CritDamageBoost": 0.3
       },
@@ -18757,7 +18724,7 @@
       "TraitDisplayName": "Executioner",
       "TraitStatus": "+30% Critical Damage"
     },
-    {
+    "Mythic3": {
       "Pity": 1000,
       "Stats": {
         "SpawnCooldownReduction": 0.1,
@@ -18771,7 +18738,7 @@
       "TraitDisplayName": "Efficient King",
       "TraitStatus": "AttackSpeed +30%, SkillCooldown -20%, Speed +15%, SpawnCooldown -10%"
     },
-    {
+    "Epic1": {
       "Stats": {
         "RangeBoost": 0.2
       },
@@ -18781,7 +18748,7 @@
       "TraitDisplayName": "Sharpshooter",
       "TraitStatus": "+20% Range"
     },
-    {
+    "Rare1": {
       "Stats": {
         "AttackSpeedBoost": 0.1
       },
@@ -18791,7 +18758,7 @@
       "TraitDisplayName": "Human AS",
       "TraitStatus": "+10% Attack Speed"
     },
-    {
+    "Legends1": {
       "Stats": {
         "AttackSpeedBoost": 0.1,
         "DamageBoost": 0.1,
@@ -18803,7 +18770,7 @@
       "TraitDisplayName": "Puch Burst",
       "TraitStatus": "Attack +10%, AttackSpeed +10%, Health -10%"
     },
-    {
+    "Mythic4": {
       "Pity": 700,
       "Stats": {
         "CritChanceBoost": 0.25,
@@ -18816,7 +18783,7 @@
       "TraitDisplayName": "Phantom Blade",
       "TraitStatus": "CritDamage +50%, CritChance +25%, AttackSpeed -10%"
     },
-    {
+    "Epic4": {
       "Stats": {
         "SpeedBoost": 0.2
       },
@@ -18826,7 +18793,7 @@
       "TraitDisplayName": "Haste",
       "TraitStatus": "+20% Speed"
     },
-    {
+    "Mythic2": {
       "Pity": 1200,
       "Stats": {
         "SpawnCooldownReduction": -0.15,
@@ -18839,7 +18806,7 @@
       "TraitDisplayName": "Twin Stars",
       "TraitStatus": "Spawn Units 2, Spawn Cooldown +15% , Units Cost -10%"
     },
-    {
+    "Epic3": {
       "Stats": {
         "SkillCooldownReduction": 0.15
       },
@@ -18849,7 +18816,7 @@
       "TraitDisplayName": "Skillful",
       "TraitStatus": "-15% Skill Cooldown"
     },
-    {
+    "Mythic6": {
       "Pity": 300,
       "Stats": {
         "SkillDamageBoost": 0.3,
@@ -18863,8 +18830,8 @@
       "TraitDisplayName": "Aura Burst",
       "TraitStatus": "SkillDamage +30%, SkillCooldown -25%, Range +15%, Cost -5%"
     },
-    {
-      "Pity": 1500,
+    "Mythic1": {
+      "Pity": 1400,
       "Stats": {
         "CritChanceBoost": 0.15,
         "DamageBoost": 2,
@@ -18881,7 +18848,7 @@
       "TraitDisplayName": "Absolute Ego",
       "TraitStatus": "Attack +200%, AttackSpeed +20%, CritChance +15%, CritDamage +30%, SkillDamage +25%, Cost -15% , Spawn Units 1"
     },
-    {
+    "Mythic5": {
       "Pity": 500,
       "Stats": {
         "EvadeBoost": 0.15,
@@ -18895,7 +18862,7 @@
       "TraitDisplayName": "Eternal Guardian",
       "TraitStatus": "Health +50%, EvadeRate +15%, Range +10%, Cost -5%"
     },
-    {
+    "Legends2": {
       "Stats": {
         "DamageBoost": 0.1,
         "CritChanceBoost": 0.1,
@@ -18908,7 +18875,7 @@
       "TraitDisplayName": "Cross X",
       "TraitStatus": "CritChance +10%, CritDamage +15%, Attack +10%"
     },
-    {
+    "Rare2": {
       "Stats": {
         "RangeBoost": 0.1
       },
@@ -18918,7 +18885,7 @@
       "TraitDisplayName": "Human Range",
       "TraitStatus": "+10% Range"
     },
-    {
+    "Rare4": {
       "Stats": {
         "HealthBoost": 0.15
       },
@@ -18928,5 +18895,5 @@
       "TraitDisplayName": "Human Health",
       "TraitStatus": "+15% Health"
     }
-  ]
+  }
 }
