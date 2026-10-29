@@ -1,7 +1,35 @@
 local HttpService = game:GetService("HttpService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Players = game:GetService("Players")
-local StarterGui = game:GetService("StarterGui")
+
+local BANNED_ASSETS = {
+    ["70720622687708"] = true,
+    ["0"] = true,
+}
+
+local BANNED_NAMES = {
+    ["background"] = true,
+    ["pattern"] = true,
+    ["halftone"] = true,
+    ["frame"] = true,
+    ["border"] = true,
+    ["shadow"] = true,
+    ["glow"] = true,
+    ["gradient"] = true,
+    ["mask"] = true,
+    ["grid"] = true,
+    ["backdrop"] = true,
+    ["bg"] = true,
+}
+
+local function isBannedName(name)
+    local n = string.lower(name or "")
+    for banned, _ in pairs(BANNED_NAMES) do
+        if string.find(n, banned) then
+            return true
+        end
+    end
+    return false
+end
 
 local function sanitize(t, visited, depth)
     depth = depth or 0
@@ -37,7 +65,7 @@ local function formatAssetId(raw)
     if not raw then return nil end
     local str = tostring(raw)
     local match = str:match("rbxassetid://(%d+)") or str:match("(%d%d%d%d%d+)")
-    if match and match ~= "0" then
+    if match and not BANNED_ASSETS[match] then
         return "rbxassetid://" .. match
     end
     return nil
@@ -45,7 +73,6 @@ end
 
 local function scanForUnitIcons()
     local iconMap = {}
-    print("[AM Dump] Scanning game assets for Unit Icons...")
 
     local candidates = {
         ReplicatedStorage:FindFirstChild("Icons", true),
@@ -62,14 +89,14 @@ local function scanForUnitIcons()
             if ok and type(res) == "table" then
                 for k, v in pairs(res) do
                     local asset = formatAssetId(v)
-                    if asset then
+                    if asset and not isBannedName(tostring(k)) then
                         iconMap[string.lower(tostring(k))] = asset
                     end
                 end
             end
         elseif cand and cand:IsA("Folder") then
             for _, item in ipairs(cand:GetDescendants()) do
-                if item:IsA("ImageLabel") or item:IsA("ImageButton") or item:IsA("Decal") or item:IsA("Texture") then
+                if (item:IsA("ImageLabel") or item:IsA("ImageButton") or item:IsA("Decal") or item:IsA("Texture")) and not isBannedName(item.Name) then
                     local asset = formatAssetId(item.Image or item.Texture)
                     if asset then
                         iconMap[string.lower(item.Name)] = asset
@@ -79,40 +106,27 @@ local function scanForUnitIcons()
         end
     end
 
-    local localPlayer = Players.LocalPlayer
-    local guiSearchRoots = {}
-    if localPlayer and localPlayer:FindFirstChild("PlayerGui") then
-        table.insert(guiSearchRoots, localPlayer.PlayerGui)
-    end
-    if StarterGui then
-        table.insert(guiSearchRoots, StarterGui)
-    end
+    return iconMap
+end
 
-    for _, root in ipairs(guiSearchRoots) do
-        for _, desc in ipairs(root:GetDescendants()) do
-            if desc:IsA("ImageLabel") or desc:IsA("ImageButton") then
-                local asset = formatAssetId(desc.Image)
-                if asset then
-                    iconMap[string.lower(desc.Name)] = asset
-                    for attrName, attrVal in pairs(desc:GetAttributes()) do
-                        if string.find(string.lower(attrName), "unit") or string.find(string.lower(attrName), "id") then
-                            iconMap[string.lower(tostring(attrVal))] = asset
-                        end
-                    end
-                end
+local function scanForUnitModels()
+    local modelMap = {}
+    for _, item in ipairs(ReplicatedStorage:GetDescendants()) do
+        if item:IsA("Model") then
+            local n = string.lower(item.Name)
+            if not modelMap[n] then
+                modelMap[n] = item.Name
             end
         end
     end
-
-    return iconMap
+    return modelMap
 end
 
 local function run()
     local modules = ReplicatedStorage:WaitForChild("Modules", 5)
     local dataFolder = modules and modules:WaitForChild("Data", 5)
-    
     if not modules or not dataFolder then
-        error("Could not find Modules/Data in ReplicatedStorage. Make sure you are in the game!")
+        error("Modules/Data not found in ReplicatedStorage")
     end
 
     local UnitConfig = require(modules:WaitForChild("UnitConfig"))
@@ -134,8 +148,8 @@ local function run()
     end
 
     local discoveredIcons = scanForUnitIcons()
+    local discoveredModels = scanForUnitModels()
     local rawUnits = UnitConfig.Units or {}
-    local unitsWithIcons = 0
 
     for unitId, unitData in pairs(rawUnits) do
         if type(unitData) == "table" then
@@ -143,12 +157,16 @@ local function run()
             local nameKey = unitData.Name and string.lower(tostring(unitData.Name))
             local dispKey = unitData.DisplayName and string.lower(tostring(unitData.DisplayName))
 
-            local matchedIcon = discoveredIcons[idKey] or (nameKey and discoveredIcons[nameKey]) or (dispKey and discoveredIcons[dispKey])
+            local matchedIcon = (unitData.Icon and formatAssetId(unitData.Icon)) or discoveredIcons[idKey] or (nameKey and discoveredIcons[nameKey]) or (dispKey and discoveredIcons[dispKey])
             if matchedIcon then
                 unitData.Icon = matchedIcon
-                unitsWithIcons = unitsWithIcons + 1
-            elseif not unitData.Icon then
+            else
                 unitData.Icon = nil
+            end
+
+            local matchedModel = unitData.Model or discoveredModels[idKey] or (nameKey and discoveredModels[nameKey]) or (dispKey and discoveredModels[dispKey])
+            if matchedModel then
+                unitData.Model = matchedModel
             end
         end
     end
@@ -178,22 +196,19 @@ local function run()
 
     local json = HttpService:JSONEncode(dump)
 
-    local fileSaved = false
-    local clipSaved = false
-
     if writefile then
         pcall(function()
             writefile("am_database.json", json)
-            fileSaved = true
         end)
     end
 
     if setclipboard then
         pcall(function()
             setclipboard(json)
-            clipSaved = true
         end)
     end
+
+    print("[AM Dump] Success! Master Base Data copied to clipboard.")
 end
 
 local ok, err = pcall(run)

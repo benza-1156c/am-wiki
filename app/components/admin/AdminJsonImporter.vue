@@ -318,7 +318,7 @@
 </template>
 
 <script setup lang="ts">
-import { parseAndMergeUnits } from '~/utils/unitCalculator'
+import { parseAndMergeUnits } from '~/utils/unitImporter'
 import { getRobloxImageUrl } from '~/utils/formatters'
 import type { MergeResult } from '~/types/unit'
 
