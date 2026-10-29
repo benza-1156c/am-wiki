@@ -68,11 +68,13 @@
         <div class="flex items-center gap-3.5">
           <!-- Unit Avatar -->
           <div class="w-11 h-11 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-primary shrink-0 overflow-hidden">
-            <img
+            <NuxtImg
               v-if="store.currentUnit?.icon && getRobloxImageUrl(store.currentUnit.icon)"
               :src="getRobloxImageUrl(store.currentUnit.icon)!"
               class="w-full h-full object-cover"
               alt="Unit Avatar"
+              loading="lazy"
+              :unoptimized="getRobloxImageUrl(store.currentUnit.icon)?.startsWith('/api')"
             />
             <UIcon v-else name="i-lucide-user" class="w-5 h-5 text-neutral-300" />
           </div>

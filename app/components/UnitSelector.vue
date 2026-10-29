@@ -23,12 +23,15 @@
             @click="selectUnit(u.id)"
           >
             <div class="flex items-center gap-2.5 truncate">
-              <img
+              <NuxtImg
                 v-if="u.icon && getRobloxImageUrl(u.icon)"
                 :src="getRobloxImageUrl(u.icon)!"
                 class="w-6 h-6 rounded object-cover bg-black/40 border border-white/10 shrink-0"
                 alt="Unit"
                 loading="lazy"
+                width="24"
+                height="24"
+                :unoptimized="getRobloxImageUrl(u.icon)?.startsWith('/api')"
               />
               <span class="text-sm font-semibold">{{ u.displayName || u.name }}</span>
               <span class="text-[11px] text-muted">{{ u.series }}</span>

@@ -230,7 +230,7 @@
                 class="w-full h-full object-cover"
                 loading="lazy"
                 alt=""
-              >
+              />
               <UIcon
                 v-else
                 name="i-lucide-user"

@@ -66,6 +66,9 @@ export function getRobloxImageUrl(
 ): string | null {
   if (!icon) return null;
   const str = String(icon);
+  if (str.startsWith("/") || str.startsWith("http")) {
+    return str;
+  }
   const match = str.match(/rbxassetid:\/\/(\d+)/) || str.match(/(\d{6,})/);
   if (match && match[1] && match[1] !== "0") {
     return `/api/roblox-icon?id=${match[1]}`;
