@@ -25,8 +25,9 @@ export default defineNuxtConfig({
           content:
             "Anime Mysterious Wiki - Comprehensive unit database, level upgrade stats calculator, compare tool, gears and traits.",
         },
-        { property: "og:image", content: "https://am-wiki.vercel.app/images/og-banner.png" },
-        { name: "twitter:image", content: "https://am-wiki.vercel.app/images/og-banner.png" },
+        { property: "og:image", content: "/images/og-banner.png" },
+        { property: "og:site_name", content: "Anime Mysterious" },
+        { name: "twitter:image", content: "/images/og-banner.png" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
       link: [

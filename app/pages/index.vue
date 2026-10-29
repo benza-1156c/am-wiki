@@ -225,11 +225,12 @@ useSeoMeta({
   description: 'Anime Mysterious comprehensive wiki database: explore all 84+ units, compute combat stats with gears & traits, and optimize builds.',
   ogTitle: 'Anime Mysterious Wiki - Units Encyclopedia & Calculator',
   ogDescription: 'Explore all 84+ units, base & max upgrade stats, and calculate combat builds in Anime Mysterious.',
-  ogImage: 'https://am-wiki.vercel.app/images/og-banner.png',
+  ogImage: '/images/og-banner.png',
   ogType: 'website',
+  ogSiteName: 'Anime Mysterious',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Anime Mysterious Wiki - Units Encyclopedia & Calculator',
   twitterDescription: 'Explore all 84+ units, base & max upgrade stats, and calculate combat builds in Anime Mysterious.',
-  twitterImage: 'https://am-wiki.vercel.app/images/og-banner.png'
+  twitterImage: '/images/og-banner.png'
 })
 </script>

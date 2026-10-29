@@ -42,7 +42,7 @@ export function useUnitSeo(store: ReturnType<typeof useCombatCalculatorStore>) {
     ogDescription: () =>
       `DMG: ${atk.value} | HP: ${hp.value} | DPS: ${dps.value} | Range: ${range.value} | SPA: ${spa.value}s | Cost: ¥${cost.value}`,
     ogType: 'website',
-    ogUrl: () => canonicalUrl.value,
+    ogSiteName: 'Anime Mysterious',
     twitterCard: 'summary_large_image',
     twitterTitle: () => `${unitName.value} (${store.selectedStars}★ Lv.${store.unitLevel}) - Anime Mysterious`,
     twitterDescription: () =>
@@ -76,21 +76,7 @@ export function useUnitSeo(store: ReturnType<typeof useCombatCalculatorStore>) {
   // Dynamic OpenGraph Image Generation (Takumi Engine)
   defineOgImage('UnitOgImage', {
     unitName: () => unitName.value,
-    unitSeries: () => unitSeries.value,
-    unitRarity: () => unitRarity.value,
-    unitElement: () => unitElement.value,
-    unitIcon: () => unitIcon.value,
-    stars: () => store.selectedStars,
-    level: () => store.unitLevel,
-    upgrade: () => store.upgradeLevel,
-    traitName: () => traitNames.value,
-    cost: () => cost.value,
-    damage: () => atk.value,
-    health: () => hp.value,
-    dps: () => dps.value,
-    range: () => range.value,
-    spa: () => spa.value,
-    gearsSummary: () => gearsSummary.value
+    unitIcon: () => unitIcon.value
   })
 }
 
