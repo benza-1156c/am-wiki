@@ -1,57 +1,39 @@
 <template>
-  <UModal v-model:open="isOpen">
-    <template #content>
-      <div class="p-4 sm:p-5 flex flex-col max-h-[85vh] bg-[#0c1220] rounded-xl border border-white/10 text-slate-100">
-        <!-- Header -->
-        <div class="flex items-center justify-between pb-3 border-b border-white/10">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-              <UIcon name="i-lucide-swords" class="w-4 h-4" />
-            </div>
-            <div>
-              <h3 class="font-bold text-sm text-white">{{ title || 'Select Unit to Compare' }}</h3>
-              <p class="text-[11px] text-neutral-400">Choose any character from the database</p>
-            </div>
-          </div>
-          <UButton
-            icon="i-lucide-x"
-            variant="ghost"
-            color="neutral"
-            size="xs"
-            @click="isOpen = false"
-          />
-        </div>
-
+  <UModal
+    v-model:open="isOpen"
+    :title="title || 'Select Unit to Compare'"
+    :description="`Choose from ${units?.length || 0} characters in the database`"
+  >
+    <template #body>
+      <div class="space-y-3">
         <!-- Search Bar -->
-        <div class="py-3">
-          <UInput
-            v-model="searchQuery"
-            icon="i-lucide-search"
-            placeholder="Search by character name or series..."
-            class="w-full"
-            size="sm"
-            autofocus
-          />
-        </div>
+        <UInput
+          v-model="searchQuery"
+          icon="i-lucide-search"
+          placeholder="Search by character name or series..."
+          class="w-full"
+          size="md"
+          autofocus
+        />
 
         <!-- Filter Chips (Rarities) -->
-        <div class="flex flex-wrap gap-1.5 pb-3 border-b border-white/5">
-          <button
+        <div class="flex flex-wrap gap-1">
+          <UButton
             v-for="r in rarities"
             :key="r"
-            class="px-2 py-0.5 rounded text-[11px] font-medium transition-colors"
-            :class="selectedRarity === r ? 'bg-primary text-black font-semibold' : 'bg-white/5 text-neutral-400 hover:bg-white/10 hover:text-white'"
+            :label="r"
+            :variant="selectedRarity === r ? 'solid' : 'ghost'"
+            :color="selectedRarity === r ? 'primary' : 'neutral'"
+            size="xs"
             @click="selectedRarity = r"
-          >
-            {{ r }}
-          </button>
+          />
         </div>
 
-        <!-- Unit List (Scrollable Grid) -->
-        <div class="flex-1 overflow-y-auto pt-3 pr-1 space-y-1.5 min-h-[300px]">
+        <!-- Unit List -->
+        <div class="max-h-[55vh] overflow-y-auto space-y-1 pr-1 border border-default rounded-md p-1.5">
           <div
             v-if="filteredUnits.length === 0"
-            class="text-center py-10 text-neutral-500 text-xs flex flex-col items-center gap-2"
+            class="text-center py-10 text-muted text-xs flex flex-col items-center gap-2"
           >
             <UIcon name="i-lucide-search-x" class="w-8 h-8 text-neutral-600" />
             <span>No units found matching "{{ searchQuery }}"</span>
@@ -60,12 +42,12 @@
           <div
             v-for="u in filteredUnits"
             :key="u.id"
-            class="flex items-center justify-between p-2 rounded-lg border border-white/5 bg-[#0f172a]/60 hover:bg-primary/10 hover:border-primary/40 cursor-pointer transition-all duration-150 group"
+            class="cursor-pointer p-2 rounded text-xs flex items-center justify-between transition-colors hover:bg-muted/50 group"
             @click="selectUnit(u)"
           >
             <div class="flex items-center gap-2.5 min-w-0">
               <!-- Avatar -->
-              <div class="w-10 h-10 rounded-lg bg-neutral-900 border border-white/10 shrink-0 overflow-hidden relative">
+              <div class="w-9 h-9 rounded bg-neutral-900 border border-default shrink-0 overflow-hidden relative">
                 <NuxtImg
                   v-if="u.icon && getRobloxImageUrl(u.icon)"
                   :src="getRobloxImageUrl(u.icon)!"
@@ -82,9 +64,9 @@
                 <div class="font-bold text-xs sm:text-sm text-white truncate group-hover:text-primary transition-colors">
                   {{ u.displayName || u.name }}
                 </div>
-                <div class="flex items-center gap-1.5 text-[10px] text-neutral-400">
+                <div class="flex items-center gap-1.5 text-[10px] text-muted">
                   <span class="truncate">{{ u.series || 'Other' }}</span>
-                  <span v-if="u.element" class="text-neutral-500">•</span>
+                  <span v-if="u.element">•</span>
                   <span v-if="u.element" :class="getElementColorClass(u.element)">{{ u.element }}</span>
                 </div>
               </div>
@@ -126,11 +108,29 @@ const selectedRarity = ref('All')
 
 const rarities = ['All', 'Secret', 'Celestial', 'Mythic', 'Legendary', 'Epic']
 
+const RARITY_WEIGHT: Record<string, number> = {
+  Exclusive: 10,
+  Secret: 9,
+  Celestial: 9,
+  Mysterious: 9,
+  Mythic: 8,
+  Legendary: 7,
+  Epic: 6,
+  Rare: 5,
+  Uncommon: 4,
+  Common: 3
+}
+
+function getRarityWeight(rarity?: string): number {
+  if (!rarity) return 0
+  return RARITY_WEIGHT[rarity.trim()] || 0
+}
+
 const filteredUnits = computed(() => {
   const q = searchQuery.value.toLowerCase().trim()
   const r = selectedRarity.value
 
-  return (props.units || []).filter((u: any) => {
+  const matched = (props.units || []).filter((u: any) => {
     const matchesSearch =
       !q ||
       (u.name || '').toLowerCase().includes(q) ||
@@ -142,6 +142,12 @@ const filteredUnits = computed(() => {
       (u.rarity || '').toLowerCase() === r.toLowerCase()
 
     return matchesSearch && matchesRarity
+  })
+
+  return [...matched].sort((a: any, b: any) => {
+    const wDiff = getRarityWeight(b.rarity) - getRarityWeight(a.rarity)
+    if (wDiff !== 0) return wDiff
+    return (a.displayName || a.name || '').localeCompare(b.displayName || b.name || '')
   })
 })
 
@@ -174,4 +180,3 @@ function getElementColorClass(element?: string): string {
   return 'text-neutral-400'
 }
 </script>
-

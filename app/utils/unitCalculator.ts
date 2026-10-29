@@ -195,6 +195,10 @@ export function calculateCombatStats(
   traitsInput?: UnitTrait[] | UnitTrait | null,
   gearStats?: Partial<GearStatsAggregated> | null
 ): CalculatedStats {
+  const safeLvl = Math.max(1, Math.min(80, Math.floor(isNaN(Number(unitLevel)) ? 1 : Number(unitLevel))))
+  const safeStars = Math.max(0, Math.min(6, Math.floor(isNaN(Number(stars)) ? 0 : Number(stars))))
+  const safeUpg = Math.max(0, Math.floor(isNaN(Number(upgradeLevel)) ? 0 : Number(upgradeLevel)))
+
   const activeTraits: UnitTrait[] = Array.isArray(traitsInput)
     ? traitsInput.filter((t): t is UnitTrait => !!t)
     : (traitsInput ? [traitsInput] : [])
@@ -225,27 +229,28 @@ export function calculateCombatStats(
     }
   }
 
-  const baseDmg = unit.baseDamage || unit.Damage || 50
-  const baseHp = unit.statsAtBase?.health || unit.HP || 100
-  const baseRange = unit.statsAtBase?.range || unit.Range || 15
-  const baseSpeed = unit.statsAtBase?.speed || unit.WalkSpeed || 8
-  const baseSpa = unit.statsAtBase?.attackSpeed || unit.AttackSpeed || 3
-  const baseCost = unit.statsAtBase?.cost || unit.Cost || 800
-  const statMult = unit.upgradeStatMultiplier || 1.2
+  const levelData = unit.levels?.[String(safeUpg)] || unit.levels?.['0'] || {}
   const overrides = unit.upgradeOverrides || {}
+  const lvlOverrides = getUpgradeOverridesForLevel(overrides, safeUpg)
+  const statMult = unit.upgradeStatMultiplier || 1.2
+  const upgMult = safeUpg <= 1 ? 1 : Math.pow(statMult, safeUpg - 1)
 
-  const lvlOverrides = getUpgradeOverridesForLevel(overrides, upgradeLevel)
-  const upgMult = upgradeLevel <= 1 ? 1 : Math.pow(statMult, upgradeLevel - 1)
+  const baseDmg = levelData.Attack || unit.baseDamage || unit.Damage || 50
+  const baseHp = levelData.Health || unit.statsAtBase?.health || unit.HP || 100
+  const baseRange = levelData.Range !== undefined ? levelData.Range : (unit.statsAtBase?.range || unit.Range || 15)
+  const baseSpeed = levelData.Speed || levelData.WalkSpeed || unit.statsAtBase?.speed || unit.WalkSpeed || 8
+  const baseSpa = levelData.AttackSpeed !== undefined ? levelData.AttackSpeed : (unit.statsAtBase?.attackSpeed || unit.AttackSpeed || 3)
+  const baseCost = levelData.Cost || unit.statsAtBase?.cost || unit.Cost || 800
 
-  const rawAtk = lvlOverrides.Attack || lvlOverrides.Damage || Math.round(baseDmg * upgMult * 10) / 10
-  const rawHp = lvlOverrides.Health || lvlOverrides.HP || Math.round(baseHp * upgMult * 10) / 10
+  const rawAtk = lvlOverrides.Attack || lvlOverrides.Damage || levelData.Attack || Math.round(baseDmg * upgMult * 10) / 10
+  const rawHp = lvlOverrides.Health || lvlOverrides.HP || levelData.Health || Math.round(baseHp * upgMult * 10) / 10
   const rawRange = lvlOverrides.Range !== undefined ? lvlOverrides.Range : baseRange
   const rawSpeed = lvlOverrides.WalkSpeed || baseSpeed
   const rawSpa = lvlOverrides.AttackSpeed !== undefined ? lvlOverrides.AttackSpeed : baseSpa
-  const rawCd = lvlOverrides.SkillCooldown || unit.SkillCooldown || 5
+  const rawCd = lvlOverrides.SkillCooldown || levelData.SkillCooldown || unit.SkillCooldown || 5
 
-  const lvlMult = getLevelMultiplier(unitLevel)
-  const awk = getAwakeningBonuses(stars)
+  const lvlMult = getLevelMultiplier(safeLvl)
+  const awk = getAwakeningBonuses(safeStars)
 
   // Potential Rank Multipliers (status.md: D=5%, C=10%, B=15%, SS=30%, SSS=35%, 神=50%)
   const potDmg = getPotentialMultiplier(potentials.damage)
@@ -407,7 +412,8 @@ export function getMaxUnitLevel(stars: number = 0): number {
  * (Each level gives +10% of base stat)
  */
 export function getLevelMultiplier(level: number = 1): number {
-  const lvl = Math.max(1, Math.min(80, Math.floor(level)))
+  const num = Number(level)
+  const lvl = Math.max(1, Math.min(80, Math.floor(isNaN(num) ? 1 : num)))
   return 1 + (lvl - 1) * 0.1
 }
 

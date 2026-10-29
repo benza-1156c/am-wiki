@@ -1,49 +1,57 @@
 <template>
   <div class="space-y-6 max-w-6xl mx-auto">
     <!-- Page Header & Quick Controls -->
-    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl border border-white/10 bg-[#0f172a]/90 backdrop-blur-md shadow-xl">
-      <div class="space-y-1">
-        <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
-          <UIcon name="i-lucide-swords" class="w-4 h-4" />
-          <span>Versus Combat Analyzer</span>
+    <UCard>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+            <UIcon name="i-lucide-swords" class="w-4 h-4" />
+            <span>Versus Combat Analyzer</span>
+          </div>
+          <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">
+            Unit Comparison
+          </h1>
+          <p class="text-xs text-muted">
+            Compare combat stats, DPS, range, gears, and traits in real time.
+          </p>
+        </div>
+
+        <!-- Quick Action Toolbars -->
+        <div class="flex items-center gap-2 flex-wrap self-start md:self-auto">
+          <UButton
+            icon="i-lucide-zap"
+            label="Sync Both Max"
+            size="xs"
+            variant="solid"
+            color="primary"
+            @click="syncBothMax"
+          />
+          <UButton
+            icon="i-lucide-crosshair"
+            label="Base Lv.1"
+            size="xs"
+            variant="outline"
+            color="neutral"
+            @click="syncBothBase"
+          />
+          <UButton
+            icon="i-lucide-arrow-left-right"
+            label="Swap Sides"
+            size="xs"
+            variant="outline"
+            color="neutral"
+            @click="swapSides"
+          />
+          <UButton
+            icon="i-lucide-dices"
+            size="xs"
+            variant="ghost"
+            color="neutral"
+            @click="randomMatchup"
+          />
         </div>
       </div>
-
-      <!-- Quick Action Toolbars -->
-      <div class="flex items-center gap-2 flex-wrap self-start md:self-auto">
-        <UButton
-          icon="i-lucide-zap"
-          label="Sync Both Max"
-          size="xs"
-          variant="solid"
-          color="primary"
-          @click="syncBothMax"
-        />
-        <UButton
-          icon="i-lucide-crosshair"
-          label="Base Lv.1"
-          size="xs"
-          variant="soft"
-          color="neutral"
-          @click="syncBothBase"
-        />
-        <UButton
-          icon="i-lucide-arrow-left-right"
-          label="Swap Sides"
-          size="xs"
-          variant="outline"
-          color="neutral"
-          @click="swapSides"
-        />
-        <UButton
-          icon="i-lucide-dices"
-          size="xs"
-          variant="ghost"
-          color="neutral"
-          @click="randomMatchup"
-        />
-      </div>
-    </div>
+    </UCard>
 
     <!-- Side-by-Side Character Column Cards (Same uniform clean theme) -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
@@ -68,14 +76,53 @@
       />
     </div>
 
-    <!-- Statistics Comparison (Exact styling and metrics as Calculator's UnitStatsGrid) -->
-    <div v-if="stats1 && stats2" class="p-5 rounded-2xl border border-white/10 bg-[#0f172a]/70 backdrop-blur-md shadow-xl">
+    <!-- Statistics Comparison (Wrapped in UCard matching Calculator's UnitStatsGrid) -->
+    <UCard v-if="stats1 && stats2">
+      <template #header>
+        <div class="flex items-center justify-between">
+          <span class="text-sm font-bold flex items-center gap-1.5">
+            <UIcon name="i-lucide-activity" class="text-primary" />
+            <span>Combat Statistics Comparison</span>
+          </span>
+          <div class="flex items-center gap-2">
+            <UBadge color="primary" variant="subtle" size="xs">
+              {{ unit1?.displayName || unit1?.name }} vs {{ unit2?.displayName || unit2?.name }}
+            </UBadge>
+          </div>
+        </div>
+      </template>
+
       <CompareStatsGrid
         :stats1="stats1"
         :stats2="stats2"
         :potentials1="unit1State.potentials"
         :potentials2="unit2State.potentials"
       />
+    </UCard>
+
+    <!-- Side-by-Side Skills Comparison (Passive & Ultimate) -->
+    <div v-if="unit1 && unit2" class="space-y-3">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-bold flex items-center gap-1.5 text-white">
+          <UIcon name="i-lucide-shield-alert" class="text-primary w-4 h-4" />
+          <span>Passive & Ultimate Abilities Comparison</span>
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+        <CompareUnitSkillCard
+          :unit="unit1"
+          :skill="unit1?.skill"
+          :ultimate-name="unit1?.ultimateName"
+          :ultimate-cooldown="unit1?.ultimateCooldown"
+        />
+        <CompareUnitSkillCard
+          :unit="unit2"
+          :skill="unit2?.skill"
+          :ultimate-name="unit2?.ultimateName"
+          :ultimate-cooldown="unit2?.ultimateCooldown"
+        />
+      </div>
     </div>
 
     <!-- Unit Selection Modal -->
@@ -100,6 +147,7 @@ import { formatNumber } from '~/utils/formatters'
 import CompareUnitPanel, { type CompareUnitPanelState } from '~/components/compare/CompareUnitPanel.vue'
 import CompareStatsGrid from '~/components/compare/CompareStatsGrid.vue'
 import CompareUnitPickerModal from '~/components/compare/CompareUnitPickerModal.vue'
+import CompareUnitSkillCard from '~/components/compare/CompareUnitSkillCard.vue'
 
 const route = useRoute()
 const router = useRouter()

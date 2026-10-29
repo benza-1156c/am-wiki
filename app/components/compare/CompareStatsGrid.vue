@@ -1,24 +1,22 @@
 <template>
-  <div class="space-y-6">
+  <div class="space-y-5">
     <!-- Group 1: Status Potentials Comparison -->
-    <div class="space-y-2.5">
-      <div class="flex items-center justify-between text-xs pb-1">
-        <span class="font-bold text-neutral-400 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-          <UIcon name="i-lucide-activity" class="w-4 h-4 text-primary" />
-          <span>Status Potentials</span>
-        </span>
+    <div class="space-y-2">
+      <div class="text-[11px] font-bold text-muted uppercase tracking-wider flex items-center gap-1.5">
+        <UIcon name="i-lucide-activity" class="w-3.5 h-3.5 text-primary" />
+        <span>Status Potentials</span>
       </div>
 
-      <div class="space-y-2">
+      <div class="space-y-1.5">
         <div
           v-for="stat in potentialStats"
           :key="stat.key"
-          class="p-3 rounded-xl border border-white/5 bg-neutral-900/50 hover:bg-neutral-900/70 transition-colors flex items-center justify-between gap-3 text-xs"
+          class="p-2.5 rounded-lg border border-default bg-neutral-900/40 hover:bg-neutral-900/60 transition-colors flex items-center justify-between gap-3 text-xs"
         >
           <!-- Left Unit Value & Potential Rank -->
           <div class="flex-1 flex items-center gap-2">
             <div
-              class="px-2.5 py-1 rounded-lg font-mono transition-all flex items-center gap-1.5"
+              class="px-2.5 py-1 rounded-md font-mono transition-all flex items-center gap-1.5"
               :class="isWinner(stat.getRaw(stats1), stat.getRaw(stats2), stat.isCooldown) === '1'
                 ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-black'
                 : 'text-neutral-300 font-semibold'"
@@ -43,7 +41,7 @@
           </div>
 
           <!-- Center Label & Icon -->
-          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 font-bold text-neutral-300 shrink-0">
+          <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-neutral-900/80 border border-default font-bold text-neutral-300 shrink-0">
             <UIcon :name="stat.icon" class="w-4 h-4 text-primary" />
             <span class="text-xs sm:text-sm">{{ stat.label }}</span>
           </div>
@@ -61,7 +59,7 @@
             </UBadge>
 
             <div
-              class="px-2.5 py-1 rounded-lg font-mono transition-all flex items-center gap-1.5"
+              class="px-2.5 py-1 rounded-md font-mono transition-all flex items-center gap-1.5"
               :class="isWinner(stat.getRaw(stats1), stat.getRaw(stats2), stat.isCooldown) === '2'
                 ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-black'
                 : 'text-neutral-300 font-semibold'"
@@ -79,24 +77,22 @@
     </div>
 
     <!-- Group 2: Skill & Combat Metrics (Same Row-by-Row Layout) -->
-    <div class="space-y-2.5 pt-3 border-t border-white/5">
-      <div class="flex items-center justify-between text-xs pb-1">
-        <span class="font-bold text-neutral-400 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
-          <UIcon name="i-lucide-swords" class="w-4 h-4 text-amber-400" />
-          <span>Skill & Combat Metrics</span>
-        </span>
+    <div class="space-y-2 pt-3 border-t border-default">
+      <div class="text-[11px] font-bold text-muted uppercase tracking-wider flex items-center gap-1.5">
+        <UIcon name="i-lucide-swords" class="w-3.5 h-3.5 text-amber-400" />
+        <span>Skill & Combat Metrics</span>
       </div>
 
-      <div class="space-y-2">
+      <div class="space-y-1.5">
         <div
           v-for="stat in combatMetricStats"
           :key="stat.key"
-          class="p-3 rounded-xl border border-white/5 bg-neutral-900/50 hover:bg-neutral-900/70 transition-colors flex items-center justify-between gap-3 text-xs"
+          class="p-2.5 rounded-lg border border-default bg-neutral-900/40 hover:bg-neutral-900/60 transition-colors flex items-center justify-between gap-3 text-xs"
         >
           <!-- Left Unit Value -->
           <div class="flex-1 flex items-center gap-2">
             <div
-              class="px-2.5 py-1 rounded-lg font-mono transition-all flex items-center gap-1.5"
+              class="px-2.5 py-1 rounded-md font-mono transition-all flex items-center gap-1.5"
               :class="isWinner(stat.getRaw(stats1), stat.getRaw(stats2), stat.lowerIsBetter) === '1'
                 ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-black'
                 : 'text-neutral-300 font-semibold'"
@@ -111,7 +107,7 @@
           </div>
 
           <!-- Center Label & Icon -->
-          <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/40 border border-white/5 font-bold text-neutral-300 shrink-0">
+          <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-neutral-900/80 border border-default font-bold text-neutral-300 shrink-0">
             <UIcon :name="stat.icon" class="w-4 h-4 text-amber-400" />
             <span class="text-xs sm:text-sm">{{ stat.label }}</span>
           </div>
@@ -119,7 +115,7 @@
           <!-- Right Unit Value -->
           <div class="flex-1 flex items-center justify-end gap-2 text-right">
             <div
-              class="px-2.5 py-1 rounded-lg font-mono transition-all flex items-center gap-1.5"
+              class="px-2.5 py-1 rounded-md font-mono transition-all flex items-center gap-1.5"
               :class="isWinner(stat.getRaw(stats1), stat.getRaw(stats2), stat.lowerIsBetter) === '2'
                 ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-black'
                 : 'text-neutral-300 font-semibold'"
