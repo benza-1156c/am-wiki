@@ -74,8 +74,16 @@
           </div>
         </div>
 
-        <!-- Switch Unit Action -->
+        <!-- Switch Unit Action & Share Button -->
         <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+          <UButton
+            icon="i-lucide-share-2"
+            label="Share Build"
+            variant="soft"
+            color="primary"
+            size="sm"
+            @click="handleShare"
+          />
           <UButton
             icon="i-lucide-arrow-left-right"
             label="Switch Unit"
@@ -114,7 +122,107 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+
 const store = useCombatCalculatorStore()
+const route = useRoute()
+const router = useRouter()
+const toast = useToast()
+
+// 1. Initial Load from URL Query Parameters
+if (route.query && Object.keys(route.query).length > 0) {
+  store.initFromQuery(route.query)
+}
+
+// 2. Debounced Sync Store State -> URL Query Parameters
+let syncTimer: any = null
+watch(
+  () => store.buildQueryParams,
+  (newQuery) => {
+    if (import.meta.server) return
+    clearTimeout(syncTimer)
+    syncTimer = setTimeout(() => {
+      const currentQuery = route.query
+      const isDifferent = Object.keys(newQuery).some(k => newQuery[k] !== currentQuery[k]) ||
+                          Object.keys(currentQuery).some(k => currentQuery[k] !== newQuery[k])
+      if (isDifferent) {
+        router.replace({ query: newQuery })
+      }
+    }, 200)
+  },
+  { deep: true }
+)
+
+// 3. Share Action (Copy Link / Native Web Share)
+async function handleShare() {
+  const url = import.meta.client ? window.location.href : ''
+  const unitTitle = `${store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'} (${store.selectedStars}★ Lv.${store.unitLevel})`
+
+  if (import.meta.client && navigator.share) {
+    try {
+      await navigator.share({
+        title: `${unitTitle} Build - Anime Mysterious`,
+        text: `Check out this ${unitTitle} build on Anime Mysterious Calculator!`,
+        url
+      })
+      return
+    } catch {
+      // User dismissed share dialog, fallback to clipboard
+    }
+  }
+
+  if (import.meta.client && navigator.clipboard) {
+    await navigator.clipboard.writeText(url)
+    toast.add({
+      title: 'Link Copied!',
+      description: 'Build link copied to clipboard. Share it with your friends!',
+      color: 'success',
+      icon: 'i-lucide-check-circle'
+    })
+  }
+}
+
+useSeoMeta({
+  title: () => `${store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'} (${store.selectedStars}★ Lv.${store.unitLevel}) - Anime Mysterious Calculator`,
+  description: () => {
+    const u = store.currentUnit
+    const s = store.calculatedStats
+    const atk = (s?.attack ?? 0).toLocaleString()
+    const hp = (s?.health ?? 0).toLocaleString()
+    const dps = (s?.dps ?? 0).toLocaleString()
+    return `Calculate Anime Mysterious combat stats for ${u?.displayName || u?.name}: ${atk} DMG, ${hp} HP, ${dps} DPS, ${s?.range ?? 0} Range, ${s?.attackSpeed ?? 0}s SPA.`
+  },
+  ogTitle: () => `${store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'} (${store.selectedStars}★ Lv.${store.unitLevel}) - Anime Mysterious`,
+  ogDescription: () => {
+    const s = store.calculatedStats
+    const atk = (s?.attack ?? 0).toLocaleString()
+    const hp = (s?.health ?? 0).toLocaleString()
+    const dps = (s?.dps ?? 0).toLocaleString()
+    return `DMG: ${atk} | HP: ${hp} | DPS: ${dps} | Cost: ¥${s?.cost ?? 0}`
+  },
+  ogType: 'website',
+  twitterCard: 'summary_large_image'
+})
+
+defineOgImage('UnitOgImage', {
+  unitName: computed(() => store.currentUnit?.displayName || store.currentUnit?.name || 'Unit'),
+  unitSeries: computed(() => store.currentUnit?.series || 'Other'),
+  unitRarity: computed(() => store.currentUnit?.rarity || 'Secret'),
+  stars: computed(() => store.selectedStars),
+  level: computed(() => store.unitLevel),
+  upgrade: computed(() => store.upgradeLevel),
+  traitName: computed(() => store.currentTraits?.map(t => t.TraitDisplayName).join(', ') || 'None'),
+  cost: computed(() => store.calculatedStats?.cost ?? 0),
+  damage: computed(() => (store.calculatedStats?.attack ?? 0).toLocaleString()),
+  health: computed(() => (store.calculatedStats?.health ?? 0).toLocaleString()),
+  dps: computed(() => (store.calculatedStats?.dps ?? 0).toLocaleString()),
+  range: computed(() => String(store.calculatedStats?.range ?? 0)),
+  spa: computed(() => String(store.calculatedStats?.attackSpeed ?? 0)),
+  gearsSummary: computed(() => {
+    const active = Object.values(store.activeEquippedGears || {}).filter(Boolean) as any[]
+    return active.map(g => g.Name).join(', ')
+  })
+})
 
 function getRarityColor(rarity?: string): any {
   switch (rarity) {

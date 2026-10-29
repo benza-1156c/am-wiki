@@ -1,14 +1,18 @@
 export default defineNuxtConfig({
-  modules: ['@nuxt/image', '@nuxt/ui'],
+  modules: ['@nuxt/image', '@nuxt/ui', 'nuxt-og-image'],
+  site: {
+    url: process.env.NUXT_PUBLIC_SITE_URL || 'https://am-wiki.vercel.app',
+    name: 'Anime Mysterious'
+  },
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     adminPassword: process.env.ADMIN_PASSWORD
   },
   app: {
     head: {
-      title: 'AM Wiki',
+      title: 'Anime Mysterious',
       meta: [
-        { name: 'description', content: 'Comprehensive Anime Mysterious unit wiki, player card database, level upgrade stats calculator, compare tool, gears and traits.' }
+        { name: 'description', content: 'Anime Mysterious Wiki - Comprehensive unit database, level upgrade stats calculator, compare tool, gears and traits.' }
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

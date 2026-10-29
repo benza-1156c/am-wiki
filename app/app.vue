@@ -9,9 +9,9 @@
               <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:border-primary/40 transition-colors">
                 <UIcon name="i-lucide-swords" class="w-4 h-4" />
               </div>
-              <div class="flex items-baseline gap-1.5 font-['Outfit']">
-                <span class="font-black text-base tracking-tight text-white">AM</span>
-                <span class="text-xs font-bold uppercase tracking-wider text-primary">Wiki</span>
+              <div class="flex items-center gap-1.5 font-['Outfit']">
+                <span class="font-extrabold text-base tracking-tight text-white">Anime</span>
+                <span class="font-extrabold text-base tracking-tight text-primary">Mysterious</span>
               </div>
             </NuxtLink>
 

@@ -319,6 +319,67 @@ export function useCombatCalculatorStore() {
     }
   }
 
+  // URL Query Sync Helpers
+  function initFromQuery(query: Record<string, any>) {
+    if (!query) return
+    if (query.unit) selectedUnitId.value = String(query.unit)
+    if (query.stars !== undefined && query.stars !== '') {
+      const s = parseInt(String(query.stars), 10)
+      if (!isNaN(s)) selectedStars.value = Math.max(0, Math.min(6, s))
+    }
+    if (query.level !== undefined && query.level !== '') {
+      const l = parseInt(String(query.level), 10)
+      if (!isNaN(l)) unitLevel.value = Math.max(1, Math.min(80, l))
+    }
+    if (query.upgrade !== undefined && query.upgrade !== '') {
+      const u = parseInt(String(query.upgrade), 10)
+      if (!isNaN(u)) upgradeLevel.value = Math.max(0, u)
+    }
+    if (query.trait1 !== undefined) {
+      selectedTraitIds.value[0] = query.trait1 && query.trait1 !== 'none' ? String(query.trait1) : null
+    }
+    if (query.trait2 !== undefined) {
+      selectedTraitIds.value[1] = query.trait2 && query.trait2 !== 'none' ? String(query.trait2) : null
+    }
+    if (query.head !== undefined) {
+      equippedGears.value.Head = query.head && query.head !== 'none' ? String(query.head) : null
+    }
+    if (query.body !== undefined) {
+      equippedGears.value.Body = query.body && query.body !== 'none' ? String(query.body) : null
+    }
+    if (query.arm !== undefined) {
+      equippedGears.value.Arm = query.arm && query.arm !== 'none' ? String(query.arm) : null
+    }
+    if (query.legs !== undefined) {
+      equippedGears.value.Legs = query.legs && query.legs !== 'none' ? String(query.legs) : null
+    }
+    if (query.pot_dmg) potentials.value.damage = String(query.pot_dmg) as any
+    if (query.pot_hp) potentials.value.health = String(query.pot_hp) as any
+    if (query.pot_range) potentials.value.range = String(query.pot_range) as any
+    if (query.pot_spd) potentials.value.speed = String(query.pot_spd) as any
+    if (query.pot_cd) potentials.value.cooldown = String(query.pot_cd) as any
+  }
+
+  const buildQueryParams = computed(() => {
+    const q: Record<string, string> = {}
+    if (selectedUnitId.value) q.unit = selectedUnitId.value
+    if (selectedStars.value !== undefined) q.stars = String(selectedStars.value)
+    if (unitLevel.value) q.level = String(unitLevel.value)
+    if (upgradeLevel.value !== undefined) q.upgrade = String(upgradeLevel.value)
+    if (selectedTraitIds.value[0]) q.trait1 = selectedTraitIds.value[0]
+    if (selectedTraitIds.value[1]) q.trait2 = selectedTraitIds.value[1]
+    if (equippedGears.value.Head) q.head = equippedGears.value.Head
+    if (equippedGears.value.Body) q.body = equippedGears.value.Body
+    if (equippedGears.value.Arm) q.arm = equippedGears.value.Arm
+    if (equippedGears.value.Legs) q.legs = equippedGears.value.Legs
+    if (potentials.value.damage) q.pot_dmg = potentials.value.damage
+    if (potentials.value.health) q.pot_hp = potentials.value.health
+    if (potentials.value.range) q.pot_range = potentials.value.range
+    if (potentials.value.speed) q.pot_spd = potentials.value.speed
+    if (potentials.value.cooldown) q.pot_cd = potentials.value.cooldown
+    return q
+  })
+
   // Returning reactive ensures all refs and computed values are automatically unwrapped in templates and script
   return reactive({
     // Database async state
@@ -352,6 +413,7 @@ export function useCombatCalculatorStore() {
     levelMultiplier,
     unitSkillInfo,
     calculatedStats,
+    buildQueryParams,
 
     // Actions
     setUnit,
@@ -363,6 +425,7 @@ export function useCombatCalculatorStore() {
     clearTraits,
     setGear,
     clearGears,
-    resetPotentials
+    resetPotentials,
+    initFromQuery
   })
 }
