@@ -52,7 +52,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue'
+import { toUnitSlug } from '~/utils/unitSlug'
+
 const store = useCombatCalculatorStore()
+const router = useRouter()
+const route = useRoute()
 
 const searchQuery = ref('')
 const unitList = computed(() => store.units || [])
@@ -72,6 +77,15 @@ const filteredUnits = computed(() => {
 function selectUnit(id: string) {
   store.setUnit(id)
   store.isSelectorOpen = false
+
+  // Only navigate if the user is already browsing inside /units
+  if (route.path.startsWith('/units')) {
+    const target = unitList.value.find((u: any) => u.id === id)
+    if (target) {
+      const slug = toUnitSlug(target)
+      router.push({ path: `/units/${slug}` })
+    }
+  }
 }
 
 function getRarityColor(rarity?: string): any {

@@ -21,6 +21,13 @@
                 class="px-2.5 py-1.5 rounded-md hover:text-white hover:bg-white/5 transition-colors"
                 active-class="text-white bg-white/5 font-semibold"
               >
+                Units Wiki
+              </NuxtLink>
+              <NuxtLink
+                to="/units/dracula-vampire-progenitor"
+                class="px-2.5 py-1.5 rounded-md hover:text-white hover:bg-white/5 transition-colors"
+                active-class="text-white bg-white/5 font-semibold"
+              >
                 Calculator
               </NuxtLink>
             </nav>
