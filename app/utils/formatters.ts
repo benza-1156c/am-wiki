@@ -9,7 +9,7 @@ export function formatSkillHtml(html: any): string {
     text = String(html)
   }
   return text
-    .replace(/<font color=['"]?([^'">]+)['"]?>/gi, '<span class="font-bold px-1.5 py-0.5 mx-0.5 rounded bg-white/10 text-shadow-sm inline-block" style="color: $1">')
+    .replace(/<font\s+(?:color|สี)=['"]?([^'">]+)['"]?>/gi, '<span class="font-bold px-1.5 py-0.5 mx-0.5 rounded bg-white/10 text-shadow-sm inline-block" style="color: $1">')
     .replace(/<\/font>/gi, '</span>')
     .replace(/<u>(.*?)<\/u>/gi, '<span class="underline decoration-cyan-400 decoration-2 font-medium">$1</span>')
 }

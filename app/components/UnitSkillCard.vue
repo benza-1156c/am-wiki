@@ -4,10 +4,9 @@
       <div class="flex items-center justify-between gap-2">
         <div class="flex items-center gap-2">
           <UIcon name="i-lucide-shield-alert" class="w-4 h-4 text-primary" />
-          <h3 class="font-bold text-sm">Passive & Ultimate Abilities</h3>
+          <h3 class="font-bold text-sm">Passive & Ultimate</h3>
         </div>
 
-        <!-- Language Switcher: Google Translate Runtime vs Authentic English -->
         <div class="flex items-center gap-1.5">
           <div class="flex items-center bg-white/5 rounded-lg p-0.5 border border-white/10 text-xs">
             <button
@@ -15,9 +14,9 @@
               class="px-2 py-0.5 rounded transition-all flex items-center gap-1"
               :class="currentLang === 'th' ? 'bg-primary/20 text-primary font-semibold shadow-sm' : 'text-neutral-400 hover:text-white'"
               @click="currentLang = 'th'"
-              title="แปลไทยด้วย Google Translate (Runtime)"
+              title="แปลไทยด้วย Google Translate"
             >
-              <span>🇹🇭 แปลไทย</span>
+              <span>🇹🇭</span>
               <UIcon v-if="isTranslating" name="i-lucide-loader-2" class="w-3 h-3 animate-spin text-primary" />
             </button>
             <button
@@ -25,9 +24,8 @@
               class="px-2 py-0.5 rounded transition-all"
               :class="currentLang === 'en' ? 'bg-primary/20 text-primary font-semibold shadow-sm' : 'text-neutral-400 hover:text-white'"
               @click="currentLang = 'en'"
-              title="แสดงข้อความภาษาอังกฤษแท้จาก Database"
             >
-              <span>🇺🇸 Original EN</span>
+              <span>EN</span>
             </button>
           </div>
         </div>
@@ -45,11 +43,6 @@
               v-html="formatSkillHtml(displayPassiveHeader) || 'Inherent Passive'"
             ></span>
           </div>
-
-          <span v-if="currentLang === 'th'" class="text-[10px] text-muted font-mono flex items-center gap-1 shrink-0">
-            <UIcon name="i-lucide-sparkles" class="w-3 h-3 text-amber-400" />
-            <span>Google แปลภาษา</span>
-          </span>
         </div>
 
         <div
@@ -104,81 +97,63 @@ const skillData = computed(() => props.skill !== undefined ? props.skill : store
 const ultName = computed(() => props.ultimateName !== undefined ? props.ultimateName : store.currentUnit?.ultimateName)
 const ultCooldown = computed(() => props.ultimateCooldown !== undefined ? props.ultimateCooldown : store.currentUnit?.ultimateCooldown)
 
-// Language Mode: 'th' for runtime Google Translate, 'en' for authentic database original
 const currentLang = ref<'th' | 'en'>('th')
 const isTranslating = ref<boolean>(false)
 
 const translatedTexts = ref<{
-  passiveHeader?: string
-  passiveDescription?: string
-  ultimateHeader?: string
-  ultimateDescription?: string
+  passiveHeader?: any
+  passiveDescription?: any
+  ultimateHeader?: any
+  ultimateDescription?: any
 }>({})
 
-// Client-side cache to make switching back and forth 0ms instant
-const clientCache = new Map<string, string>()
+const skillCache = new Map<string, {
+  passiveHeader?: any
+  passiveDescription?: any
+  ultimateHeader?: any
+  ultimateDescription?: any
+}>()
 
 async function translateIfNeeded() {
   if (!skillData.value || currentLang.value !== 'th') return
-
-  const textsToTranslate: { key: string; text: string }[] = []
 
   const pHeader = skillData.value.PassiveHeader
   const pDesc = skillData.value.PassiveDescription
   const uHeader = skillData.value.UltimateHeader || ultName.value
   const uDesc = skillData.value.UltimateDescription
 
-  if (pHeader) {
-    if (clientCache.has(pHeader)) {
-      translatedTexts.value.passiveHeader = clientCache.get(pHeader)
-    } else {
-      textsToTranslate.push({ key: 'passiveHeader', text: pHeader })
-    }
+  const cacheKey = JSON.stringify({ pHeader, pDesc, uHeader, uDesc })
+  if (skillCache.has(cacheKey)) {
+    translatedTexts.value = skillCache.get(cacheKey)!
+    return
   }
-
-  if (pDesc) {
-    if (clientCache.has(pDesc)) {
-      translatedTexts.value.passiveDescription = clientCache.get(pDesc)
-    } else {
-      textsToTranslate.push({ key: 'passiveDescription', text: pDesc })
-    }
-  }
-
-  if (uHeader) {
-    if (clientCache.has(uHeader)) {
-      translatedTexts.value.ultimateHeader = clientCache.get(uHeader)
-    } else {
-      textsToTranslate.push({ key: 'ultimateHeader', text: uHeader })
-    }
-  }
-
-  if (uDesc) {
-    if (clientCache.has(uDesc)) {
-      translatedTexts.value.ultimateDescription = clientCache.get(uDesc)
-    } else {
-      textsToTranslate.push({ key: 'ultimateDescription', text: uDesc })
-    }
-  }
-
-  if (textsToTranslate.length === 0) return
 
   isTranslating.value = true
   try {
-    const res = await $fetch<{ translations: string[] }>('/api/translate', {
+    const res = await $fetch<{
+      translated: {
+        passiveHeader?: any
+        passiveDescription?: any
+        ultimateHeader?: any
+        ultimateDescription?: any
+      }
+    }>('/api/translate', {
       method: 'POST',
       body: {
-        texts: textsToTranslate.map(item => item.text),
+        payload: {
+          passiveHeader: pHeader,
+          passiveDescription: pDesc,
+          ultimateHeader: uHeader,
+          ultimateDescription: uDesc
+        },
         from: 'en',
         to: 'th'
       }
     })
 
-    if (res && res.translations) {
-      textsToTranslate.forEach((item, idx) => {
-        const translated = res.translations[idx] || item.text
-        clientCache.set(item.text, translated)
-        ;(translatedTexts.value as any)[item.key] = translated
-      })
+    if (res && res.translated) {
+      translatedTexts.value = res.translated
+      skillCache.set(cacheKey, res.translated)
     }
   } catch (err) {
     console.warn('Runtime translation failed, showing original English text:', err)
@@ -186,6 +161,13 @@ async function translateIfNeeded() {
     isTranslating.value = false
   }
 }
+
+watch(
+  () => skillData.value,
+  () => {
+    translatedTexts.value = {}
+  }
+)
 
 watch(
   [() => skillData.value, currentLang],
@@ -196,28 +178,28 @@ watch(
 )
 
 const displayPassiveHeader = computed(() => {
-  if (currentLang.value === 'th' && translatedTexts.value.passiveHeader) {
+  if (currentLang.value === 'th' && translatedTexts.value.passiveHeader !== undefined) {
     return translatedTexts.value.passiveHeader
   }
   return skillData.value?.PassiveHeader || ''
 })
 
 const displayPassiveDescription = computed(() => {
-  if (currentLang.value === 'th' && translatedTexts.value.passiveDescription) {
+  if (currentLang.value === 'th' && translatedTexts.value.passiveDescription !== undefined) {
     return translatedTexts.value.passiveDescription
   }
   return skillData.value?.PassiveDescription || ''
 })
 
 const displayUltimateHeader = computed(() => {
-  if (currentLang.value === 'th' && translatedTexts.value.ultimateHeader) {
+  if (currentLang.value === 'th' && translatedTexts.value.ultimateHeader !== undefined) {
     return translatedTexts.value.ultimateHeader
   }
   return skillData.value?.UltimateHeader || ultName.value || ''
 })
 
 const displayUltimateDescription = computed(() => {
-  if (currentLang.value === 'th' && translatedTexts.value.ultimateDescription) {
+  if (currentLang.value === 'th' && translatedTexts.value.ultimateDescription !== undefined) {
     return translatedTexts.value.ultimateDescription
   }
   return skillData.value?.UltimateDescription || ''

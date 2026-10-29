@@ -108,14 +108,12 @@
         </div>
       </div>
 
-      <!-- Unit Selector Modal -->
       <UnitSelector />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// Central store manages all state and calculations across components (No manual emits needed)
 const store = useCombatCalculatorStore()
 
 function getRarityColor(rarity?: string): any {

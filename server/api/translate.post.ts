@@ -3,10 +3,10 @@ const translationCache = new Map<string, string>()
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
-    if (!body || (!body.text && !body.texts)) {
+    if (!body || (!body.text && !body.texts && !body.payload)) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Invalid payload: "text" or "texts" required'
+        statusMessage: 'Invalid payload: "text", "texts", or "payload" required'
       })
     }
 
@@ -39,7 +39,10 @@ export default defineEventHandler(async (event) => {
           }
 
           if (result) {
-            result = result.replace(/<font>\s*color=/gi, '<font color=')
+            result = result
+              .replace(/<font\s*สี=/gi, '<font color=')
+              .replace(/<font>\s*color=/gi, '<font color=')
+              .replace(/<font>\s*สี=/gi, '<font color=')
             translationCache.set(cacheKey, result)
             return result
           }
@@ -60,7 +63,30 @@ export default defineEventHandler(async (event) => {
         }
       } catch {
       }
+
       return str
+    }
+
+    async function translateRecursive(val: any): Promise<any> {
+      if (typeof val === 'string') {
+        return translateSingle(val)
+      }
+      if (Array.isArray(val)) {
+        return Promise.all(val.map(item => translateRecursive(item)))
+      }
+      if (typeof val === 'object' && val !== null) {
+        const out: Record<string, any> = {}
+        for (const [k, v] of Object.entries(val)) {
+          out[k] = await translateRecursive(v)
+        }
+        return out
+      }
+      return val
+    }
+
+    if (body.payload !== undefined) {
+      const translated = await translateRecursive(body.payload)
+      return { translated }
     }
 
     if (Array.isArray(body.texts)) {
