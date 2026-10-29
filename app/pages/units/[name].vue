@@ -67,8 +67,14 @@
       <div class="p-4 rounded-xl border border-white/5 bg-[#0f172a]/60 backdrop-blur-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-3.5">
           <!-- Unit Avatar -->
-          <div class="w-11 h-11 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-primary shrink-0">
-            <UIcon name="i-lucide-user" class="w-5 h-5 text-neutral-300" />
+          <div class="w-11 h-11 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-primary shrink-0 overflow-hidden">
+            <img
+              v-if="store.currentUnit?.icon && getRobloxImageUrl(store.currentUnit.icon)"
+              :src="getRobloxImageUrl(store.currentUnit.icon)!"
+              class="w-full h-full object-cover"
+              alt="Unit Avatar"
+            />
+            <UIcon v-else name="i-lucide-user" class="w-5 h-5 text-neutral-300" />
           </div>
 
           <!-- Unit Identity & Meta -->

@@ -23,6 +23,13 @@
             @click="selectUnit(u.id)"
           >
             <div class="flex items-center gap-2.5 truncate">
+              <img
+                v-if="u.icon && getRobloxImageUrl(u.icon)"
+                :src="getRobloxImageUrl(u.icon)!"
+                class="w-6 h-6 rounded object-cover bg-black/40 border border-white/10 shrink-0"
+                alt="Unit"
+                loading="lazy"
+              />
               <span class="text-sm font-semibold">{{ u.displayName || u.name }}</span>
               <span class="text-[11px] text-muted">{{ u.series }}</span>
             </div>
@@ -78,13 +85,10 @@ function selectUnit(id: string) {
   store.setUnit(id)
   store.isSelectorOpen = false
 
-  // Only navigate if the user is already browsing inside /units
-  if (route.path.startsWith('/units')) {
-    const target = unitList.value.find((u: any) => u.id === id)
-    if (target) {
-      const slug = toUnitSlug(target)
-      router.push({ path: `/units/${slug}` })
-    }
+  const target = unitList.value.find((u: any) => u.id === id)
+  if (target) {
+    const slug = toUnitSlug(target)
+    router.push({ path: `/units/${slug}` })
   }
 }
 

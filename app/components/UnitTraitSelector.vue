@@ -80,7 +80,26 @@
           placeholder="Search trait..."
           :search-input="{ placeholder: 'Search trait name or stat effect...' }"
           @update:model-value="(val) => handleTraitSelect(slotIdx, val)"
-        />
+        >
+          <template #leading>
+            <img
+              v-if="getTraitForSlot(slotIdx)?.TraitIcon && getRobloxImageUrl(getTraitForSlot(slotIdx)?.TraitIcon)"
+              :src="getRobloxImageUrl(getTraitForSlot(slotIdx)?.TraitIcon)!"
+              class="w-4 h-4 rounded object-contain bg-black/40 shrink-0"
+              alt=""
+            />
+          </template>
+          <template #item-leading="{ item }">
+            <img
+              v-if="(item as any).icon && getRobloxImageUrl((item as any).icon)"
+              :src="getRobloxImageUrl((item as any).icon)!"
+              class="w-5 h-5 rounded object-contain bg-black/60 border border-white/10 shrink-0"
+              alt=""
+              loading="lazy"
+            />
+            <UIcon v-else-if="item.value === 'none'" name="i-lucide-ban" class="w-4 h-4 text-neutral-500 shrink-0" />
+          </template>
+        </USelectMenu>
 
         <!-- Active Trait Details Card -->
         <div
@@ -89,10 +108,19 @@
           :class="getRarityBorderClass(getTraitForSlot(slotIdx)?.RarityName)"
         >
           <div class="flex items-center justify-between">
-            <span class="font-bold text-xs" :class="getRarityTextClass(getTraitForSlot(slotIdx)?.RarityName)">
-              {{ getTraitForSlot(slotIdx)?.TraitDisplayName }}
-            </span>
-            <span class="text-[10px] text-muted font-mono">
+            <div class="flex items-center gap-1.5 min-w-0">
+              <img
+                v-if="getTraitForSlot(slotIdx)?.TraitIcon && getRobloxImageUrl(getTraitForSlot(slotIdx)?.TraitIcon)"
+                :src="getRobloxImageUrl(getTraitForSlot(slotIdx)?.TraitIcon)!"
+                class="w-5 h-5 rounded object-contain bg-black/60 border border-white/10 shrink-0"
+                alt="Trait"
+                loading="lazy"
+              />
+              <span class="font-bold text-xs truncate" :class="getRarityTextClass(getTraitForSlot(slotIdx)?.RarityName)">
+                {{ getTraitForSlot(slotIdx)?.TraitDisplayName }}
+              </span>
+            </div>
+            <span class="text-[10px] text-muted font-mono shrink-0">
               {{ getTraitForSlot(slotIdx)?.RarityName }}
             </span>
           </div>
@@ -233,6 +261,13 @@
               <!-- Card Header -->
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
+                  <img
+                    v-if="t.TraitIcon && getRobloxImageUrl(t.TraitIcon)"
+                    :src="getRobloxImageUrl(t.TraitIcon)!"
+                    class="w-5 h-5 rounded object-contain bg-black/60 border border-white/10 shrink-0"
+                    alt="Trait"
+                    loading="lazy"
+                  />
                   <UBadge
                     :color="getRarityBadgeColor(t.RarityName)"
                     variant="subtle"
@@ -395,11 +430,12 @@ function getTraitForSlot(slotIndex: number): UnitTrait | null {
 }
 
 const traitOptions = computed(() => {
-  const options = [{ label: 'None', value: 'none', description: '' }]
+  const options = [{ label: 'None', value: 'none', description: '', icon: null }]
   const list = store.traitsList.map((t: UnitTrait) => ({
     label: `${t.RarityName} - ${t.TraitDisplayName}`,
     value: t.id,
-    description: t.TraitStatus || ''
+    description: t.TraitStatus || '',
+    icon: t.TraitIcon || null
   }))
   return [...options, ...list]
 })

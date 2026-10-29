@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   modules: ["@nuxt/image", "@nuxt/ui", "nuxt-og-image"],
   routeRules: {
-    "/units/**": {},
+    "/units/**": { swr: 3600 },
   },
   site: {
     url: process.env.NUXT_PUBLIC_SITE_URL || "https://am-wiki.vercel.app",
