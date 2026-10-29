@@ -91,7 +91,10 @@ function selectUnit(id: string) {
   const target = unitList.value.find((u: any) => u.id === id)
   if (target) {
     const slug = toUnitSlug(target)
-    router.push({ path: `/units/${slug}` })
+    router.push({
+      path: `/units/${slug}`,
+      query: { ...store.buildQueryParams, unit: slug }
+    })
   }
 }
 

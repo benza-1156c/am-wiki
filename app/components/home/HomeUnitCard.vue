@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="'/units/' + toUnitSlug(unit)"
+    :to="{ path: '/units/' + toUnitSlug(unit), query: { unit: toUnitSlug(unit) } }"
     class="group p-3 rounded-xl border border-white/10 bg-[#0f172a]/70 hover:bg-[#0f172a] hover:border-primary/50 transition-all duration-200 flex flex-col gap-2.5 shadow-lg hover:shadow-primary/10 relative overflow-hidden"
   >
     <!-- Top subtle glow on hover -->

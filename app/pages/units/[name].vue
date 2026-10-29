@@ -175,7 +175,7 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue'
-import { findUnitByParam } from '~/utils/unitSlug'
+import { findUnitByParam, toUnitSlug } from '~/utils/unitSlug'
 
 const route = useRoute()
 const router = useRouter()
@@ -189,7 +189,8 @@ const { data: dbData } = await useFetch<any>('/api/database', {
 const store = useCombatCalculatorStore()
 
 if (dbData.value?.units) {
-  const initialFound = findUnitByParam(dbData.value.units, route.params.name as string)
+  const initialLookup = (route.query.unit as string) || (route.params.name as string)
+  const initialFound = findUnitByParam(dbData.value.units, initialLookup)
   if (initialFound) {
     store.setUnit(initialFound.id)
     if (route.query && Object.keys(route.query).length > 0) {
@@ -201,14 +202,16 @@ if (dbData.value?.units) {
 useUnitSeo(store)
 
 const targetUnit = computed(() => {
-  return findUnitByParam(store.units, route.params.name)
+  return findUnitByParam(store.units, (route.query.unit as string) || route.params.name)
 })
 
 watch(
-  [() => store.units, () => route.params.name],
-  ([unitsList, paramName]) => {
-    if (!unitsList || unitsList.length === 0 || !paramName) return
-    const found = findUnitByParam(unitsList, paramName as string)
+  [() => store.units, () => route.params.name, () => route.query.unit],
+  ([unitsList, paramName, queryUnit]) => {
+    if (!unitsList || unitsList.length === 0) return
+    const targetLookup = (queryUnit as string) || (paramName as string)
+    if (!targetLookup) return
+    const found = findUnitByParam(unitsList, targetLookup)
     if (found) {
       if (store.selectedUnitId !== found.id) {
         store.setUnit(found.id)
@@ -223,21 +226,27 @@ watch(
 
 let syncTimer: any = null
 watch(
-  () => store.buildQueryParams,
-  (newQuery) => {
+  [() => store.buildQueryParams, () => store.currentUnit],
+  ([newQuery, currentUnit]) => {
     if (import.meta.server) return
     clearTimeout(syncTimer)
     syncTimer = setTimeout(() => {
-      const cleanQuery = { ...newQuery }
-      delete cleanQuery.unit
+      const currentSlug = currentUnit ? toUnitSlug(currentUnit) : (route.params.name as string)
+      const targetQuery: Record<string, string> = { ...(newQuery as Record<string, string>) }
+      if (currentSlug) {
+        targetQuery.unit = currentSlug
+      }
 
+      const targetPath = currentSlug ? `/units/${currentSlug}` : route.path
       const currentQuery = route.query
-      const isDifferent =
-        Object.keys(cleanQuery).some(k => cleanQuery[k] !== currentQuery[k]) ||
-        Object.keys(currentQuery).some(k => currentQuery[k] !== cleanQuery[k] && k !== 'unit')
+      const isPathDifferent = route.path !== targetPath
+      const isQueryDifferent =
+        Object.keys(targetQuery).length !== Object.keys(currentQuery).length ||
+        Object.keys(targetQuery).some(k => String(targetQuery[k]) !== String(currentQuery[k])) ||
+        Object.keys(currentQuery).some(k => String(currentQuery[k]) !== String(targetQuery[k]))
 
-      if (isDifferent) {
-        router.replace({ path: route.path, query: cleanQuery })
+      if (isPathDifferent || isQueryDifferent) {
+        router.replace({ path: targetPath, query: targetQuery })
       }
     }, 200)
   },

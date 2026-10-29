@@ -16,6 +16,7 @@ import {
   getMaxUnitLevel,
   resolveGearStatsForUnit,
 } from "~/utils/unitCalculator";
+import { toUnitSlug, findUnitByParam } from "~/utils/unitSlug";
 
 const selectedUnitId = ref<string>("Alucard_001_evo");
 const unitLevel = ref<number>(80);
@@ -74,11 +75,12 @@ export function useCombatCalculatorStore() {
   );
 
   const currentUnit = computed<NormalizedUnit | null>(() => {
+    if (!units.value || units.value.length === 0) return null;
+    if (selectedUnitId.value) {
+      const found = findUnitByParam(units.value, selectedUnitId.value);
+      if (found) return found;
+    }
     return (
-      units.value.find(
-        (u: any) =>
-          u.id === selectedUnitId.value || u.name === selectedUnitId.value,
-      ) ||
       units.value.find(
         (u: any) =>
           u.id === "Alucard_001_evo" || u.displayName?.includes("Dracula"),
@@ -294,7 +296,8 @@ export function useCombatCalculatorStore() {
 
   // Action methods
   function setUnit(id: string) {
-    selectedUnitId.value = id;
+    const found = findUnitByParam(units.value || [], id);
+    selectedUnitId.value = found ? found.id : id;
 
     // Automatically max out Awakening Stars (6★)
     selectedStars.value = 6;
@@ -302,9 +305,17 @@ export function useCombatCalculatorStore() {
     // Automatically max out Unit Level (Lv. 80)
     unitLevel.value = getMaxUnitLevel(6);
 
-    // Automatically max out In-Game Upgrade Level to target unit's maxLevel
-    const target = units.value?.find((u: any) => u.id === id || u.name === id);
+    const target =
+      found || units.value?.find((u: any) => u.id === id || u.name === id);
     upgradeLevel.value = target?.maxLevel ?? 5;
+
+    equippedGears.value = {
+      Head: null,
+      Body: null,
+      Arm: null,
+      Legs: null,
+    };
+    selectedTraitIds.value = [null, null];
   }
 
   function setLevel(lvl: number) {
@@ -365,7 +376,10 @@ export function useCombatCalculatorStore() {
   // URL Query Sync Helpers
   function initFromQuery(query: Record<string, any>) {
     if (!query) return;
-    if (query.unit) selectedUnitId.value = String(query.unit);
+    if (query.unit) {
+      const found = findUnitByParam(units.value || [], String(query.unit));
+      selectedUnitId.value = found ? found.id : String(query.unit);
+    }
     if (query.stars !== undefined && query.stars !== "") {
       const s = parseInt(String(query.stars), 10);
       if (!isNaN(s)) selectedStars.value = Math.max(0, Math.min(6, s));
@@ -412,7 +426,11 @@ export function useCombatCalculatorStore() {
 
   const buildQueryParams = computed(() => {
     const q: Record<string, string> = {};
-    if (selectedUnitId.value) q.unit = selectedUnitId.value;
+    if (currentUnit.value) {
+      q.unit = toUnitSlug(currentUnit.value);
+    } else if (selectedUnitId.value) {
+      q.unit = selectedUnitId.value;
+    }
     if (selectedStars.value !== undefined)
       q.stars = String(selectedStars.value);
     if (unitLevel.value) q.level = String(unitLevel.value);
