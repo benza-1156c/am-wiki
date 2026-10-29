@@ -4,6 +4,8 @@ import type {
   NormalizedUnit,
   MergeMode,
   MergeResult,
+  UnitDiffField,
+  UnitDiffItem,
   PotentialRank,
   PotentialConfig,
   StatPotentials,
@@ -570,6 +572,91 @@ export function normalizeUnit(key: string, raw: RawUnitConfig, existingSkill?: a
 }
 
 /**
+ * Computes deep differences between existing unit and new merged unit
+ */
+export function computeUnitDiff(oldU: NormalizedUnit, newU: NormalizedUnit): UnitDiffField[] {
+  const diffs: UnitDiffField[] = []
+
+  const oldIcon = oldU.icon || null
+  const newIcon = newU.icon || null
+  if (oldIcon !== newIcon) {
+    diffs.push({
+      field: 'icon',
+      label: 'Icon',
+      oldValue: oldIcon,
+      newValue: newIcon
+    })
+  }
+
+  const oldModel = oldU.model || null
+  const newModel = newU.model || null
+  if (oldModel !== newModel) {
+    diffs.push({
+      field: 'model',
+      label: '3D Model',
+      oldValue: oldModel,
+      newValue: newModel
+    })
+  }
+
+  if (newU.rarity && oldU.rarity && newU.rarity !== oldU.rarity) {
+    diffs.push({
+      field: 'rarity',
+      label: 'Rarity',
+      oldValue: oldU.rarity,
+      newValue: newU.rarity
+    })
+  }
+
+  if (newU.element && oldU.element && newU.element !== oldU.element) {
+    diffs.push({
+      field: 'element',
+      label: 'Element',
+      oldValue: oldU.element,
+      newValue: newU.element
+    })
+  }
+
+  if (newU.baseDamage !== undefined && oldU.baseDamage !== undefined && newU.baseDamage !== oldU.baseDamage) {
+    diffs.push({
+      field: 'baseDamage',
+      label: 'Base DMG',
+      oldValue: oldU.baseDamage,
+      newValue: newU.baseDamage
+    })
+  }
+
+  if (newU.spawnCooldown !== undefined && oldU.spawnCooldown !== undefined && newU.spawnCooldown !== oldU.spawnCooldown) {
+    diffs.push({
+      field: 'spawnCooldown',
+      label: 'Spawn Cooldown',
+      oldValue: oldU.spawnCooldown,
+      newValue: newU.spawnCooldown
+    })
+  }
+
+  if (newU.statsAtBase?.attack !== undefined && oldU.statsAtBase?.attack !== undefined && newU.statsAtBase?.attack !== oldU.statsAtBase?.attack) {
+    diffs.push({
+      field: 'statsAtBase.attack',
+      label: 'Base ATK',
+      oldValue: oldU.statsAtBase?.attack,
+      newValue: newU.statsAtBase?.attack
+    })
+  }
+
+  if (newU.statsAtBase?.cost !== undefined && oldU.statsAtBase?.cost !== undefined && newU.statsAtBase?.cost !== oldU.statsAtBase?.cost) {
+    diffs.push({
+      field: 'statsAtBase.cost',
+      label: 'Cost',
+      oldValue: oldU.statsAtBase?.cost,
+      newValue: newU.statsAtBase?.cost
+    })
+  }
+
+  return diffs
+}
+
+/**
  * Robust JSON parser and merger for test.json, am_dump.json, database.json
  */
 export function parseAndMergeUnits(
@@ -629,12 +716,22 @@ export function parseAndMergeUnits(
 
   if (mode === 'overwrite_all') {
     const list = rawList.map(r => normalizeUnit(r.key, r.data, activeSkills[r.data.Name || r.key]))
+    const diffItems: UnitDiffItem[] = list.map(u => ({
+      id: u.id,
+      name: u.name,
+      displayName: u.displayName || u.name,
+      status: 'new' as const,
+      diffs: [],
+      unit: u
+    }))
     return {
       mergedUnits: list,
       addedCount: list.length,
       updatedCount: 0,
+      unchangedCount: 0,
       skippedCount: 0,
-      newUnitsList: list
+      newUnitsList: list,
+      diffItems
     }
   }
 
@@ -649,8 +746,10 @@ export function parseAndMergeUnits(
 
   let addedCount = 0
   let updatedCount = 0
+  let unchangedCount = 0
   let skippedCount = 0
   const newUnitsList: NormalizedUnit[] = []
+  const diffItems: UnitDiffItem[] = []
 
   for (const item of rawList) {
     const raw = item.data
@@ -661,17 +760,52 @@ export function parseAndMergeUnits(
     const existingIdx = idMap.has(id) ? idMap.get(id)! : (nameMap.has(name) ? nameMap.get(name)! : -1)
 
     if (existingIdx !== -1) {
+      const existing = resultList[existingIdx]
       if (mode === 'skip_duplicates') {
         skippedCount++
+        unchangedCount++
+        diffItems.push({
+          id: existing.id,
+          name: existing.name,
+          displayName: existing.displayName || existing.name,
+          status: 'unchanged',
+          diffs: [],
+          unit: existing,
+          oldUnit: existing
+        })
       } else {
-        const existing = resultList[existingIdx]
         const normalized = normalizeUnit(key, raw, existing.skill || activeSkills[raw.Name || key])
-        resultList[existingIdx] = {
+        const merged: NormalizedUnit = {
           ...existing,
           ...normalized,
           skill: existing.skill || normalized.skill
         }
-        updatedCount++
+        const diffs = computeUnitDiff(existing, merged)
+        resultList[existingIdx] = merged
+
+        if (diffs.length > 0) {
+          updatedCount++
+          diffItems.push({
+            id: merged.id,
+            name: merged.name,
+            displayName: merged.displayName || merged.name,
+            status: 'modified',
+            diffs,
+            unit: merged,
+            oldUnit: existing
+          })
+        } else {
+          unchangedCount++
+          diffItems.push({
+            id: merged.id,
+            name: merged.name,
+            displayName: merged.displayName || merged.name,
+            status: 'unchanged',
+            diffs: [],
+            unit: merged,
+            oldUnit: existing
+          })
+        }
       }
     } else {
       const normalized = normalizeUnit(key, raw, activeSkills[raw.Name || key])
@@ -681,6 +815,14 @@ export function parseAndMergeUnits(
       nameMap.set(normalized.name.toLowerCase(), newIdx)
       addedCount++
       newUnitsList.push(normalized)
+      diffItems.push({
+        id: normalized.id,
+        name: normalized.name,
+        displayName: normalized.displayName || normalized.name,
+        status: 'new',
+        diffs: [],
+        unit: normalized
+      })
     }
   }
 
@@ -688,7 +830,9 @@ export function parseAndMergeUnits(
     mergedUnits: resultList,
     addedCount,
     updatedCount,
+    unchangedCount,
     skippedCount,
-    newUnitsList
+    newUnitsList,
+    diffItems
   }
 }

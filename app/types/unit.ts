@@ -225,11 +225,31 @@ export interface CalculatedStats {
 
 export type MergeMode = 'merge' | 'skip_duplicates' | 'overwrite_all'
 
+export interface UnitDiffField {
+  field: string
+  label: string
+  oldValue: any
+  newValue: any
+}
+
+export interface UnitDiffItem {
+  id: string
+  name: string
+  displayName: string
+  status: 'new' | 'modified' | 'unchanged'
+  diffs: UnitDiffField[]
+  unit: NormalizedUnit
+  oldUnit?: NormalizedUnit
+}
+
 export interface MergeResult {
   mergedUnits: NormalizedUnit[]
   addedCount: number
   updatedCount: number
+  unchangedCount: number
   skippedCount: number
   newUnitsList: NormalizedUnit[]
+  diffItems: UnitDiffItem[]
 }
+
 

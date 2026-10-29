@@ -49,7 +49,7 @@
         <UTextarea
           v-model="rawJsonInput"
           placeholder="Paste complete game dump JSON here (e.g. from lua/dump_all.luau or any units list)..."
-          :rows="10"
+          :rows="8"
           class="font-mono text-xs w-full"
           @input="reanalyze"
         />
@@ -111,26 +111,46 @@
       variant="subtle"
       icon="i-lucide-alert-triangle"
       :title="errorMessage"
+      :description="isJsonSyntaxError ? 'ข้อความ JSON ที่วางอาจตกหล่นหรือขาดช่วง (เช่น คัดลอกมาไม่ครบ หรือขาดเครื่องหมายปีกกาเปิด { ด้านหน้า) แนะนำให้ใช้ปุ่ม Choose JSON File ด้านบนเพื่อเลือกไฟล์ตรงๆ จะไม่ตกหล่นครับ' : undefined"
       close
       @update:open="errorMessage = ''"
     />
 
-    <!-- Analysis Result & Save Action -->
-    <UCard v-if="analysisResult">
+    <!-- Analysis Result & Diff Inspector -->
+    <UCard v-if="analysisResult" class="space-y-4">
       <template #header>
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1">
             <h2 class="font-bold text-sm flex items-center gap-2">
-              <UIcon name="i-lucide-check-circle" class="text-primary" />
-              <span>Ready to Apply to database.json</span>
+              <UIcon name="i-lucide-git-compare" class="text-primary text-base" />
+              <span>Diff & Database Comparison</span>
             </h2>
-            <p class="text-xs text-muted">
-              Total: {{ analysisResult.mergedUnits.length }} units | Added: +{{ analysisResult.addedCount }} | Updated: {{ analysisResult.updatedCount }}
-            </p>
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <UBadge color="neutral" variant="subtle" size="xs">
+                Total: {{ analysisResult.mergedUnits.length }}
+              </UBadge>
+              <UBadge
+                :color="analysisResult.updatedCount > 0 ? 'warning' : 'neutral'"
+                variant="subtle"
+                size="xs"
+              >
+                ✏️ Modified: {{ analysisResult.updatedCount }}
+              </UBadge>
+              <UBadge
+                :color="analysisResult.addedCount > 0 ? 'success' : 'neutral'"
+                variant="subtle"
+                size="xs"
+              >
+                ➕ New: {{ analysisResult.addedCount }}
+              </UBadge>
+              <UBadge color="neutral" variant="subtle" size="xs">
+                ⚪ Unchanged: {{ analysisResult.unchangedCount }}
+              </UBadge>
+            </div>
           </div>
 
           <UButton
-            label="Save to database.json"
+            :label="`Save to database.json (${analysisResult.updatedCount} modified, ${analysisResult.addedCount} new)`"
             icon="i-lucide-save"
             color="primary"
             variant="solid"
@@ -140,22 +160,156 @@
         </div>
       </template>
 
-      <!-- Preview List -->
-      <div class="max-h-80 overflow-y-auto space-y-1">
+      <!-- Filter Tabs & Search -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-3 border-b border-default">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <UButton
+            :variant="activeTab === 'all' ? 'solid' : 'ghost'"
+            :color="activeTab === 'all' ? 'primary' : 'neutral'"
+            size="xs"
+            @click="activeTab = 'all'"
+          >
+            All ({{ analysisResult.diffItems.length }})
+          </UButton>
+          <UButton
+            :variant="activeTab === 'modified' ? 'solid' : 'ghost'"
+            :color="activeTab === 'modified' ? 'warning' : 'neutral'"
+            size="xs"
+            @click="activeTab = 'modified'"
+          >
+            ✏️ Modified ({{ analysisResult.updatedCount }})
+          </UButton>
+          <UButton
+            :variant="activeTab === 'new' ? 'solid' : 'ghost'"
+            :color="activeTab === 'new' ? 'success' : 'neutral'"
+            size="xs"
+            @click="activeTab = 'new'"
+          >
+            ➕ New ({{ analysisResult.addedCount }})
+          </UButton>
+          <UButton
+            :variant="activeTab === 'unchanged' ? 'solid' : 'ghost'"
+            :color="activeTab === 'unchanged' ? 'neutral' : 'neutral'"
+            size="xs"
+            @click="activeTab = 'unchanged'"
+          >
+            ⚪ Unchanged ({{ analysisResult.unchangedCount }})
+          </UButton>
+        </div>
+
+        <div class="w-full sm:w-64">
+          <UInput
+            v-model="searchQuery"
+            placeholder="Filter by unit name..."
+            icon="i-lucide-search"
+            size="xs"
+          />
+        </div>
+      </div>
+
+      <!-- Diff Items List -->
+      <div class="max-h-96 overflow-y-auto space-y-2 pr-1">
         <div
-          v-for="u in analysisResult.mergedUnits.slice(0, 50)"
-          :key="u.id"
-          class="flex items-center justify-between p-2 rounded text-xs border border-default"
+          v-if="filteredDiffItems.length === 0"
+          class="py-8 text-center text-xs text-muted"
         >
-          <div class="flex items-center gap-2">
-            <span class="font-bold">{{ u.displayName || u.name }}</span>
-            <UBadge color="neutral" variant="subtle" size="xs">{{ u.rarity }}</UBadge>
-            <UBadge color="primary" variant="subtle" size="xs">{{ u.element }}</UBadge>
-            <UBadge v-if="u.skill" color="warning" variant="subtle" size="xs">Passive Bound</UBadge>
+          No units match the selected filter.
+        </div>
+
+        <div
+          v-for="item in filteredDiffItems"
+          :key="item.id"
+          class="p-3 rounded-lg border border-default bg-card/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-primary/40 transition-colors"
+        >
+          <!-- Left: Unit Info -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-md overflow-hidden bg-neutral-900 border border-default flex items-center justify-center shrink-0">
+              <img
+                v-if="item.unit.icon && getRobloxImageUrl(item.unit.icon)"
+                :src="getRobloxImageUrl(item.unit.icon)!"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                alt=""
+              >
+              <UIcon
+                v-else
+                name="i-lucide-user"
+                class="w-5 h-5 text-muted"
+              />
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-xs">{{ item.displayName || item.name }}</span>
+                <UBadge
+                  v-if="item.status === 'modified'"
+                  color="warning"
+                  variant="subtle"
+                  size="xs"
+                >
+                  <UIcon name="i-lucide-edit-3" class="w-3 h-3 mr-1" />
+                  Modified ({{ item.diffs.length }})
+                </UBadge>
+                <UBadge
+                  v-else-if="item.status === 'new'"
+                  color="success"
+                  variant="subtle"
+                  size="xs"
+                >
+                  <UIcon name="i-lucide-plus" class="w-3 h-3 mr-1" />
+                  New Unit
+                </UBadge>
+                <UBadge
+                  v-else
+                  color="neutral"
+                  variant="subtle"
+                  size="xs"
+                >
+                  <UIcon name="i-lucide-check" class="w-3 h-3 mr-1" />
+                  Unchanged
+                </UBadge>
+
+                <UBadge color="neutral" variant="outline" size="xs">{{ item.unit.rarity }}</UBadge>
+                <UBadge color="primary" variant="outline" size="xs">{{ item.unit.element }}</UBadge>
+              </div>
+
+              <!-- Diffs Chips -->
+              <div v-if="item.status === 'modified' && item.diffs.length > 0" class="flex flex-wrap items-center gap-1.5 pt-0.5">
+                <UBadge
+                  v-for="(diff, dIdx) in item.diffs"
+                  :key="dIdx"
+                  color="warning"
+                  variant="outline"
+                  size="xs"
+                  class="font-mono text-[10px]"
+                >
+                  <span class="font-semibold">{{ diff.label }}:</span>
+                  <template v-if="diff.field === 'icon'">
+                    <span v-if="!diff.oldValue" class="text-emerald-400 font-semibold ml-1">Icon Added</span>
+                    <span v-else class="text-amber-400 ml-1">Icon Replaced</span>
+                  </template>
+                  <template v-else>
+                    <span class="line-through opacity-70 mx-1">{{ diff.oldValue ?? 'null' }}</span>
+                    <UIcon name="i-lucide-arrow-right" class="w-3 h-3 inline text-warning" />
+                    <span class="text-primary font-bold ml-1">{{ diff.newValue }}</span>
+                  </template>
+                </UBadge>
+              </div>
+
+              <div v-else-if="item.status === 'new'" class="text-[11px] text-muted">
+                Base ATK: {{ item.unit.statsAtBase?.attack }} | Cost: {{ item.unit.statsAtBase?.cost }} | SPD: {{ item.unit.statsAtBase?.attackSpeed }}s
+              </div>
+
+              <div v-else class="text-[11px] text-muted italic">
+                Matches database.json identically (No changes)
+              </div>
+            </div>
           </div>
-          <div class="flex items-center gap-4 text-muted font-mono">
-            <span>Base ATK: {{ u.statsAtBase?.attack }}</span>
-            <span>Max ATK: {{ u.statsAtMax?.attack }}</span>
+
+          <!-- Right: Quick Stat Glance -->
+          <div class="flex items-center gap-3 text-xs text-muted shrink-0 pl-12 sm:pl-0 font-mono">
+            <span>ATK: {{ item.unit.statsAtBase?.attack }}</span>
+            <span>CD: {{ item.unit.spawnCooldown }}s</span>
           </div>
         </div>
       </div>
@@ -165,6 +319,7 @@
 
 <script setup lang="ts">
 import { parseAndMergeUnits } from '~/utils/unitCalculator'
+import { getRobloxImageUrl } from '~/utils/formatters'
 import type { MergeResult } from '~/types/unit'
 
 const props = defineProps<{
@@ -180,6 +335,13 @@ const errorMessage = ref('')
 const successMessage = ref('')
 const analysisResult = ref<MergeResult | null>(null)
 const parsedPayload = ref<any>(null)
+const activeTab = ref<'all' | 'modified' | 'new' | 'unchanged'>('modified')
+const searchQuery = ref('')
+
+const isJsonSyntaxError = computed(() => {
+  const msg = errorMessage.value.toLowerCase()
+  return msg.includes('json') || msg.includes('token') || msg.includes('position') || msg.includes('syntax')
+})
 
 const detectedCounts = computed(() => {
   const p = parsedPayload.value
@@ -197,6 +359,26 @@ const detectedCounts = computed(() => {
     gears: gearsCount,
     traits: traitsCount
   }
+})
+
+const filteredDiffItems = computed(() => {
+  if (!analysisResult.value?.diffItems) return []
+  let items = analysisResult.value.diffItems
+
+  if (activeTab.value !== 'all') {
+    items = items.filter(item => item.status === activeTab.value)
+  }
+
+  if (searchQuery.value.trim()) {
+    const q = searchQuery.value.toLowerCase().trim()
+    items = items.filter(item =>
+      item.name.toLowerCase().includes(q) ||
+      item.displayName.toLowerCase().includes(q) ||
+      item.id.toLowerCase().includes(q)
+    )
+  }
+
+  return items
 })
 
 function clearInput() {
@@ -259,6 +441,15 @@ function reanalyze() {
       'merge'
     )
     analysisResult.value = result
+
+    // Automatically select the most relevant tab
+    if (result.updatedCount > 0) {
+      activeTab.value = 'modified'
+    } else if (result.addedCount > 0) {
+      activeTab.value = 'new'
+    } else {
+      activeTab.value = 'all'
+    }
   } catch (err: any) {
     errorMessage.value = 'Invalid JSON: ' + err.message
   }
@@ -299,4 +490,3 @@ async function saveToDatabase() {
   }
 }
 </script>
-
