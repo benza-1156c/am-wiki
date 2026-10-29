@@ -1,5 +1,6 @@
 <template>
   <UApp>
+    <NuxtLoadingIndicator color="#06b6d4" :height="2" />
     <div class="min-h-screen flex flex-col bg-[#0b0f19] text-slate-100">
       <!-- Navbar -->
       <header class="border-b border-white/5 sticky top-0 z-40 bg-[#0b0f19]/80 backdrop-blur-md">
@@ -27,9 +28,30 @@
               >
                 Calculator
               </NuxtLink>
+              <NuxtLink
+                to="/compare"
+                class="px-2.5 py-1.5 rounded-md hover:text-white hover:bg-white/5 transition-colors flex items-center gap-1.5"
+                active-class="text-white bg-white/5 font-semibold"
+              >
+                <UIcon name="i-lucide-swords" class="w-3.5 h-3.5 text-primary" />
+                <span>Compare</span>
+              </NuxtLink>
             </nav>
           </div>
 
+          <!-- Right Navbar Actions -->
+          <div class="flex items-center gap-2">
+            <NuxtLink to="/compare">
+              <UButton
+                icon="i-lucide-swords"
+                label="Compare Units"
+                size="xs"
+                variant="subtle"
+                color="primary"
+                class="hidden md:inline-flex"
+              />
+            </NuxtLink>
+          </div>
         </UContainer>
       </header>
 

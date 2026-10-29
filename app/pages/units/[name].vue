@@ -118,7 +118,16 @@
         </div>
 
         <!-- Switch Unit Action & Share Button -->
-        <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
+        <div class="flex items-center gap-2 self-start sm:self-auto shrink-0 flex-wrap">
+          <NuxtLink :to="{ path: '/compare', query: { u1: toUnitSlug(store.currentUnit) } }">
+            <UButton
+              icon="i-lucide-swords"
+              label="Compare"
+              variant="outline"
+              color="neutral"
+              size="sm"
+            />
+          </NuxtLink>
           <UButton
             icon="i-lucide-share-2"
             label="Share Build"

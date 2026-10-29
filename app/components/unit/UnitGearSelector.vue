@@ -106,16 +106,18 @@
           <!-- Top Row: Slot Icon/Label, SelectMenu, Badges -->
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <!-- Slot Identity -->
-            <div class="flex items-center gap-2 min-w-0 sm:w-28 shrink-0">
-              <img
-                v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
-                :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
-                class="w-4 h-4 rounded object-contain bg-black/40 border border-white/10 shrink-0"
-                alt="Gear"
-                loading="lazy"
-              />
-              <UIcon v-else :name="slotDef.icon" class="w-4 h-4 text-primary shrink-0" />
-              <span class="text-xs font-bold text-neutral-200">{{ slotDef.label }}</span>
+            <div class="flex items-center gap-2.5 min-w-0 sm:w-36 shrink-0">
+              <div class="w-8 h-8 rounded-lg bg-black/50 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                <img
+                  v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
+                  :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
+                  class="w-full h-full object-contain p-0.5"
+                  alt="Gear"
+                  loading="lazy"
+                />
+                <UIcon v-else :name="slotDef.icon" class="w-4 h-4 text-primary shrink-0" />
+              </div>
+              <span class="text-sm font-bold text-white">{{ slotDef.label }}</span>
             </div>
 
             <!-- Selector Menu -->
@@ -125,8 +127,8 @@
                 :items="getSlotOptions(slotDef.slot)"
                 value-key="value"
                 label-key="label"
-                size="sm"
-                class="w-full font-mono text-xs font-medium"
+                size="md"
+                class="w-full font-mono text-sm font-medium"
                 placeholder="Select gear..."
                 :search-input="{ placeholder: 'Search ' + slotDef.label + '...' }"
                 @update:model-value="(val) => handleGearSelect(slotDef.slot, val)"
@@ -135,7 +137,7 @@
                   <img
                     v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
                     :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
-                    class="w-4 h-4 rounded object-contain bg-black/40 shrink-0"
+                    class="w-5 h-5 rounded object-contain bg-black/40 shrink-0"
                     alt=""
                   />
                 </template>
@@ -143,11 +145,11 @@
                   <img
                     v-if="(item as any).icon && getRobloxImageUrl((item as any).icon)"
                     :src="getRobloxImageUrl((item as any).icon)!"
-                    class="w-5 h-5 rounded object-contain bg-black/60 border border-white/10 shrink-0"
+                    class="w-7 h-7 rounded-lg object-contain bg-black/60 border border-white/10 shrink-0"
                     alt=""
                     loading="lazy"
                   />
-                  <UIcon v-else-if="item.value === 'none'" name="i-lucide-ban" class="w-4 h-4 text-neutral-500 shrink-0" />
+                  <UIcon v-else-if="item.value === 'none'" name="i-lucide-ban" class="w-5 h-5 text-neutral-500 shrink-0" />
                 </template>
               </USelectMenu>
             </div>
@@ -238,16 +240,18 @@
         >
           <div class="space-y-2">
             <!-- Slot Header & Rarity/Signature pill -->
-            <div class="flex items-center justify-between gap-1.5">
-              <span class="text-xs font-bold flex items-center gap-1.5 text-neutral-200 truncate">
-                <img
-                  v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
-                  :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
-                  class="w-4 h-4 rounded object-contain bg-black/40 border border-white/10 shrink-0"
-                  alt="Gear"
-                  loading="lazy"
-                />
-                <UIcon v-else :name="slotDef.icon" class="w-4 h-4 text-primary shrink-0" />
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-sm font-bold flex items-center gap-2 text-white truncate">
+                <div class="w-8 h-8 rounded-lg bg-black/50 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden">
+                  <img
+                    v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
+                    :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
+                    class="w-full h-full object-contain p-0.5"
+                    alt="Gear"
+                    loading="lazy"
+                  />
+                  <UIcon v-else :name="slotDef.icon" class="w-4 h-4 text-primary shrink-0" />
+                </div>
                 <span>{{ slotDef.label }}</span>
               </span>
               <div class="flex items-center gap-1.5 shrink-0">
@@ -287,8 +291,8 @@
               :items="getSlotOptions(slotDef.slot)"
               value-key="value"
               label-key="label"
-              size="sm"
-              class="w-full font-mono text-xs font-medium"
+              size="md"
+              class="w-full font-mono text-sm font-medium"
               placeholder="Select gear..."
               :search-input="{ placeholder: 'Search ' + slotDef.label + '...' }"
               @update:model-value="(val) => handleGearSelect(slotDef.slot, val)"
@@ -297,7 +301,7 @@
                 <img
                   v-if="store.activeEquippedGears[slotDef.slot]?.Icon && getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)"
                   :src="getRobloxImageUrl(store.activeEquippedGears[slotDef.slot]?.Icon)!"
-                  class="w-4 h-4 rounded object-contain bg-black/40 shrink-0"
+                  class="w-5 h-5 rounded object-contain bg-black/40 shrink-0"
                   alt=""
                 />
               </template>
@@ -305,11 +309,11 @@
                 <img
                   v-if="(item as any).icon && getRobloxImageUrl((item as any).icon)"
                   :src="getRobloxImageUrl((item as any).icon)!"
-                  class="w-5 h-5 rounded object-contain bg-black/60 border border-white/10 shrink-0"
+                  class="w-7 h-7 rounded-lg object-contain bg-black/60 border border-white/10 shrink-0"
                   alt=""
                   loading="lazy"
                 />
-                <UIcon v-else-if="item.value === 'none'" name="i-lucide-ban" class="w-4 h-4 text-neutral-500 shrink-0" />
+                <UIcon v-else-if="item.value === 'none'" name="i-lucide-ban" class="w-5 h-5 text-neutral-500 shrink-0" />
               </template>
             </USelectMenu>
           </div>

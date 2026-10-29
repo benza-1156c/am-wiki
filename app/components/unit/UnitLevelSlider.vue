@@ -17,8 +17,9 @@
     <div class="space-y-4">
       <!-- Section 1: Unit Level Slider & Multiplier -->
       <div class="space-y-2.5">
-        <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-muted uppercase tracking-wider text-[11px]">Unit Level</span>
+        <div class="flex items-center gap-1 text-xs">
+            <UIcon name="i-lucide-gauge" class="w-3.5 h-3.5 text-primary" />
+          <span class="font-bold text-muted tracking-wider text-[11px]">Unit Level</span>
         </div>
 
         <USlider
@@ -41,8 +42,9 @@
 
       <!-- Section 2: In-Game Upgrade Level -->
       <div class="pt-3 border-t border-default space-y-2">
-        <div class="flex items-center justify-between text-xs">
-          <span class="font-bold text-muted uppercase tracking-wider text-[11px]">In-Game Upgrade Level</span>
+        <div class="flex items-center gap-1 text-xs">
+            <UIcon name="i-lucide-chevrons-up" class="w-3.5 h-3.5 text-emerald-400" />
+          <span class="font-bold text-muted tracking-wider text-[11px]">In-Game Upgrade</span>
         </div>
 
         <div class="flex flex-wrap items-center gap-1.5">
