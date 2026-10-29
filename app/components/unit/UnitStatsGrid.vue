@@ -54,9 +54,6 @@
                 :class="getRankTextColor(store.potentials[stat.key])"
               >
                 <span>{{ stat.getValue(store.calculatedStats) }}{{ stat.suffix || '' }}</span>
-                <span v-if="store.calculatedStats.potentialPercents?.[stat.key]">
-                  | {{ stat.isCooldown ? '-' : '+' }}{{ store.calculatedStats.potentialPercents[stat.key] }}%
-                </span>
               </div>
 
               <!-- Nuxt UI Select Component -->

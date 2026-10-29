@@ -19,14 +19,6 @@
           Units Encyclopedia <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">&
             Calculator</span>
         </h1>
-
-
-        <!-- Quick Action Buttons -->
-        <div class="pt-2 flex flex-wrap items-center gap-3">
-          <NuxtLink v-if="featuredUnitSlug" :to="'/units/' + featuredUnitSlug">
-            <UButton icon="i-lucide-calculator" label="Open Calculator" variant="solid" color="primary" size="md" />
-          </NuxtLink>
-        </div>
       </div>
     </div>
 
@@ -142,11 +134,6 @@ const rarityWeight: Record<string, number> = {
   Rare: 2,
   Common: 1
 }
-
-// Top Rarity count for summary badge
-const topRarityCount = computed(() => {
-  return unitsList.value.filter(u => u.rarity === 'Secret' || u.rarity === 'Mythic').length
-})
 
 const featuredUnitSlug = computed(() => {
   const first = unitsList.value[0]

@@ -119,15 +119,6 @@
 
         <!-- Switch Unit Action & Share Button -->
         <div class="flex items-center gap-2 self-start sm:self-auto shrink-0">
-          <NuxtLink to="/">
-            <UButton
-              icon="i-lucide-grid"
-              label="All Units"
-              variant="ghost"
-              color="neutral"
-              size="sm"
-            />
-          </NuxtLink>
           <UButton
             icon="i-lucide-share-2"
             label="Share Build"

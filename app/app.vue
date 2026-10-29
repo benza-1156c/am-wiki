@@ -6,9 +6,6 @@
         <UContainer class="max-w-[1680px] w-full h-14 flex items-center justify-between">
           <div class="flex items-center gap-6">
             <NuxtLink to="/" class="flex items-center gap-2.5 group">
-              <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:border-primary/40 transition-colors">
-                <UIcon name="i-lucide-swords" class="w-4 h-4" />
-              </div>
               <div class="flex items-center gap-1.5 font-['Outfit']">
                 <span class="font-extrabold text-base tracking-tight text-white">Anime</span>
                 <span class="font-extrabold text-base tracking-tight text-primary">Mysterious</span>
@@ -21,7 +18,7 @@
                 class="px-2.5 py-1.5 rounded-md hover:text-white hover:bg-white/5 transition-colors"
                 active-class="text-white bg-white/5 font-semibold"
               >
-                Units Wiki
+                Units
               </NuxtLink>
               <NuxtLink
                 to="/units/dracula-vampire-progenitor"
@@ -33,17 +30,6 @@
             </nav>
           </div>
 
-          <div class="flex items-center gap-2">
-            <NuxtLink to="/admin">
-              <UButton
-                icon="i-lucide-shield"
-                label="Admin"
-                variant="ghost"
-                color="neutral"
-                size="xs"
-              />
-            </NuxtLink>
-          </div>
         </UContainer>
       </header>
 

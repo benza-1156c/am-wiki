@@ -4,14 +4,11 @@
       <div class="flex items-center justify-between">
         <span class="text-sm font-bold flex items-center gap-1.5">
           <UIcon name="i-lucide-sliders" />
-          <span>Level & In-Game Upgrade</span>
+          <span>Level</span>
         </span>
         <div class="flex items-center gap-1.5">
           <UBadge color="primary" variant="subtle" size="xs">
             Lv. {{ store.unitLevel }} / {{ store.currentMaxLevel }}
-          </UBadge>
-          <UBadge color="neutral" variant="outline" size="xs">
-            Upgrade {{ store.upgradeLevel }} / {{ store.maxUpgradeLevel }}
           </UBadge>
         </div>
       </div>
@@ -46,7 +43,6 @@
       <div class="pt-3 border-t border-default space-y-2">
         <div class="flex items-center justify-between text-xs">
           <span class="font-bold text-muted uppercase tracking-wider text-[11px]">In-Game Upgrade Level</span>
-          <span class="text-[11px] text-muted font-mono">Upgrade {{ store.upgradeLevel }} / {{ store.maxUpgradeLevel }}</span>
         </div>
 
         <div class="flex flex-wrap items-center gap-1.5">
